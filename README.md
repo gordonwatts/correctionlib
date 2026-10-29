@@ -131,3 +131,11 @@ environment, testing, and building the documentation.
 [rtd-badge]:
   https://github.com/cms-nanoAOD/correctionlib/actions/workflows/docs.yml/badge.svg
 [rtd-link]: https://cms-nanoAOD.github.io/correctionlib/
+
+## Experimental native node plugins (this fork)
+
+This branch adds native scalar correction nodes advertised by installed Python
+packages, while retaining a completely Python-free C++ build and runtime.
+See [the plugin guide](docs/node-plugins.md) for the SDK, packaging, validation,
+binary compatibility contract and examples. Extended payloads require this fork;
+stock upstream schema-v2 readers do not support the `extension` node.

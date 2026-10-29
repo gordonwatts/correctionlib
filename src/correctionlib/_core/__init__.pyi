@@ -2,6 +2,9 @@ from typing import Any, Dict, Iterator, List, Type, TypeVar, Union
 
 import numpy
 
+def load_plugin(path: str) -> None: ...
+def has_plugin(type: str, version: int) -> bool: ...
+
 class Variable:
     @property
     def name(self) -> str: ...

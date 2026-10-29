@@ -1,8 +1,9 @@
+import json
 import math
 import warnings
 from collections import Counter
 from functools import partial
-from typing import Annotated, Callable, Literal, Optional, Union
+from typing import Annotated, Any, Callable, Literal, Optional, Union
 
 from pydantic import (
     AfterValidator,
@@ -62,11 +63,29 @@ Content = Union[
             "Transform",
             "HashPRNG",
             "LWTNN",
+            "Extension",
         ],
         Field(discriminator="nodetype"),
     ],
     float,
 ]
+
+
+class Extension(Model):
+    """Fork extension: requires a compatible installed native node provider."""
+
+    nodetype: Literal["extension"]
+    type: str = Field(pattern=r"^[^.]+\..+$")
+    version: int = Field(strict=True, ge=1)
+    config: dict[str, Any]
+    children: list[Content] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_plugin_config(self) -> "Extension":
+        from correctionlib.plugins import validate_config
+
+        validate_config(self.type, self.version, self.config)
+        return self
 
 
 class Formula(Model):
@@ -334,6 +353,7 @@ class Category(Model):
         return content
 
 
+Extension.model_rebuild()
 Transform.model_rebuild()
 Binning.model_rebuild()
 MultiBinning.model_rebuild()
@@ -346,6 +366,9 @@ def walk_content(content: Content, func: Callable[[Content], None]) -> None:
     func(content)
     if isinstance(content, (float, Formula, FormulaRef, HashPRNG, LWTNN)):
         pass
+    elif isinstance(content, Extension):
+        for child in content.children:
+            walk_content(child, func)
     elif isinstance(content, (Binning, MultiBinning)):
         for bin in content.content:
             walk_content(bin, func)
@@ -415,6 +438,7 @@ class _SummaryInfo:
         self.overflow: bool = True
         self.transform: bool = False
         self.used: bool = False
+        self.unknown: bool = False
         self.min: float = float("inf")
         self.max: float = float("-inf")
 
@@ -426,7 +450,10 @@ def _summarize(
     if isinstance(node, float):
         return
     nodecount[type(node).__name__] += 1
-    if isinstance(node, Binning):
+    if isinstance(node, Extension):
+        for stats in inputstats.values():
+            stats.unknown = True
+    elif isinstance(node, Binning):
         inputstats[node.input].overflow &= node.flow != "error"
         low, high = _binning_range(node.edges)
         inputstats[node.input].used = True
@@ -492,6 +519,26 @@ class Correction(Model):
     def check_input_names(self) -> "Correction":
         input_names = {var.name for var in self.inputs}
         walk_content(self.data, partial(_validate_input, input_names))
+        extensions: list[Content] = []
+        walk_content(
+            self.data,
+            lambda node: (
+                extensions.append(node) if isinstance(node, Extension) else None
+            ),
+        )
+        if extensions:
+            # CLI/schema validation must also enforce native contracts, including
+            # configuration, child counts and correction input types.
+            from correctionlib import _core
+
+            payload = {
+                "schema_version": 2,
+                "corrections": [self.model_dump(exclude_unset=True)],
+            }
+            try:
+                _core.CorrectionSet.from_string(json.dumps(payload))
+            except RuntimeError as exc:
+                raise ValueError(str(exc)) from exc
         return self
 
     def summary(self) -> tuple[dict[str, int], dict[str, _SummaryInfo]]:
@@ -515,6 +562,8 @@ class Correction(Model):
 
         def fmt_input(var: Variable, stats: _SummaryInfo) -> str:
             out = var.__rich__()
+            if stats.unknown:
+                return out + "\nUsage/range: unknown (native extension)"
             if var.type == "real":
                 if not stats.used:
                     out += "\nRange: [bold red]unused[/bold red]"

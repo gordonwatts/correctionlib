@@ -12,10 +12,14 @@ project(correctionlib VERSION ${SPLIT_VERSION_MAJOR}.${SPLIT_VERSION_MINOR} LANG
 set(CORRECTIONLIB_VERSION_MAJOR "${correctionlib_VERSION_MAJOR}")
 set(CORRECTIONLIB_VERSION_MINOR "${correctionlib_VERSION_MINOR}")
 
+option(CORRECTIONLIB_BUILD_PYTHON "Build Python bindings" ON)
+option(CORRECTIONLIB_BUILD_TESTS "Build native plugin tests" OFF)
+
 option(BUILD_DEMO "Build demo program" ON)
 
 set(PKG_INSTALL "correctionlib") ## python package name
 
+if(CORRECTIONLIB_BUILD_PYTHON)
 # When cross-compiling, pybind11 asks FindPython for Development.Module without the
 # Interpreter component, so CMake (>=4.4) has nothing to deduce the free-threaded ABI
 # from and rejects the GIL-disabled headers with "missing: Development.Module".
@@ -35,6 +39,8 @@ FetchContent_Declare(pybind11
   CMAKE_ARGS "-DBUILD_TESTING=OFF -DPYBIND11_NOPYTHON=ON"
   )
 FetchContent_MakeAvailable(pybind11)
+
+endif()
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads)
@@ -67,6 +73,11 @@ foreach(lwtnn_target IN ITEMS lwtnn lwtnn-stat)
 endforeach()
 
 
+# Fingerprint public native interfaces even for source archives without Git/Python.
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/include/correction.h" CORE_HEADER_HASH)
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/include/correction_plugin.h" PLUGIN_HEADER_HASH)
+set(CORRECTIONLIB_PLUGIN_BUILD_ID "${CORE_HEADER_HASH}:${PLUGIN_HEADER_HASH}")
+
 configure_file(include/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/include/correctionlib_version.h)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/correctionlib_version.h DESTINATION ${PKG_INSTALL}/include)
 
@@ -74,10 +85,11 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/correctionlib_version.h DESTIN
 add_library(correctionlib SHARED
   src/correction.cc
   src/formula_ast.cc
+  src/plugin.cc
   src/detail_impl.cc
   src/lwtnn.cc
   )
-set_target_properties(correctionlib PROPERTIES PUBLIC_HEADER include/correction.h WINDOWS_EXPORT_ALL_SYMBOLS ON)
+set_target_properties(correctionlib PROPERTIES PUBLIC_HEADER "include/correction.h;include/correction_plugin.h" WINDOWS_EXPORT_ALL_SYMBOLS ON)
 target_include_directories(correctionlib
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -106,7 +118,7 @@ else()
     target_compile_options(correctionlib PRIVATE -Wno-deprecated-literal-operator)
   endif()
 endif()
-target_link_libraries(correctionlib PRIVATE lwtnn-stat)
+target_link_libraries(correctionlib PRIVATE lwtnn-stat ${CMAKE_DL_LIBS})
 if(ZLIB_FOUND)
   target_link_libraries(correctionlib PRIVATE ZLIB::ZLIB)
 endif()
@@ -122,6 +134,7 @@ install(TARGETS correctionlib
   )
 
 
+if(CORRECTIONLIB_BUILD_PYTHON)
 pybind11_add_module(_core MODULE src/python.cc)
 if(MSVC)
   target_compile_options(_core PRIVATE /W4 /WX)
@@ -138,6 +151,8 @@ else (UNIX)
 endif()
 install(TARGETS _core LIBRARY DESTINATION ${PKG_INSTALL})
 
+
+endif()
 
 add_executable(demo src/demo.cc)
 target_link_libraries(demo PRIVATE correctionlib)
@@ -165,3 +180,8 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion
   )
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/correctionlibConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/correctionlibConfigVersion.cmake DESTINATION ${PKG_INSTALL}/cmake)
+
+if(CORRECTIONLIB_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(tests/native_plugins)
+endif()

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["scikit-build-core>=0.8"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "example-correction-nodes"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = ["correctionlib", "pydantic>=2"]
+
+[project.entry-points."correctionlib.nodes"]
+"org.example.scale" = "example_correction_nodes:scale"
+"org.example.offset" = "example_correction_nodes:offset"
+
+[tool.scikit-build]
+wheel.packages = ["python/example_correction_nodes"]

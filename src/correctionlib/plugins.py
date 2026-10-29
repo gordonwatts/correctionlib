@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from importlib.metadata import entry_points
 from pathlib import Path
 from threading import RLock
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -22,7 +22,7 @@ from correctionlib import _core
 class NodePlugin:
     library: str | Path
     versions: tuple[int, ...] = (1,)
-    config_model: Optional[type[BaseModel]] = None
+    config_model: type[BaseModel] | None = None
 
 
 _lock = RLock()
@@ -42,7 +42,7 @@ def load_library(path: str | Path) -> None:
     _core.load_plugin(str(path))
 
 
-def _provider(node_type: str, version: int) -> Optional[NodePlugin]:
+def _provider(node_type: str, version: int) -> NodePlugin | None:
     with _lock:
         descriptor = _loaded.get(node_type)
         if descriptor is None and _enabled:

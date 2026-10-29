@@ -87,6 +87,8 @@ namespace {
   }
 }
 PYBIND11_MODULE(_core, m, py::mod_gil_not_used()) {
+    // Python discovery only registers native libraries. Numerical callbacks
+    // remain entirely native, including when evalv releases the Python GIL.
     m.def("load_plugin", [](const std::string& path) { default_plugin_registry().load_library(path); });
     m.def("has_plugin", [](const std::string& type, int version) { return default_plugin_registry().contains(type, version); });
     m.doc() = "python binding for corrections evaluator";

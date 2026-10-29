@@ -50,6 +50,8 @@ namespace {
     else if ( json.IsObject() && json.HasMember("nodetype") ) {
       auto obj = JSONObject(json.GetObject());
       auto type = obj.getRequired<std::string_view>("nodetype");
+      // Extension is the single dynamic alternative; built-in node dispatch
+      // remains unchanged and nested nodes still enter through this parser.
       if ( type == "extension" ) { return ExtensionNode(obj, context); }
       else if ( type == "binning" ) { return Binning(obj, context); }
       else if ( type == "multibinning" ) { return MultiBinning(obj, context); }
@@ -646,6 +648,8 @@ Correction::Correction(const JSONObject& json, std::shared_ptr<const PluginRegis
     }
   }
 
+  // Factories need input/formula context while data_ is constructed. Retain
+  // the set's registry snapshot before descending into any extension children.
   registry_ = registry ? std::move(registry) : std::make_shared<PluginRegistry>(default_plugin_registry());
   data_ = resolve_content(json.getRequiredValue("data"), *this);
   initialized_ = true;
@@ -820,6 +824,8 @@ std::unique_ptr<CorrectionSet> CorrectionSet::from_string(const char * data, con
 }
 
 CorrectionSet::CorrectionSet(const JSONObject& json, const PluginRegistry& registry) {
+  // Freeze the registration catalog once for this whole set, so concurrent
+  // registration cannot change which factories its corrections observe.
   auto snapshot = std::make_shared<const PluginRegistry>(registry);
   schema_version_ = json.getRequired<int>("schema_version");
   if ( schema_version_ > evaluator_version ) {
@@ -854,6 +860,8 @@ bool CorrectionSet::validate() {
   return true;
 }
 
+// Internal bridge for the plugin SDK. Keep recursive parsing private instead
+// of exposing RapidJSON or the concrete Content variant to provider libraries.
 Content correction::detail::parse_plugin_child(const rapidjson::Value& json, const Correction& context) {
   return resolve_content(json, context);
 }

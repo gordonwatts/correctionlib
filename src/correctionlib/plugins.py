@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from importlib.metadata import entry_points
+from importlib.metadata import EntryPoint, distributions
 from pathlib import Path
 from threading import RLock
 from typing import Any
@@ -42,16 +42,23 @@ def load_library(path: str | Path) -> None:
     _core.load_plugin(str(path))
 
 
+def _node_entry_points() -> list[EntryPoint]:
+    # Distribution.entry_points works on every supported Python, including 3.9
+    # where entry_points(group=...) is not yet part of the stdlib API.
+    return [
+        ep
+        for distribution in distributions()
+        for ep in distribution.entry_points
+        if ep.group == "correctionlib.nodes"
+    ]
+
+
 def _provider(node_type: str, version: int) -> NodePlugin | None:
     with _lock:
         descriptor = _loaded.get(node_type)
         if descriptor is None and _enabled:
             # Enumerate metadata, but import only the exact requested provider.
-            matches = [
-                ep
-                for ep in entry_points(group="correctionlib.nodes")
-                if ep.name == node_type
-            ]
+            matches = [ep for ep in _node_entry_points() if ep.name == node_type]
             if len(matches) > 1:
                 raise ValueError(f"Duplicate entry-point providers for {node_type}")
             if matches:

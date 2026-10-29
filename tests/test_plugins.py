@@ -4,7 +4,6 @@ import pickle
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
-from importlib.metadata import entry_points
 from types import SimpleNamespace
 
 import numpy as np
@@ -38,7 +37,7 @@ def payload():
 
 @pytest.fixture
 def provider():
-    if not entry_points(group="correctionlib.nodes", name="org.example.scale"):
+    if not any(ep.name == "org.example.scale" for ep in plugins._node_entry_points()):
         pytest.skip(
             "Install examples/node_plugin against this core to run provider integration tests"
         )
@@ -155,7 +154,16 @@ def test_cli_validation(provider, payload, tmp_path):
     path = tmp_path / "payload.json"
     path.write_text(json.dumps(payload))
     subprocess.run(
-        [sys.executable, "-m", "correctionlib.cli", "validate", str(path)], check=True
+        [
+            sys.executable,
+            "-X",
+            "utf8",
+            "-m",
+            "correctionlib.cli",
+            "validate",
+            str(path),
+        ],
+        check=True,
     )
 
 
@@ -173,7 +181,7 @@ def test_discovery_disabled_in_fresh_process(provider, payload):
 def test_duplicate_providers(payload, monkeypatch):
     monkeypatch.setattr(
         plugins,
-        "entry_points",
+        "_node_entry_points",
         lambda **kwargs: [
             SimpleNamespace(name="org.duplicate.node"),
             SimpleNamespace(name="org.duplicate.node"),

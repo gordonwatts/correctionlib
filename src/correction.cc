@@ -15,6 +15,7 @@
 #include <cstdlib> // std::abort
 #include <random>
 #include "correction.h"
+#include "correction_plugin.h"
 #define XXH_INLINE_ALL 1
 #include "xxhash.h"
 #include "pcg_random.hpp"
@@ -49,7 +50,10 @@ namespace {
     else if ( json.IsObject() && json.HasMember("nodetype") ) {
       auto obj = JSONObject(json.GetObject());
       auto type = obj.getRequired<std::string_view>("nodetype");
-      if ( type == "binning" ) { return Binning(obj, context); }
+      // Extension is the single dynamic alternative; built-in node dispatch
+      // remains unchanged and nested nodes still enter through this parser.
+      if ( type == "extension" ) { return ExtensionNode(obj, context); }
+      else if ( type == "binning" ) { return Binning(obj, context); }
       else if ( type == "multibinning" ) { return MultiBinning(obj, context); }
       else if ( type == "category" ) { return Category(obj, context); }
       else if ( type == "formula" ) { return Formula(obj, context); }
@@ -626,7 +630,7 @@ double Category::evaluate(const std::vector<Variable::Type>& values) const {
   return std::visit(node_evaluate{values}, *child);
 }
 
-Correction::Correction(const JSONObject& json) :
+Correction::Correction(const JSONObject& json, std::shared_ptr<const PluginRegistry> registry) :
   name_(json.getRequired<const char *>("name")),
   description_(json.getOptional<const char*>("description").value_or("")),
   version_(json.getRequired<int>("version")),
@@ -644,6 +648,9 @@ Correction::Correction(const JSONObject& json) :
     }
   }
 
+  // Factories need input/formula context while data_ is constructed. Retain
+  // the set's registry snapshot before descending into any extension children.
+  registry_ = registry ? std::move(registry) : std::make_shared<PluginRegistry>(default_plugin_registry());
   data_ = resolve_content(json.getRequiredValue("data"), *this);
   initialized_ = true;
 }
@@ -764,7 +771,7 @@ double CompoundCorrection::evaluate(const std::vector<Variable::Type>& values) c
   return out;
 }
 
-std::unique_ptr<CorrectionSet> CorrectionSet::from_file(const std::string& fn) {
+std::unique_ptr<CorrectionSet> CorrectionSet::from_file(const std::string& fn, const PluginRegistry& registry) {
   rapidjson::Document json;
   FILE* fp = fopen(fn.c_str(), "rb");
   if ( fp == nullptr ) {
@@ -800,10 +807,10 @@ std::unique_ptr<CorrectionSet> CorrectionSet::from_file(const std::string& fn) {
         );
   }
   if ( ! json.IsObject() ) { throw std::runtime_error("Expected CorrectionSet object"); }
-  return std::make_unique<CorrectionSet>(json);
+  return std::make_unique<CorrectionSet>(json, registry);
 }
 
-std::unique_ptr<CorrectionSet> CorrectionSet::from_string(const char * data) {
+std::unique_ptr<CorrectionSet> CorrectionSet::from_string(const char * data, const PluginRegistry& registry) {
   rapidjson::Document json;
   rapidjson::ParseResult ok = json.Parse<rapidjson::kParseNanAndInfFlag>(data);
   if (!ok) {
@@ -813,10 +820,13 @@ std::unique_ptr<CorrectionSet> CorrectionSet::from_string(const char * data) {
         );
   }
   if ( ! json.IsObject() ) { throw std::runtime_error("Expected CorrectionSet object"); }
-  return std::make_unique<CorrectionSet>(json);
+  return std::make_unique<CorrectionSet>(json, registry);
 }
 
-CorrectionSet::CorrectionSet(const JSONObject& json) {
+CorrectionSet::CorrectionSet(const JSONObject& json, const PluginRegistry& registry) {
+  // Freeze the registration catalog once for this whole set, so concurrent
+  // registration cannot change which factories its corrections observe.
+  auto snapshot = std::make_shared<const PluginRegistry>(registry);
   schema_version_ = json.getRequired<int>("schema_version");
   if ( schema_version_ > evaluator_version ) {
     throw std::runtime_error("Evaluator is designed for schema v" + std::to_string(evaluator_version) + " and is not forward-compatible");
@@ -827,7 +837,7 @@ CorrectionSet::CorrectionSet(const JSONObject& json) {
   description_ = json.getOptional<const char*>("description").value_or("");
   for (const auto& item : json.getRequired<rapidjson::Value::ConstArray>("corrections")) {
     if ( ! item.IsObject() ) { throw std::runtime_error("Expected Correction object"); }
-    auto corr = std::make_shared<Correction>(item.GetObject());
+    auto corr = std::make_shared<Correction>(item.GetObject(), snapshot);
     if ( corrections_.find(corr->name()) != corrections_.end() ) {
       throw std::runtime_error("Duplicate Correction name: " + corr->name());
     }
@@ -848,4 +858,10 @@ CorrectionSet::CorrectionSet(const JSONObject& json) {
 bool CorrectionSet::validate() {
   // TODO: validate with https://rapidjson.org/md_doc_schema.html
   return true;
+}
+
+// Internal bridge for the plugin SDK. Keep recursive parsing private instead
+// of exposing RapidJSON or the concrete Content variant to provider libraries.
+Content correction::detail::parse_plugin_child(const rapidjson::Value& json, const Correction& context) {
+  return resolve_content(json, context);
 }

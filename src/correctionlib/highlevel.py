@@ -347,6 +347,9 @@ class CorrectionSet(Mapping[str, Correction]):
             self._data = data
         else:
             self._data = data.model_dump_json(exclude_unset=True)
+        from correctionlib.plugins import prepare
+
+        prepare(self._data)
         self._base = correctionlib._core.CorrectionSet.from_string(self._data)
 
     @classmethod
@@ -362,6 +365,9 @@ class CorrectionSet(Mapping[str, Correction]):
 
     def __setstate__(self, state: dict[str, Any]) -> None:
         self._data = state["_data"]
+        from correctionlib.plugins import prepare
+
+        prepare(self._data)
         self._base = correctionlib._core.CorrectionSet.from_string(self._data)
 
     def _ipython_key_completions_(self) -> list[str]:

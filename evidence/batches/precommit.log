@@ -1,0 +1,115 @@
+[INFO] Installing environment for https://github.com/pre-commit/mirrors-mypy.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+blacken-docs.............................................................Failed
+- hook id: blacken-docs
+- files were modified by this hook
+check for added large files..............................................Failed
+- hook id: check-added-large-files
+- files were modified by this hook
+check for case conflicts.................................................Failed
+- hook id: check-case-conflict
+- files were modified by this hook
+check for merge conflicts................................................Failed
+- hook id: check-merge-conflict
+- files were modified by this hook
+check for broken symlinks................................................Failed
+- hook id: check-symlinks
+- files were modified by this hook
+check yaml...............................................................Failed
+- hook id: check-yaml
+- files were modified by this hook
+debug statements (python)................................................Failed
+- hook id: debug-statements
+- files were modified by this hook
+fix end of files.........................................................Failed
+- hook id: end-of-file-fixer
+- files were modified by this hook
+mixed line ending........................................................Failed
+- hook id: mixed-line-ending
+- files were modified by this hook
+python tests naming......................................................Failed
+- hook id: name-tests-test
+- files were modified by this hook
+trim trailing whitespace.................................................Failed
+- hook id: trailing-whitespace
+- files were modified by this hook
+prettier.................................................................Failed
+- hook id: prettier
+- files were modified by this hook
+
+docs/native-batches.md 25ms
+CONTRIBUTING.md 6ms (unchanged)
+.github/workflows/native-batches.yml 15ms (unchanged)
+docs/install.md 9ms (unchanged)
+docs/index.md 29ms (unchanged)
+.github/dependabot.yml 15ms (unchanged)
+.github/workflows/ci.yml 10ms (unchanged)
+evidence/batches/README.md 24ms
+.github/workflows/cvmfs-pr-comment.yml 18ms (unchanged)
+ARCHITECTURE.md 12ms (unchanged)
+.github/workflows/docs.yml 2ms (unchanged)
+.pre-commit-config.yaml 22ms (unchanged)
+evidence/batches/revision-a4d3a0c/README.md 26ms
+.github/workflows/node-plugins.yml 4ms (unchanged)
+README.md 20ms
+.github/workflows/wheels.yml 23ms (unchanged)
+docs/node-plugins.md 54ms (unchanged)
+tests/data/lwtnn_example.json 21ms (unchanged)
+
+ruff (legacy alias)......................................................Failed
+- hook id: ruff
+- files were modified by this hook
+
+warning: Invalid rule code provided to `# noqa` at tests/test_binding.py:42: B907
+warning: Invalid rule code provided to `# noqa` at tests/test_core_valid.py:41: B908
+warning: Invalid rule code provided to `# noqa` at tests/test_binding.py:42: B907
+
+Fixed 1 error:
+- tests/test_binding.py:
+    1 × I001 (unsorted-imports)
+
+Found 1 error (1 fixed, 0 remaining).
+
+ruff format..............................................................Failed
+- hook id: ruff-format
+- files were modified by this hook
+
+46 files left unchanged
+
+codespell................................................................Failed
+- hook id: codespell
+- exit code: 65
+- files were modified by this hook
+
+binder/correctionlib_tutorial.ipynb:684: FO ==> OF, FOR, TO, DO, GO
+binder/correctionlib_tutorial.ipynb:796: fOf ==> for
+binder/correctionlib_tutorial.ipynb:1074: nd ==> and, 2nd
+
+Validate pyproject.toml..................................................Failed
+- hook id: validate-pyproject
+- files were modified by this hook
+
+Valid file: pyproject.toml
+
+Validate Dependabot Config (v2)..........................................Failed
+- hook id: check-dependabot
+- files were modified by this hook
+
+ok -- validation done
+
+Validate GitHub Workflows................................................Failed
+- hook id: check-github-workflows
+- files were modified by this hook
+
+ok -- validation done
+ok -- validation done
+
+Validate ReadTheDocs Config..........................(no files to check)Skipped
+pyupgrade...............................................................Skipped
+mypy.....................................................................Failed
+- hook id: mypy
+- files were modified by this hook
+
+Success: no issues found in 12 source files
+

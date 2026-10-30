@@ -127,7 +127,11 @@ namespace {
       else if constexpr (std::is_same_v<T, double>) return arg;
       else throw std::logic_error("I should not have ever seen a string");
       }, value_variant);
+    if (flow == detail::FlowBehavior::wrap && !std::isfinite(value))
+      throw std::runtime_error("Non-finite input cannot be wrapped");
     if ( auto *bins = std::get_if<detail::UniformBins>(&bins_) ) { // uniform binning
+      // NaN otherwise reaches a floating-to-integer cast with undefined behavior.
+      if (std::isnan(value)) throw std::runtime_error("NaN input in uniform binning");
       if (value < bins->low || value >= bins->high) {
         switch (flow) {
           case detail::FlowBehavior::value:
@@ -209,10 +213,12 @@ namespace {
   }
 
   std::vector<double> parse_bin_edges(const rapidjson::Value::ConstArray& edges) {
+    if (edges.Size() < 2) throw std::runtime_error("Binning needs at least two edges");
     std::vector<double> result;
     result.reserve(edges.Size());
     for (const auto& edge : edges) {
       double val = parse_edge(edge);
+      if (std::isnan(val)) throw std::runtime_error("NaN bin edge");
       if ( result.size() > 0 && result.back() >= val ) {
         throw std::runtime_error("binning edges are not monotone increasing");
       }
@@ -447,6 +453,8 @@ Binning::Binning(const JSONObject& json, const Correction& context)
     }
     const auto low = uniformBins.getRequired<double>("low");
     const auto high = uniformBins.getRequired<double>("high");
+    if (!std::isfinite(low) || !std::isfinite(high) || !(low < high) || !std::isfinite(high-low))
+      throw std::runtime_error("Uniform binning requires finite increasing bounds");
     bins_ = detail::UniformBins{n, low, high};
   } else {
     throw std::runtime_error ("Error when processing Binning: edges are neither an array nor a UniformBinning object");
@@ -481,6 +489,8 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
   const auto& inputs = json.getRequired<rapidjson::Value::ConstArray>("inputs");
 
   const auto& edges = json.getRequired<rapidjson::Value::ConstArray>("edges");
+  if (edges.Empty() || edges.Size() != inputs.Size())
+    throw std::runtime_error("MultiBinning axes and inputs must have matching nonzero lengths");
   axes_.reserve(edges.Size());
   size_t idx {0};
   for (const auto& dimension : edges) {
@@ -488,6 +498,7 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
     if ( dimension.IsArray() ) { // non-uniform binning
       std::vector<double> dim_edges = parse_bin_edges(dimension.GetArray());
       if ( ! input.IsString() ) { throw std::runtime_error("invalid multibinning input type"); }
+      if (!input.IsString()) throw std::runtime_error("invalid multibinning input type");
       size_t variableIdx = detail::find_input_index(input.GetString(), context.inputs());
       if ( context.inputs().at(variableIdx).type() == Variable::VarType::string ) {
         throw std::runtime_error("MultiBinning cannot use string inputs as binning variables");
@@ -502,6 +513,9 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
       }
       const auto low = uniformBins.getRequired<double>("low");
       const auto high = uniformBins.getRequired<double>("high");
+      if (!std::isfinite(low) || !std::isfinite(high) || !(low < high) || !std::isfinite(high-low))
+        throw std::runtime_error("Uniform binning requires finite increasing bounds");
+      if (!input.IsString()) throw std::runtime_error("invalid multibinning input type");
       size_t variableIdx = detail::find_input_index(input.GetString(), context.inputs());
       if ( context.inputs().at(variableIdx).type() == Variable::VarType::string ) {
         throw std::runtime_error("MultiBinning cannot use string inputs as binning variables");

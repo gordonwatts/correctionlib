@@ -1,11 +1,13 @@
 -- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/batch-probe
+[ 50%] Building CXX object CMakeFiles/batch_probe.dir/probe.cc.o
+[100%] Linking CXX shared library libbatch_probe.so
 [100%] Built target batch_probe
 -- pybind11 v3.0.2 
 Using compatibility mode for Python, set PYBIND11_FINDPYTHON to NEW/OLD to silence this message
 -- Using build type: Release
 -- Using a privately downloaded Boost version for the build
--- Configuring done (1.5s)
+-- Configuring done (1.8s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/batches

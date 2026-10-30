@@ -142,3 +142,26 @@ def test_broadcast_and_types(kind):
         value = x if kind == "int" else float(x)
         with pytest.raises(RuntimeError, match="bounds"):
             c.evaluate(np.array([value], dtype=dtype))
+
+
+@pytest.mark.parametrize("flow", ["clamp", "wrap", "error", -3.0])
+def test_uniform_nonfinite(flow):
+    c = make(
+        {
+            "nodetype": "binning",
+            "input": "x",
+            "edges": {"n": 2, "low": 0.0, "high": 2.0},
+            "content": [3.0, 7.0],
+            "flow": flow,
+        }
+    )
+    with pytest.raises(RuntimeError):
+        c.evaluate(np.array([np.nan]))
+    for value in [-np.inf, np.inf]:
+        if flow in ("wrap", "error"):
+            with pytest.raises(RuntimeError):
+                c.evaluate(np.array([value]))
+        else:
+            np.testing.assert_array_equal(
+                c.evaluate(np.array([value])), [c.evaluate(value)]
+            )

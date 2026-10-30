@@ -1,25 +1,38 @@
 annotated-types==0.8.0
+ast_serialize==0.13.1
 awkward==2.14.0
 awkward_cpp==57
-correctionlib @ file:///home/gwatts/atlas/correctionlib-feature-build/wheels-batches/correctionlib-0.1.dev208%2Bg8dc0b7a8b.d20261030-cp313-cp313-linux_x86_64.whl#sha256=788f84897063e797ee0e8f4f64ddc1a58953a5b9b4c2df947ed9f239fbd5489e
-example-correction-nodes @ file:///home/gwatts/atlas/correctionlib-feature-build/example-wheels/example_correction_nodes-0.1.0-cp313-cp313-linux_x86_64.whl#sha256=d3344f81c451b6043dc03fc0a63a12a4c380590478b1807237b4c2cb38c2a673
+cachetools==7.2.7
+click==8.5.0
+cloudpickle==3.1.2
+correctionlib @ file:///home/gwatts/atlas/correctionlib-feature-build/wheels-batches/correctionlib-0.1.dev209%2Bga4d3a0c80.d20261030-cp313-cp313-linux_x86_64.whl#sha256=e2922a9c116a9a74b3f77a20de968cee35e473e0b02d2d2fe1858b1b2dcf299e
+cramjam==2.14.0
+dask==2025.3.1
+dask-awkward==2026.2.1
+example-correction-nodes @ file:///home/gwatts/atlas/correctionlib-feature-build/example-wheels/example_correction_nodes-0.1.0-cp313-cp313-linux_x86_64.whl#sha256=35905329d21b126ff6d540f72fb08eebf49e35261b98c164a654dd3b79586e1c
 fsspec==2026.9.0
 iniconfig==2.3.1
+librt==0.16.0
+locket==1.0.0
 markdown-it-py==4.2.0
 mdurl==0.1.2
+mypy==1.19.1
+mypy_extensions==1.1.0
 numpy==2.5.4
 packaging==26.3
 pandas==3.1.0
+partd==1.4.2
 pathspec==1.1.1
 pluggy==1.7.0
 py-cpuinfo2==10.1.1
 pybind11==3.1.0
-pydantic==2.14.2
-pydantic_core==2.50.2
+pydantic==2.13.5
+pydantic_core==2.46.5
 Pygments==2.21.0
 pytest==9.2.0
 pytest-benchmark==5.3.0
 python-dateutil==3.0.0
+PyYAML==6.0.3
 rich==15.0.0
 ruff==0.17.3
 scikit_build_core==1.1.1
@@ -27,8 +40,11 @@ scipy==1.18.1
 setuptools==84.2.1
 setuptools-scm==10.3.4
 six==1.17.0
+toolz==1.2.0
 typing-inspection==0.4.4
 typing_extensions==4.16.0
 tzdata==2026.6
 uhi==1.2.1
+uproot==5.7.7
 vcs-versioning==2.6.0
+xxhash==4.0.2

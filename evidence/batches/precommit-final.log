@@ -1,0 +1,51 @@
+blacken-docs.............................................................Passed
+check for added large files..............................................Passed
+check for case conflicts.................................................Passed
+check for merge conflicts................................................Passed
+check for broken symlinks................................................Passed
+check yaml...............................................................Passed
+debug statements (python)................................................Passed
+fix end of files.........................................................Passed
+mixed line ending........................................................Passed
+python tests naming......................................................Passed
+trim trailing whitespace.................................................Passed
+prettier.................................................................Failed
+- hook id: prettier
+- files were modified by this hook
+
+.github/workflows/native-batches.yml 15ms (unchanged)
+CONTRIBUTING.md 20ms (unchanged)
+.github/workflows/node-plugins.yml 7ms (unchanged)
+docs/native-batches.md 5ms (unchanged)
+.github/dependabot.yml 13ms (unchanged)
+docs/install.md 26ms (unchanged)
+docs/index.md 7ms (unchanged)
+.github/workflows/ci.yml 25ms (unchanged)
+evidence/batches/revision-a4d3a0c/README.md 26ms (unchanged)
+.github/workflows/cvmfs-pr-comment.yml 4ms (unchanged)
+ARCHITECTURE.md 13ms (unchanged)
+.github/workflows/docs.yml 15ms (unchanged)
+.pre-commit-config.yaml 9ms (unchanged)
+tests/data/lwtnn_example.json 39ms (unchanged)
+evidence/batches/README.md 24ms
+README.md 42ms (unchanged)
+.github/workflows/wheels.yml 19ms (unchanged)
+docs/node-plugins.md 29ms (unchanged)
+evidence/batches/timing-concurrent-lint/README.md 1ms
+
+ruff (legacy alias)......................................................Passed
+ruff format..............................................................Passed
+codespell................................................................Failed
+- hook id: codespell
+- exit code: 65
+
+binder/correctionlib_tutorial.ipynb:684: FO ==> OF, FOR, TO, DO, GO
+binder/correctionlib_tutorial.ipynb:796: fOf ==> for
+binder/correctionlib_tutorial.ipynb:1074: nd ==> and, 2nd
+
+Validate pyproject.toml..................................................Passed
+Validate Dependabot Config (v2)..........................................Passed
+Validate GitHub Workflows................................................Passed
+Validate ReadTheDocs Config..........................(no files to check)Skipped
+pyupgrade...............................................................Skipped
+mypy.....................................................................Passed

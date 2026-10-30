@@ -1,0 +1,13 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/array-provider
+[ 50%] Building CXX object CMakeFiles/array_correction_nodes.dir/nodes.cc.o
+[100%] Linking CXX shared library libarray_correction_nodes.so
+[100%] Built target array_correction_nodes
+-- pybind11 v3.0.2 
+Using compatibility mode for Python, set PYBIND11_FINDPYTHON to NEW/OLD to silence this message
+-- Using build type: Release
+-- Using a privately downloaded Boost version for the build
+-- Configuring done (2.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/arrays

@@ -7,7 +7,7 @@
 namespace correction {
 
 // Experimental C++ SDK: matching compiler, standard library and core build required.
-constexpr int plugin_api_version = 1;
+constexpr int plugin_api_version = 3;
 
 // Conservative handshake for this experimental C++ ABI. Rebuild providers when
 // the core version or compiler changes; this is not a portable stable C ABI.
@@ -32,6 +32,10 @@ class PluginNode {
 public:
   virtual ~PluginNode() = default;
   virtual double evaluate(const std::vector<Variable::Type>& values) const = 0;
+  // Zero denotes scalar; a positive value is the fixed component count.
+  virtual size_t output_size() const { return 0; }
+  virtual void evaluate_array(const std::vector<Variable::Type>& values,
+                              double* output, size_t output_size) const;
 };
 
 // Owns its JSON; no RapidJSON or Python types cross the SDK boundary. Typed
@@ -57,12 +61,14 @@ private:
 class PluginContext {
 public:
   PluginContext(const Correction& correction,
-                std::vector<std::shared_ptr<const PluginNode>> children);
+                std::vector<std::shared_ptr<const PluginNode>> children, size_t output_size = 0);
   size_t input_index(const std::string& name, Variable::VarType type) const;
   size_t child_count() const;
+  size_t output_size() const { return output_size_; }
   std::shared_ptr<const PluginNode> child(size_t index) const;
 
 private:
+  size_t output_size_;
   const Correction& correction_; // Construction only: factories must not retain this context.
   std::vector<std::shared_ptr<const PluginNode>> children_;
 };
@@ -101,5 +107,5 @@ private:
 // load into the host registry whose load transaction is currently in progress.
 // extern "C" int correctionlib_plugin_api_version();
 // extern "C" const char* correctionlib_plugin_build_id();
-// extern "C" void correctionlib_register_nodes_v1(correction::PluginRegistry&);
+// extern "C" void correctionlib_register_nodes_v3(correction::PluginRegistry&);
 #endif

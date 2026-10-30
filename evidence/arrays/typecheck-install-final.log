@@ -1,0 +1,31 @@
+WARNING: Disabling truststore since ssl support is missing
+Looking in links: /home/gwatts/atlas/correctionlib-feature-build/wheels
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/mypy-1.19.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/dask-2025.3.1-py3-none-any.whl
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/dask_awkward-2026.2.1-py3-none-any.whl
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/uproot-5.7.7-py3-none-any.whl
+Requirement already satisfied: typing_extensions>=4.6.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from mypy==1.19.1) (4.16.0)
+Requirement already satisfied: mypy_extensions>=1.0.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from mypy==1.19.1) (1.1.0)
+Requirement already satisfied: pathspec>=0.9.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from mypy==1.19.1) (1.1.1)
+Requirement already satisfied: librt>=0.6.2 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from mypy==1.19.1) (0.16.0)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/click-8.5.0-py3-none-any.whl (from dask)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/cloudpickle-3.1.2-py3-none-any.whl (from dask)
+Requirement already satisfied: fsspec>=2021.09.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from dask) (2026.9.0)
+Requirement already satisfied: packaging>=20.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from dask) (26.3)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/partd-1.4.2-py3-none-any.whl (from dask)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from dask)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/toolz-1.2.0-py3-none-any.whl (from dask)
+Requirement already satisfied: awkward>=2.8.12 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from dask-awkward) (2.14.0)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/cachetools-7.2.7-py3-none-any.whl (from dask-awkward)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/cramjam-2.14.0-cp313-cp313-manylinux_2_28_x86_64.whl (from uproot)
+Requirement already satisfied: numpy in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from uproot) (2.5.4)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/xxhash-4.0.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from uproot)
+Requirement already satisfied: awkward-cpp==57 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from awkward>=2.8.12->dask-awkward) (57)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/locket-1.0.0-py2.py3-none-any.whl (from partd>=1.4.0->dask)
+Installing collected packages: xxhash, toolz, pyyaml, mypy, locket, cramjam, cloudpickle, click, cachetools, partd, uproot, dask, dask-awkward
+  Attempting uninstall: mypy
+    Found existing installation: mypy 2.4.1
+    Uninstalling mypy-2.4.1:
+      Successfully uninstalled mypy-2.4.1
+
+Successfully installed cachetools-7.2.7 click-8.5.0 cloudpickle-3.1.2 cramjam-2.14.0 dask-2025.3.1 dask-awkward-2026.2.1 locket-1.0.0 mypy-1.19.1 partd-1.4.2 pyyaml-6.0.3 toolz-1.2.0 uproot-5.7.7 xxhash-4.0.2

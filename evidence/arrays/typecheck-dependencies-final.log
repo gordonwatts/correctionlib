@@ -1,0 +1,79 @@
+Collecting mypy==1.19.1
+  Downloading mypy-1.19.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.2 kB)
+Collecting dask
+  Downloading dask-2026.8.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting dask-awkward
+  Downloading dask_awkward-2026.2.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting uproot
+  Using cached uproot-5.7.7-py3-none-any.whl.metadata (36 kB)
+Collecting typing_extensions>=4.6.0 (from mypy==1.19.1)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/typing_extensions-4.16.0-py3-none-any.whl
+Collecting mypy_extensions>=1.0.0 (from mypy==1.19.1)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/mypy_extensions-1.1.0-py3-none-any.whl
+Collecting pathspec>=0.9.0 (from mypy==1.19.1)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/pathspec-1.1.1-py3-none-any.whl
+Collecting tomli>=1.1.0 (from mypy==1.19.1)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/tomli-2.5.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Collecting librt>=0.6.2 (from mypy==1.19.1)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/librt-0.16.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Collecting click>=8.1 (from dask)
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting cloudpickle>=3.0.0 (from dask)
+  Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+Collecting fsspec>=2021.09.0 (from dask)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/fsspec-2026.9.0-py3-none-any.whl
+Collecting packaging>=20.0 (from dask)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/packaging-26.3-py3-none-any.whl
+Collecting partd>=1.4.0 (from dask)
+  Downloading partd-1.4.2-py3-none-any.whl.metadata (4.6 kB)
+Collecting pyyaml>=5.4.1 (from dask)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Collecting toolz>=0.12.0 (from dask)
+  Downloading toolz-1.2.0-py3-none-any.whl.metadata (5.2 kB)
+Collecting importlib_metadata>=4.13.0 (from dask)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/importlib_metadata-10.1.0-py3-none-any.whl
+Collecting awkward>=2.8.12 (from dask-awkward)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/awkward-2.14.0-py3-none-any.whl
+Collecting cachetools (from dask-awkward)
+  Downloading cachetools-7.2.7-py3-none-any.whl.metadata (5.5 kB)
+Collecting dask
+  Downloading dask-2025.3.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting cramjam>=2.5.0 (from uproot)
+  Using cached cramjam-2.14.0-cp313-cp313-manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting numpy (from uproot)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/numpy-2.5.4-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+Collecting xxhash (from uproot)
+  Using cached xxhash-4.0.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (17 kB)
+Collecting awkward-cpp==57 (from awkward>=2.8.12->dask-awkward)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/awkward_cpp-57-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+Collecting zipp>=3.20 (from importlib_metadata>=4.13.0->dask)
+  File was already downloaded /home/gwatts/atlas/correctionlib-feature-build/wheels/zipp-4.1.2-py3-none-any.whl
+Collecting locket (from partd>=1.4.0->dask)
+  Downloading locket-1.0.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Downloading mypy-1.19.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (13.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.6/13.6 MB 20.1 MB/s  0:00:00
+Downloading dask_awkward-2026.2.1-py3-none-any.whl (90 kB)
+Downloading dask-2025.3.1-py3-none-any.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 4.8 MB/s  0:00:00
+Using cached uproot-5.7.7-py3-none-any.whl (441 kB)
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+Using cached cramjam-2.14.0-cp313-cp313-manylinux_2_28_x86_64.whl (2.0 MB)
+Downloading partd-1.4.2-py3-none-any.whl (18 kB)
+Downloading toolz-1.2.0-py3-none-any.whl (60 kB)
+Downloading cachetools-7.2.7-py3-none-any.whl (19 kB)
+Downloading locket-1.0.0-py2.py3-none-any.whl (4.4 kB)
+Using cached xxhash-4.0.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (268 kB)
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/mypy-1.19.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/dask_awkward-2026.2.1-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/dask-2025.3.1-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/uproot-5.7.7-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/click-8.5.0-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/cloudpickle-3.1.2-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/cramjam-2.14.0-cp313-cp313-manylinux_2_28_x86_64.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/partd-1.4.2-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/toolz-1.2.0-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/cachetools-7.2.7-py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/locket-1.0.0-py2.py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/xxhash-4.0.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Successfully downloaded mypy dask-awkward dask uproot awkward awkward-cpp click cloudpickle cramjam fsspec importlib_metadata librt mypy_extensions numpy packaging partd pathspec pyyaml tomli toolz typing_extensions zipp cachetools locket xxhash

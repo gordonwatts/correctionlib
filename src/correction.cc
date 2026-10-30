@@ -52,7 +52,8 @@ namespace {
       auto type = obj.getRequired<std::string_view>("nodetype");
       // Extension is the single dynamic alternative; built-in node dispatch
       // remains unchanged and nested nodes still enter through this parser.
-      if ( type == "extension" ) { return ExtensionNode(obj, context); }
+      if ( type == "array" ) { return Array(obj, context); }
+      else if ( type == "extension" ) { return ExtensionNode(obj, context); }
       else if ( type == "binning" ) { return Binning(obj, context); }
       else if ( type == "multibinning" ) { return MultiBinning(obj, context); }
       else if ( type == "category" ) { return Category(obj, context); }
@@ -127,7 +128,11 @@ namespace {
       else if constexpr (std::is_same_v<T, double>) return arg;
       else throw std::logic_error("I should not have ever seen a string");
       }, value_variant);
+    if (flow == detail::FlowBehavior::wrap && !std::isfinite(value))
+      throw std::runtime_error("Non-finite input cannot be wrapped");
     if ( auto *bins = std::get_if<detail::UniformBins>(&bins_) ) { // uniform binning
+      // NaN otherwise reaches a floating-to-integer cast with undefined behavior.
+      if (std::isnan(value)) throw std::runtime_error("NaN input in uniform binning");
       if (value < bins->low || value >= bins->high) {
         switch (flow) {
           case detail::FlowBehavior::value:
@@ -209,10 +214,12 @@ namespace {
   }
 
   std::vector<double> parse_bin_edges(const rapidjson::Value::ConstArray& edges) {
+    if (edges.Size() < 2) throw std::runtime_error("Binning needs at least two edges");
     std::vector<double> result;
     result.reserve(edges.Size());
     for (const auto& edge : edges) {
       double val = parse_edge(edge);
+      if (std::isnan(val)) throw std::runtime_error("NaN bin edge");
       if ( result.size() > 0 && result.back() >= val ) {
         throw std::runtime_error("binning edges are not monotone increasing");
       }
@@ -369,6 +376,24 @@ double Transform::evaluate(const std::vector<Variable::Type>& values) const {
   return std::visit(node_evaluate{new_values}, *content_);
 }
 
+void Transform::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  TransformScratch scratch(values);
+  auto& new_values = scratch.values();
+
+  double vnew = std::visit(node_evaluate{values}, *rule_);
+  auto& v = new_values[variableIdx_];
+  if ( std::holds_alternative<double>(v) ) {
+    v = vnew;
+  }
+  else if ( std::holds_alternative<int64_t>(v) ) {
+    v = (int64_t) std::round(vnew);
+  }
+  else {
+    throw std::logic_error("I should not have ever seen a string");
+  }
+  detail::evaluate_content_array(*content_, new_values, output, size);
+}
+
 HashPRNG::HashPRNG(const JSONObject& json, const Correction& context)
 {
   const auto& inputs = json.getRequired<rapidjson::Value::ConstArray>("inputs");
@@ -447,6 +472,8 @@ Binning::Binning(const JSONObject& json, const Correction& context)
     }
     const auto low = uniformBins.getRequired<double>("low");
     const auto high = uniformBins.getRequired<double>("high");
+    if (!std::isfinite(low) || !std::isfinite(high) || !(low < high) || !std::isfinite(high-low))
+      throw std::runtime_error("Uniform binning requires finite increasing bounds");
     bins_ = detail::UniformBins{n, low, high};
   } else {
     throw std::runtime_error ("Error when processing Binning: edges are neither an array nor a UniformBinning object");
@@ -469,11 +496,17 @@ Binning::Binning(const JSONObject& json, const Correction& context)
   contents_.push_back(std::move(default_value));
 }
 
-double Binning::evaluate(const std::vector<Variable::Type>& values) const
+const Content& Binning::select(const std::vector<Variable::Type>& values) const
 {
   std::size_t binIdx = find_bin_idx(values[variableIdx_], bins_, flow_, variableIdx_, "Binning");
-  const Content& child = contents_[binIdx];
-  return std::visit(node_evaluate{values}, child);
+  return contents_[binIdx];
+}
+
+double Binning::evaluate(const std::vector<Variable::Type>& values) const {
+  return std::visit(node_evaluate{values}, select(values));
+}
+void Binning::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  detail::evaluate_content_array(select(values), values, output, size);
 }
 
 MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
@@ -481,6 +514,8 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
   const auto& inputs = json.getRequired<rapidjson::Value::ConstArray>("inputs");
 
   const auto& edges = json.getRequired<rapidjson::Value::ConstArray>("edges");
+  if (edges.Empty() || edges.Size() != inputs.Size())
+    throw std::runtime_error("MultiBinning axes and inputs must have matching nonzero lengths");
   axes_.reserve(edges.Size());
   size_t idx {0};
   for (const auto& dimension : edges) {
@@ -488,6 +523,7 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
     if ( dimension.IsArray() ) { // non-uniform binning
       std::vector<double> dim_edges = parse_bin_edges(dimension.GetArray());
       if ( ! input.IsString() ) { throw std::runtime_error("invalid multibinning input type"); }
+      if (!input.IsString()) throw std::runtime_error("invalid multibinning input type");
       size_t variableIdx = detail::find_input_index(input.GetString(), context.inputs());
       if ( context.inputs().at(variableIdx).type() == Variable::VarType::string ) {
         throw std::runtime_error("MultiBinning cannot use string inputs as binning variables");
@@ -502,6 +538,9 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
       }
       const auto low = uniformBins.getRequired<double>("low");
       const auto high = uniformBins.getRequired<double>("high");
+      if (!std::isfinite(low) || !std::isfinite(high) || !(low < high) || !std::isfinite(high-low))
+        throw std::runtime_error("Uniform binning requires finite increasing bounds");
+      if (!input.IsString()) throw std::runtime_error("invalid multibinning input type");
       size_t variableIdx = detail::find_input_index(input.GetString(), context.inputs());
       if ( context.inputs().at(variableIdx).type() == Variable::VarType::string ) {
         throw std::runtime_error("MultiBinning cannot use string inputs as binning variables");
@@ -537,7 +576,7 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
   }
 }
 
-double MultiBinning::evaluate(const std::vector<Variable::Type>& values) const
+const Content& MultiBinning::select(const std::vector<Variable::Type>& values) const
 {
   size_t idx {0};
   size_t localidx {0};
@@ -546,13 +585,19 @@ double MultiBinning::evaluate(const std::vector<Variable::Type>& values) const
   for (const auto& [variableIdx, stride, edgesVariant] : axes_) {
     localidx = find_bin_idx(values[variableIdx], edgesVariant, flow_, variableIdx, "MultiBinning");
     if ( localidx == nbins(dim) ) // find_bin_idx is indicating we need to return the default value
-      return std::visit(node_evaluate{values}, content_.back());
+      return content_.back();
     idx += localidx * stride;
     ++dim;
   }
 
-  const Content& child = content_.at(idx);
-  return std::visit(node_evaluate{values}, child);
+  return content_.at(idx);
+}
+
+double MultiBinning::evaluate(const std::vector<Variable::Type>& values) const {
+  return std::visit(node_evaluate{values}, select(values));
+}
+void MultiBinning::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  detail::evaluate_content_array(select(values), values, output, size);
 }
 
 size_t MultiBinning::nbins(size_t dimension) const
@@ -600,7 +645,7 @@ Category::Category(const JSONObject& json, const Correction& context)
   }
 }
 
-double Category::evaluate(const std::vector<Variable::Type>& values) const {
+const Content& Category::select(const std::vector<Variable::Type>& values) const {
   const Content* child = nullptr;
   if ( auto pval = std::get_if<std::string>(&values[variableIdx_]) ) {
     const auto& m = std::get<StrMap>(map_);
@@ -627,10 +672,17 @@ double Category::evaluate(const std::vector<Variable::Type>& values) const {
     throw std::runtime_error("Invalid variable type");
   }
 
-  return std::visit(node_evaluate{values}, *child);
+  return *child;
 }
 
-Correction::Correction(const JSONObject& json, std::shared_ptr<const PluginRegistry> registry) :
+double Category::evaluate(const std::vector<Variable::Type>& values) const {
+  return std::visit(node_evaluate{values}, select(values));
+}
+void Category::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  detail::evaluate_content_array(select(values), values, output, size);
+}
+
+Correction::Correction(const JSONObject& json, std::shared_ptr<const PluginRegistry> registry, int schema_version) :
   name_(json.getRequired<const char *>("name")),
   description_(json.getOptional<const char*>("description").value_or("")),
   version_(json.getRequired<int>("version")),
@@ -648,6 +700,30 @@ Correction::Correction(const JSONObject& json, std::shared_ptr<const PluginRegis
     }
   }
 
+  const auto& output_json = json.getRequiredValue("output");
+  if (output_json.HasMember("shape")) {
+    if (schema_version != 3) throw std::runtime_error("Array output shape requires schema v3");
+    const auto& shape = output_json["shape"];
+    if (!shape.IsArray() || shape.Size() != 1 || !shape[0].IsUint64() || shape[0].GetUint64() == 0 ||
+        shape[0].GetUint64() > std::numeric_limits<size_t>::max() / sizeof(double))
+      throw std::runtime_error("Output shape must be one positive fixed dimension");
+    output_size_ = static_cast<size_t>(shape[0].GetUint64());
+  }
+  if (schema_version == 2) {
+    const auto check_v2 = [&](const auto& self, const rapidjson::Value& node) -> void {
+      if (node.IsObject()) {
+        if (node.HasMember("output_shape") ||
+            (node.HasMember("nodetype") && node["nodetype"].IsString() && std::string_view(node["nodetype"].GetString()) == "array"))
+          throw std::runtime_error("Array nodes require schema v3");
+        for (auto it = node.MemberBegin(); it != node.MemberEnd(); ++it)
+          if (std::string_view(it->name.GetString()) != "config" && std::string_view(it->name.GetString()) != "opaque") self(self, it->value);
+      } else if (node.IsArray()) for (const auto& child : node.GetArray()) self(self, child);
+    };
+    check_v2(check_v2, json.getRequiredValue("data"));
+  }
+  if (detail::content_output_size(json.getRequiredValue("data")) != output_size_)
+    throw std::runtime_error("Correction output shape does not match its data");
+
   // Factories need input/formula context while data_ is constructed. Retain
   // the set's registry snapshot before descending into any extension children.
   registry_ = registry ? std::move(registry) : std::make_shared<PluginRegistry>(default_plugin_registry());
@@ -655,7 +731,7 @@ Correction::Correction(const JSONObject& json, std::shared_ptr<const PluginRegis
   initialized_ = true;
 }
 
-double Correction::evaluate(const std::vector<Variable::Type>& values) const {
+void Correction::validate_inputs(const std::vector<Variable::Type>& values) const {
   if ( ! initialized_ ) {
     throw std::logic_error("Not initialized");
   }
@@ -666,7 +742,24 @@ double Correction::evaluate(const std::vector<Variable::Type>& values) const {
   for (size_t i=0; i < inputs_.size(); ++i) {
     inputs_[i].validate(values[i]);
   }
+
+}
+
+double Correction::evaluate(const std::vector<Variable::Type>& values) const {
+  if (output_size_) throw std::runtime_error("Array correction requires evaluate_array");
+  validate_inputs(values);
   return std::visit(node_evaluate{values}, data_);
+}
+std::vector<double> Correction::evaluate_array(const std::vector<Variable::Type>& values) const {
+  std::vector<double> output(output_size_);
+  evaluate_array(values, output.data(), output.size());
+  return output;
+}
+void Correction::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  if (!output_size_) throw std::runtime_error("Scalar correction requires evaluate");
+  if (!output || size < output_size_) throw std::invalid_argument("Array output buffer too small or null");
+  validate_inputs(values);
+  detail::evaluate_content_array(data_, values, output, output_size_);
 }
 
 CompoundCorrection::CompoundCorrection(const JSONObject& json, const CorrectionSet& context) :
@@ -675,6 +768,7 @@ CompoundCorrection::CompoundCorrection(const JSONObject& json, const CorrectionS
   output_(json.getRequired<rapidjson::Value::ConstObject>("output"))
 {
   if ( output_.type() != Variable::VarType::real ) { throw std::runtime_error("Outputs can only be real-valued"); }
+  if (json.getRequiredValue("output").HasMember("shape")) throw std::runtime_error("CompoundCorrection output must be scalar");
   for (const auto& item : json.getRequired<rapidjson::Value::ConstArray>("inputs")) {
     if ( ! item.IsObject() ) { throw std::runtime_error("invalid inputs item type"); }
     inputs_.emplace_back(item.GetObject());
@@ -710,6 +804,7 @@ CompoundCorrection::CompoundCorrection(const JSONObject& json, const CorrectionS
       throw std::runtime_error("CompoundCorrection constituent "
           + std::string(item.GetString()) + " not found in the CorrectionSet");
     }
+    if (corr->output_size()) throw std::runtime_error("CompoundCorrection cannot contain array outputs");
     std::vector<size_t> inmap;
     for (const auto& input : corr->inputs()) {
       inmap.push_back(input_index(input.name()));
@@ -831,13 +926,13 @@ CorrectionSet::CorrectionSet(const JSONObject& json, const PluginRegistry& regis
   if ( schema_version_ > evaluator_version ) {
     throw std::runtime_error("Evaluator is designed for schema v" + std::to_string(evaluator_version) + " and is not forward-compatible");
   }
-  else if ( schema_version_ < evaluator_version ) {
+  else if ( schema_version_ < 2 ) {
     throw std::runtime_error("Evaluator is designed for schema v" + std::to_string(evaluator_version) + " and is not backward-compatible");
   }
   description_ = json.getOptional<const char*>("description").value_or("");
   for (const auto& item : json.getRequired<rapidjson::Value::ConstArray>("corrections")) {
     if ( ! item.IsObject() ) { throw std::runtime_error("Expected Correction object"); }
-    auto corr = std::make_shared<Correction>(item.GetObject(), snapshot);
+    auto corr = std::make_shared<Correction>(item.GetObject(), snapshot, schema_version_);
     if ( corrections_.find(corr->name()) != corrections_.end() ) {
       throw std::runtime_error("Duplicate Correction name: " + corr->name());
     }
@@ -864,4 +959,82 @@ bool CorrectionSet::validate() {
 // of exposing RapidJSON or the concrete Content variant to provider libraries.
 Content correction::detail::parse_plugin_child(const rapidjson::Value& json, const Correction& context) {
   return resolve_content(json, context);
+}
+
+Array::Array(const JSONObject& json, const Correction& context) {
+  for (const auto& child : json.getRequired<rapidjson::Value::ConstArray>("content"))
+    content_.push_back(resolve_content(child, context));
+}
+double Array::evaluate(const std::vector<Variable::Type>&) const {
+  throw std::runtime_error("Array node requires evaluate_array");
+}
+void Array::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  if (size != content_.size()) throw std::runtime_error("Array component count mismatch");
+  for (size_t i = 0; i < size; ++i) output[i] = std::visit(node_evaluate{values}, content_[i]);
+}
+void correction::detail::evaluate_content_array(const Content& content, const std::vector<Variable::Type>& values, double* output, size_t size) {
+  std::visit([&](const auto& node) {
+    using T = std::decay_t<decltype(node)>;
+    if constexpr (std::is_same_v<T, Array> || std::is_same_v<T, ExtensionNode> ||
+                  std::is_same_v<T, Binning> || std::is_same_v<T, MultiBinning> ||
+                  std::is_same_v<T, Category> || std::is_same_v<T, Transform>)
+      node.evaluate_array(values, output, size);
+    else throw std::runtime_error("Scalar node cannot supply an array output");
+  }, content);
+}
+
+// Infer and check every branch before constructing native nodes. Scalar = 0.
+// No selected-branch runtime accident may silently change a correction's shape.
+size_t correction::detail::content_output_size(const rapidjson::Value& json) {
+  if (json.IsNumber()) return 0;
+  if (!json.IsObject()) throw std::runtime_error("Invalid Content node type");
+  JSONObject obj(json.GetObject());
+  const auto type = obj.getRequired<std::string_view>("nodetype");
+  if (type == "array") {
+    const auto items = obj.getRequired<rapidjson::Value::ConstArray>("content");
+    if (items.Empty()) throw std::runtime_error("Array must contain at least one component");
+    for (const auto& child : items)
+      if (content_output_size(child)) throw std::runtime_error("Array components must be scalar");
+    return items.Size();
+  }
+  if (type == "extension") {
+    size_t size = 0;
+    if (auto shape = obj.getOptional<rapidjson::Value::ConstArray>("output_shape")) {
+      if (shape->Size() != 1 || !(*shape)[0].IsUint64() || (*shape)[0].GetUint64() == 0 ||
+          (*shape)[0].GetUint64() > std::numeric_limits<size_t>::max() / sizeof(double))
+        throw std::runtime_error("Extension output_shape must be one positive dimension");
+      size = static_cast<size_t>((*shape)[0].GetUint64());
+    }
+    if (auto children = obj.getOptional<rapidjson::Value::ConstArray>("children"))
+      for (const auto& child : *children) content_output_size(child);
+    return size;
+  }
+  if (type == "transform") {
+    if (content_output_size(obj.getRequiredValue("rule"))) throw std::runtime_error("Transform rule must be scalar");
+    return content_output_size(obj.getRequiredValue("content"));
+  }
+  if (type == "binning" || type == "multibinning" || type == "category") {
+    const auto items = obj.getRequired<rapidjson::Value::ConstArray>("content");
+    std::optional<size_t> size;
+    const auto check = [&](const rapidjson::Value& child) {
+      const auto current = content_output_size(child);
+      if (size && *size != current) throw std::runtime_error("Graph branches have mismatched output shapes");
+      size = current;
+    };
+    for (const auto& child : items) {
+      if (type == "category") {
+        if (!child.IsObject() || !child.HasMember("value")) throw std::runtime_error("Expected CategoryItem object");
+        check(child["value"]);
+      } else check(child);
+    }
+    if (type == "category") {
+      auto it = obj.FindMember("default");
+      if (it != obj.MemberEnd() && !it->value.IsNull()) check(it->value);
+    } else {
+      const auto& flow = obj.getRequiredValue("flow");
+      if (!flow.IsString()) check(flow);
+    }
+    return size.value_or(0);
+  }
+  return 0; // Scalar formula/PRNG/LWTNN leaves are validated by their constructors.
 }

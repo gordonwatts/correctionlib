@@ -1,0 +1,7 @@
+Fresh-context gpt-6.1-sol/high writing review, requested by study AGENTS.md.
+Audience: particle physicists and C++ provider authors. Inputs: README, API guide,
+source/evidence paths; no chat history. Suggested: distinguish one point and fixed
+component order; make scalar flow rejection explicit; use (3,2) example; clarify
+empty/broadcast shapes and provider concurrency; label combined batching planned.
+Applied in docs/array-outputs.md. Batch timer CPU pinning/checks/precision verified
+against its committed scripts. No unsupported numerical claim found.

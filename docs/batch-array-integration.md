@@ -8,6 +8,12 @@ request several systematic labels or differently named corrections.
 The [runnable C++ and Python examples](../examples/batch_arrays) use the same
 payload for scalar batching, a single array output, and combined batching.
 
+For a complete custom provider, see the
+[array-plugin example](../examples/array_plugin/nodes.cc). It declares
+`output_size()` and implements both `evaluate_array` and `evaluate_batch_array`.
+Its batch-only probe throws on per-point evaluation, so a successful batch call
+verifies that the host invokes the batch callback.
+
 ```cpp
 std::vector<double> x{0.25, 1.25, 0.5}, output(x.size() * 2);
 std::vector<correction::BatchInput> inputs{

@@ -123,6 +123,11 @@ broadcasting, including the declared stride. Write one result to `output[row]`;
 the node does not allocate or return a vector. Inputs and output are borrowed
 only for the call, and node state must support concurrent callers as before.
 
+`BatchInput::at(row)` is the supported public reader and returns a
+`Variable::Type`. The SDK does not expose typed raw column pointers to
+providers. A callback can resolve input columns and select its axes before the
+row loop, as the example does for `column`.
+
 A top-level extension receives this batch callback once for a nonempty batch. An
 enclosing graph can still use scalar fallback; adding the override does not make
 every nested graph a batch kernel. No Python code is needed in the node. The

@@ -118,3 +118,15 @@ scalar0.5 and batch[0.5,2.5,1], as expected. Added a scalar-only schema-v2
 examples/native_batch/payload.json so the example also runs on the independent
 batch PR without requiring the array-output feature. No implementation or
 benchmark artifact changed. Pinned documentation/JSON formatting applied.
+
+2026-10-30 — clean-context study documentation feedback
+A fresh-context sub-agent implemented native-batch and packed histogram nodes
+in CorrectionLibStudies against pinned develop3e907fd9. Its docs-first review
+found contracts sufficient but column-reader limits and the complete array
+provider example hard to discover. Added the supported at(row) reader detail
+to the advanced native-batch guide and linked the existing complete provider
+from the combined guide. No core, SDK, provider, payload, benchmark source or
+binary changed. Study timing evidence remains tied to the original exact pin.
+Validate relative links and focused documentation hooks before commit/push.
+Validation: relative guide links resolve; pinned documentation hooks applied
+formatting, then passed. No numerical rebuild needed for prose-only changes.

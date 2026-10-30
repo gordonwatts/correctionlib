@@ -1,0 +1,43 @@
+name: Node plugins
+on:
+  push:
+    branches: ["codex/node-plugins"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+      - name: Remove optional Python binding sources from build context
+        run: rm -rf pybind11
+      - name: Build and test without Python or pybind11
+        run: docker build -f tests/native_plugins/Dockerfile .
+  python-discovery:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.13"]
+        include:
+          - os: ubuntu-latest
+            python: "3.9"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install . --group test
+      - name: Build and install a separately packaged provider
+        shell: bash
+        run: |
+          native_cmake=$(python -c 'import correctionlib,pathlib; print(pathlib.Path(correctionlib.__file__).parent / "cmake")')
+          python -m pip install ./examples/node_plugin --no-deps --config-settings=cmake.define.correctionlib_DIR="$native_cmake"
+      - run: python -m pytest -m "not cvmfs"

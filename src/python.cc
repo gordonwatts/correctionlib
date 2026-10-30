@@ -2,6 +2,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include "correction.h"
+#include "correction_plugin.h"
 
 namespace py = pybind11;
 using namespace correction;
@@ -86,6 +87,10 @@ namespace {
   }
 }
 PYBIND11_MODULE(_core, m, py::mod_gil_not_used()) {
+    // Python discovery only registers native libraries. Numerical callbacks
+    // remain entirely native, including when evalv releases the Python GIL.
+    m.def("load_plugin", [](const std::string& path) { default_plugin_registry().load_library(path); });
+    m.def("has_plugin", [](const std::string& type, int version) { return default_plugin_registry().contains(type, version); });
     m.doc() = "python binding for corrections evaluator";
 
     py::class_<Variable>(m, "Variable")
@@ -116,8 +121,8 @@ PYBIND11_MODULE(_core, m, py::mod_gil_not_used()) {
         .def("evalv", evalv<CompoundCorrection>);
 
     py::class_<CorrectionSet>(m, "CorrectionSet")
-        .def_static("from_file", &CorrectionSet::from_file)
-        .def_static("from_string", &CorrectionSet::from_string)
+        .def_static("from_file", [](const std::string& path) { return CorrectionSet::from_file(path); })
+        .def_static("from_string", [](const std::string& text) { return CorrectionSet::from_string(text.c_str()); })
         .def_property_readonly("schema_version", &CorrectionSet::schema_version)
         .def_property_readonly("description", &CorrectionSet::description)
         .def("__getitem__", &CorrectionSet::at, py::return_value_policy::move)

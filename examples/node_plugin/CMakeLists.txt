@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.15)
+project(example_correction_nodes LANGUAGES CXX)
+find_package(correctionlib CONFIG REQUIRED)
+add_library(example_correction_nodes SHARED nodes.cc)
+target_link_libraries(example_correction_nodes PRIVATE correctionlib)
+set_target_properties(example_correction_nodes PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+install(TARGETS example_correction_nodes
+  LIBRARY DESTINATION example_correction_nodes
+  RUNTIME DESTINATION example_correction_nodes)

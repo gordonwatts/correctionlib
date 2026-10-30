@@ -67,6 +67,7 @@ class JSONObject {
     }
 
     // escape hatch
+    inline auto MemberBegin() const { return json_.MemberBegin(); }
     inline auto FindMember(const char * key) const { return json_.FindMember(key); }
     inline auto MemberEnd() const { return json_.MemberEnd(); }
 
@@ -80,6 +81,7 @@ std::string_view JSONObject::getRequired<std::string_view>(const char*) const;
 
 
 namespace detail {
+  Content parse_plugin_child(const rapidjson::Value&, const Correction&);
   size_t find_input_index(const std::string_view name, const std::vector<Variable> &inputs);
 }
 

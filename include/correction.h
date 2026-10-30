@@ -1,6 +1,7 @@
 #ifndef CORRECTION_H
 #define CORRECTION_H
 
+#include <cstdint>
 #include <string>
 #include <vector>
 #include <variant>
@@ -11,6 +12,9 @@
 namespace correction {
 
 constexpr int evaluator_version { 2 };
+
+class PluginRegistry;
+PluginRegistry& default_plugin_registry();
 
 class JSONObject; // internal wrapper around rapidjson
 
@@ -36,6 +40,15 @@ class Variable {
     VarType type_;
 };
 
+class ExtensionNode {
+  public:
+    ExtensionNode(const JSONObject& json, const class Correction& context);
+    double evaluate(const std::vector<Variable::Type>& values) const;
+  private:
+    struct State;
+    std::shared_ptr<const State> state_;
+};
+
 class Formula;
 class FormulaRef;
 class Transform;
@@ -44,7 +57,7 @@ class LWTNN;
 class Binning;
 class MultiBinning;
 class Category;
-typedef std::variant<double, Formula, FormulaRef, Transform, HashPRNG, LWTNN, Binning, MultiBinning, Category> Content;
+typedef std::variant<double, Formula, FormulaRef, Transform, HashPRNG, LWTNN, Binning, MultiBinning, Category, ExtensionNode> Content;
 class Correction;
 
 class FormulaAst {
@@ -267,7 +280,8 @@ class Correction {
   public:
     typedef std::shared_ptr<const Correction> Ref;
 
-    Correction(const JSONObject& json);
+    Correction(const JSONObject& json, std::shared_ptr<const PluginRegistry> registry = nullptr);
+    const PluginRegistry& plugin_registry() const { return *registry_; }
     std::string name() const { return name_; };
     std::string description() const { return description_; };
     int version() const { return version_; };
@@ -285,6 +299,7 @@ class Correction {
     std::vector<Formula::Ref> formula_refs_;
     bool initialized_; // is data_ filled?
     Content data_;
+    std::shared_ptr<const PluginRegistry> registry_;
 };
 
 typedef Correction::Ref CorrectionPtr; // deprecated
@@ -317,10 +332,10 @@ class CompoundCorrection {
 
 class CorrectionSet {
   public:
-    static std::unique_ptr<CorrectionSet> from_file(const std::string& fn);
-    static std::unique_ptr<CorrectionSet> from_string(const char * data);
+    static std::unique_ptr<CorrectionSet> from_file(const std::string& fn, const PluginRegistry& registry = default_plugin_registry());
+    static std::unique_ptr<CorrectionSet> from_string(const char * data, const PluginRegistry& registry = default_plugin_registry());
 
-    CorrectionSet(const JSONObject& json);
+    CorrectionSet(const JSONObject& json, const PluginRegistry& registry = default_plugin_registry());
     bool validate();
     int schema_version() const { return schema_version_; };
     std::string description() const { return description_; };

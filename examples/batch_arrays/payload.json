@@ -1,0 +1,34 @@
+{
+  "schema_version": 3,
+  "corrections": [
+    {
+      "name": "scalar",
+      "version": 1,
+      "inputs": [{ "name": "x", "type": "real" }],
+      "output": { "name": "y", "type": "real" },
+      "data": {
+        "nodetype": "binning",
+        "input": "x",
+        "edges": [0.0, 1.0, 2.0],
+        "content": [1.0, 3.0],
+        "flow": "clamp"
+      }
+    },
+    {
+      "name": "pair",
+      "version": 1,
+      "inputs": [{ "name": "x", "type": "real" }],
+      "output": { "name": "components", "type": "real", "shape": [2] },
+      "data": {
+        "nodetype": "binning",
+        "input": "x",
+        "edges": [0.0, 1.0, 2.0],
+        "content": [
+          { "nodetype": "array", "content": [1.0, 2.0] },
+          { "nodetype": "array", "content": [3.0, 4.0] }
+        ],
+        "flow": "clamp"
+      }
+    }
+  ]
+}

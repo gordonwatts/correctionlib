@@ -15,6 +15,23 @@ public:
     const double x = std::get<double>(values.at(input_));
     for (size_t j = 0; j < size_; ++j) output[j] = x + static_cast<double>(j);
   }
+  void evaluate_batch_array(const std::vector<BatchInput>& inputs, size_t n,
+                            double* output, size_t) const override {
+    for (size_t row = 0; row < n; ++row) {
+      const auto x = std::get<double>(inputs.at(input_).at(row));
+      for (size_t j = 0; j < size_; ++j) output[row * size_ + j] = x + static_cast<double>(j);
+    }
+  }
+
+};
+// Dispatch probe: scalar-array evaluation is forbidden, so successful vector
+// evaluation proves the host called the batch-array callback through OwnedNode.
+class BatchOnlyComponents : public Components {
+public:
+  using Components::Components;
+  void evaluate_array(const std::vector<Variable::Type>&, double*, size_t) const override {
+    throw std::runtime_error("scalar array probe reached");
+  }
 };
 class Offset : public PluginNode {
   std::shared_ptr<const PluginNode> child_;
@@ -39,6 +56,13 @@ extern "C" void correctionlib_register_nodes_v4(PluginRegistry& registry) {
     if (size < 1 || static_cast<size_t>(size) != ctx.output_size() || ctx.child_count())
       throw std::runtime_error("components size must match declared output_shape; no children");
     return std::make_shared<Components>(ctx.input_index(cfg.string("input"), Variable::VarType::real), size);
+  });
+  registry.register_node("test.array_batch", 1, [](const PluginConfig& cfg, const PluginContext& ctx) {
+    cfg.require_keys({"input", "size"});
+    const auto size = cfg.integer("size");
+    if (size < 1 || static_cast<size_t>(size) != ctx.output_size() || ctx.child_count())
+      throw std::runtime_error("array batch probe size mismatch");
+    return std::make_shared<BatchOnlyComponents>(ctx.input_index(cfg.string("input"), Variable::VarType::real), size);
   });
   registry.register_node("org.example.array_offset", 1, [](const PluginConfig& cfg, const PluginContext& ctx) {
     cfg.require_keys({});

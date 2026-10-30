@@ -140,34 +140,28 @@ packages, while retaining a completely Python-free C++ build and runtime. See
 binary compatibility contract and examples. Extended payloads require this fork;
 stock upstream schema-v2 readers do not support the `extension` node.
 
-## Experimental fixed array outputs in this fork
+## Experimental native evaluation in this fork
 
-An array-valued correction returns a fixed, ordered list of numbers for each
-input point. For example, one histogram bin can hold two explicitly declared
-components. This differs from passing many particles to a scalar correction. The
-components have only the meaning assigned by the payload; no systematic
+This fork supports two different uses of arrays. Passing many input points to a
+scalar correction returns one value per point. Declaring an array-valued
+correction returns a fixed, ordered set of components for one point. Together, N
+input points and S components produce a NumPy array of shape `(N, S)`. The
+components have only the meaning assigned in the payload; no systematic
 variation labels are reserved.
 
-The [array-output guide](docs/array-outputs.md) gives schema-v3 payloads and
-C++/Python examples, supported graph composition and plugin rebuild rules.
-Existing scalar schema-v2 payloads continue to work. This feature depends on
-native-node PR #1 and is independently buildable without the batch-input PR.
-Validation and matched synthetic timing evidence are in
-[evidence/arrays](evidence/arrays).
+The [combined guide](docs/batch-array-integration.md) links runnable C++ and
+Python examples and explains which graph paths use native batch callbacks.
+Separate [batch](docs/native-batches.md) and
+[array-output](docs/array-outputs.md) guides specify ownership, schemas, shape
+validation and provider rebuild requirements. Existing scalar schema-v2 payloads
+continue to work; array outputs use this fork's experimental schema v3.
 
-## Experimental native batches in this fork
-
-
-Python already accepts arrays of inputs. The new
-[native batch API](docs/native-batches.md) also lets the C++ evaluator and an
-external provider receive an entire input column in one call. One correction
-still produces one number per input point. Root histogram nodes use column
-loops; other graphs preserve scalar behavior. See the API document for
-ownership, strides, empty batches and SDK rebuild rules. The dependency is
-native-node PR #1; this feature does not change that PR.
-
-Focused tests are in `tests/test_native_batches.py`,
-`tests/native_plugins/test_batches.cc` and the separately built
-`tests/batch_provider`. Reproduction commands and retained validation/timing
-records are in [evidence/batches](evidence/batches). These use synthetic tables;
-no detector calibration or full-analysis validation is claimed.
+These changes are separate open PRs:
+[plugins #1](https://github.com/gordonwatts/correctionlib/pull/1),
+[native batches #2](https://github.com/gordonwatts/correctionlib/pull/2), and
+[array outputs #3](https://github.com/gordonwatts/correctionlib/pull/3). Develop
+combines them without merging the PRs into their target branches. Standalone
+evidence is in [batches](evidence/batches) and [arrays](evidence/arrays);
+[combined evidence](evidence/combined) tests the integrated implementation.
+Synthetic timing examples are not detector calibrations or full-analysis
+validation.

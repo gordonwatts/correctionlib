@@ -54,3 +54,5 @@ by combining public interfaces and preserving both standalone evidence sets.
 Cross-feature API4 adds evaluate_batch_array, row-major output, array provider
 batch callbacks and Python dispatch. Rebuild all core/providers, native/Python
 and sanitizer tests after resolution; do not push until combined checks pass.
+
+Combined checks: 279 Python passed, ROOT1 skipped/CVMFS excluded, 5/5 native Release, 5/5 native ASan/UBSan/float-cast passed. Separate C++ consumer + Python examples ran and verified scalar batch, single array output and N*S layout. Independent batch-array probe scalar method throws; all N and S succeed through callback. Provider default array fallback also tested. Latest PR dedicated native/array jobs and plugin multi-platform jobs green. Remaining general-CI format failure is pre-existing tests/test_binding.py import classification: generated version.py exists locally but not in clean CI. Add explicit Ruff known-first-party correctionlib on BOTH feature branches and develop so sorting is stable. No numerical source change. Next accepted combined timings, clean-context writing review and publication.

@@ -1,0 +1,42 @@
+name: Batch array integration
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  combined:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python -m pip install . --group test
+      - name: Build independent providers and test combined dispatch
+        shell: bash
+        run: |
+          prefix=$(python -c 'import correctionlib,pathlib; print(pathlib.Path(correctionlib.__file__).parent)')
+          cmake -S examples/array_plugin -B /tmp/array-provider -DCMAKE_PREFIX_PATH="$prefix" -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/array-provider -j2
+          cmake -S tests/batch_provider -B /tmp/batch-provider -DCMAKE_PREFIX_PATH="$prefix" -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/batch-provider -j2
+          export ARRAY_PROVIDER_LIBRARY=/tmp/array-provider/libarray_correction_nodes.so
+          export BATCH_PROBE_LIBRARY=/tmp/batch-provider/libbatch_probe.so
+          python -m pytest tests/test_array_outputs.py tests/test_native_batches.py tests/test_batch_array_outputs.py
+      - name: Python-free core and independent providers
+        shell: bash
+        run: |
+          cmake -S . -B /tmp/native -DCORRECTIONLIB_BUILD_PYTHON=OFF -DCORRECTIONLIB_BUILD_TESTS=ON -DBUILD_DEMO=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/tmp/native-install
+          cmake --build /tmp/native -j2
+          cmake --install /tmp/native
+          cmake -S examples/array_plugin -B /tmp/native-array-provider -DCMAKE_PREFIX_PATH=/tmp/native-install/correctionlib -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/native-array-provider -j2
+          cmake -S tests/batch_provider -B /tmp/native-batch-provider -DCMAKE_PREFIX_PATH=/tmp/native-install/correctionlib -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/native-batch-provider -j2
+          cmake -S . -B /tmp/native -DARRAY_PROVIDER_LIBRARY=/tmp/native-array-provider/libarray_correction_nodes.so -DBATCH_PROBE_LIBRARY=/tmp/native-batch-provider/libbatch_probe.so
+          ctest --test-dir /tmp/native --output-on-failure

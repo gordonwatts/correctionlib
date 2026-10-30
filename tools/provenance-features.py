@@ -22,6 +22,18 @@ files = (
 )
 
 
+files += [
+    f
+    for folder in ["src/correctionlib", "examples", "tests/batch_provider", "tools"]
+    for f in (root / folder).rglob("*")
+    if f.is_file()
+    and f.suffix in {".py", ".cc", ".h", ".sh"}
+    and f.name != "version.py"
+]
+files += list((root / "src").glob("*.h"))
+files += [pathlib.Path(arg) for arg in sys.argv[3:] if pathlib.Path(arg).is_file()]
+
+
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -32,6 +44,9 @@ data = {
     ).strip(),
     "dirty": bool(
         subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True)
+    ),
+    "submodules": subprocess.check_output(
+        ["git", "submodule", "status", "--recursive"], cwd=root, text=True
     ),
     "base_plugin_commit": "8dc0b7a8bfe82c15115ff2a5907d4bfa35ee4710",
     "platform": platform.platform(),

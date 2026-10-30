@@ -1,0 +1,46 @@
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/15.2.0-35657/x86_64-el9/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (1.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/combined-array-provider
+[ 50%] Building CXX object CMakeFiles/array_correction_nodes.dir/nodes.cc.o
+[100%] Linking CXX shared library libarray_correction_nodes.so
+[100%] Built target array_correction_nodes
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/15.2.0-35657/x86_64-el9/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (1.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/combined-batch-provider
+[ 50%] Building CXX object CMakeFiles/batch_probe.dir/probe.cc.o
+[100%] Linking CXX shared library libbatch_probe.so
+[100%] Built target batch_probe
+-- pybind11 v3.0.2 
+Using compatibility mode for Python, set PYBIND11_FINDPYTHON to NEW/OLD to silence this message
+-- Using build type: Release
+-- Using a privately downloaded Boost version for the build
+-- Configuring done (1.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/combined
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/combined-array-provider
+[100%] Built target array_correction_nodes
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/combined-batch-provider
+[100%] Built target batch_probe
+-- pybind11 v3.0.2 
+Using compatibility mode for Python, set PYBIND11_FINDPYTHON to NEW/OLD to silence this message
+-- Using build type: Release
+-- Using a privately downloaded Boost version for the build
+-- Configuring done (1.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/combined

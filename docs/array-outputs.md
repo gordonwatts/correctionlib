@@ -80,7 +80,8 @@ correctionlib_register_nodes_v4 and updated header fingerprints; all providers
 must be rebuilt with matching core/toolchain. API 1/2/3 binaries fail with an
 incompatibility error before their registration callback is called.
 
-This PR does not contain the native batch API. Python vector inputs here use the
-scalar native loop. The planned integration branch will add batch evaluation of
-array outputs with row-major C++ layout `output[row*S + component]` and Python
-(N,S).
+On develop, vector inputs use native batch dispatch, including array-valued
+external providers. See the
+[combined API and examples](batch-array-integration.md). The independent
+array-output PR retains its per-point implementation and API3; the integration
+uses API4 and row-major `output[row*S + component]` storage.

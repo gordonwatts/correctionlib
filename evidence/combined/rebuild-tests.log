@@ -1,0 +1,15 @@
+[ 17%] Built target Boost
+[ 42%] Built target lwtnn-stat
+[ 55%] Built target correctionlib
+[ 60%] Built target test_node_provider
+[ 64%] Built target _core
+[ 68%] Built target wrong_api_provider
+[ 73%] Built target wrong_build_provider
+[ 77%] Built target failing_provider
+[ 82%] Built target test_linked_plugin
+[ 86%] Built target test_native_plugins
+[ 91%] Built target test_batches
+[ 95%] Built target test_arrays
+[ 97%] Building CXX object tests/native_plugins/CMakeFiles/test_batch_arrays.dir/test_batch_arrays.cc.o
+[100%] Linking CXX executable test_batch_arrays
+[100%] Built target test_batch_arrays

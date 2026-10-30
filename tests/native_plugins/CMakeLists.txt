@@ -31,3 +31,7 @@ target_link_libraries(test_batches PRIVATE correctionlib Threads::Threads)
 if(BATCH_PROBE_LIBRARY)
   add_test(NAME native_batches COMMAND test_batches "${BATCH_PROBE_LIBRARY}")
 endif()
+
+add_executable(test_batch_arrays test_batch_arrays.cc)
+target_link_libraries(test_batch_arrays PRIVATE correctionlib Threads::Threads)
+add_test(NAME native_batch_arrays COMMAND test_batch_arrays ${ARRAY_PROVIDER_LIBRARY})

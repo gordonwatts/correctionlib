@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.15)
+project(batch_arrays_example LANGUAGES CXX)
+find_package(correctionlib CONFIG REQUIRED)
+add_executable(batch_arrays example.cc)
+target_link_libraries(batch_arrays PRIVATE correctionlib)

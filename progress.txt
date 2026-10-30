@@ -84,3 +84,19 @@ examples, raw rounds and measured binaries are unchanged. Implementation,
 two separate PRs, develop publication, independent+combined validation,
 benchmarks and fresh-context writing review are complete. Remaining limits
 are in docs/batch-array-integration.md and evidence/combined/README.md.
+
+Documentation followup: user requested a simple scalar-float versus full-array
+example and clarified that this is an advanced feature, with no need to promote
+it near the top. Updated only the existing mid-guide examples in
+docs/array-outputs.md; README placement is unchanged. The comparison uses the
+complete examples/batch_arrays/payload.json, passes0.25 to both corrections,
+shows Python float1.0 vs NumPy shape(2,), and C++ evaluate vs evaluate_array.
+Kept the three-point (3,2) example separate to distinguish inputs from outputs.
+Next validate these exact snippets and apply documentation formatting, then
+commit/push the focused develop documentation change.
+Validation: executed the exact two Python code blocks from the guide in WSL
+atlas_al9 against the installed develop core. Returned Python float1.0,
+NumPy array[1.,2.] shape(2,), and rows[[1,2],[3,4],[1,2]] shape(3,2), as shown.
+Pinned documentation format/spelling checks applied. This is documentation only;
+no native/Python implementation, payload, benchmark or binary was changed.
+Keep the same explanation in the standalone array-output PR as well.

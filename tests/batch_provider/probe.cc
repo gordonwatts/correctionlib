@@ -13,7 +13,7 @@ public:
 };
 extern "C" int correctionlib_plugin_api_version() { return plugin_api_version; }
 extern "C" const char* correctionlib_plugin_build_id() { return plugin_build_id().c_str(); }
-extern "C" void correctionlib_register_nodes_v2(PluginRegistry& registry) {
+extern "C" void correctionlib_register_nodes_v4(PluginRegistry& registry) {
   registry.register_node("test.batch", 1, [](const PluginConfig& cfg, const PluginContext& ctx) {
     cfg.require_keys({});
     ctx.input_index("x", Variable::VarType::real);

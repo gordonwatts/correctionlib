@@ -1,0 +1,110 @@
+[
+  {
+    "scope": "native",
+    "n": 100000,
+    "s": 1,
+    "mode": "array",
+    "median_ns": 1741320.0,
+    "min_ns": 1685690.0,
+    "max_ns": 1948010.0
+  },
+  {
+    "scope": "native",
+    "n": 100000,
+    "s": 1,
+    "mode": "scalar_components",
+    "median_ns": 1521870.0,
+    "min_ns": 1492520.0,
+    "max_ns": 1762190.0
+  },
+  {
+    "scope": "native",
+    "n": 100000,
+    "s": 2,
+    "mode": "array",
+    "median_ns": 1797960.0,
+    "min_ns": 1766490.0,
+    "max_ns": 1989050.0
+  },
+  {
+    "scope": "native",
+    "n": 100000,
+    "s": 2,
+    "mode": "scalar_components",
+    "median_ns": 3027900.0,
+    "min_ns": 3018080.0,
+    "max_ns": 3201360.0
+  },
+  {
+    "scope": "native",
+    "n": 100000,
+    "s": 16,
+    "mode": "array",
+    "median_ns": 2985570.0,
+    "min_ns": 2871230.0,
+    "max_ns": 3091760.0
+  },
+  {
+    "scope": "native",
+    "n": 100000,
+    "s": 16,
+    "mode": "scalar_components",
+    "median_ns": 24381100.0,
+    "min_ns": 24233000.0,
+    "max_ns": 27289000.0
+  },
+  {
+    "scope": "python",
+    "n": 100000,
+    "s": 1,
+    "mode": "array",
+    "median_ns": 947683.0,
+    "min_ns": 922542.0,
+    "max_ns": 1270220.0
+  },
+  {
+    "scope": "python",
+    "n": 100000,
+    "s": 1,
+    "mode": "scalar_components",
+    "median_ns": 892760.0,
+    "min_ns": 848036.0,
+    "max_ns": 1035992.0
+  },
+  {
+    "scope": "python",
+    "n": 100000,
+    "s": 2,
+    "mode": "array",
+    "median_ns": 1223376.0,
+    "min_ns": 1199315.0,
+    "max_ns": 1299054.0
+  },
+  {
+    "scope": "python",
+    "n": 100000,
+    "s": 2,
+    "mode": "scalar_components",
+    "median_ns": 2249896.0,
+    "min_ns": 1896627.0,
+    "max_ns": 2928254.0
+  },
+  {
+    "scope": "python",
+    "n": 100000,
+    "s": 16,
+    "mode": "array",
+    "median_ns": 2420769.0,
+    "min_ns": 2327265.0,
+    "max_ns": 2598615.0
+  },
+  {
+    "scope": "python",
+    "n": 100000,
+    "s": 16,
+    "mode": "scalar_components",
+    "median_ns": 17077883.0,
+    "min_ns": 16940309.0,
+    "max_ns": 21149756.0
+  }
+]

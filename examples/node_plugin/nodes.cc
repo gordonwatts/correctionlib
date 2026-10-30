@@ -16,10 +16,8 @@ public:
   double evaluate(const std::vector<Variable::Type>& values) const override {
     return std::get<double>(values.at(input_)) * factor_;
   }
-  void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
-                      double* output, size_t) const override {
-    for (size_t row = 0; row < n; ++row)
-      output[row] = std::get<double>(inputs.at(input_).at(row)) * factor_;
+  void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t) const override {
+    for (size_t row = 0; row < n; ++row) output[row] = std::get<double>(inputs.at(input_).at(row)) * factor_;
   }
 
 };
@@ -50,7 +48,7 @@ extern "C" int correctionlib_plugin_api_version() {
 // Called during explicit registration or a staged library-load transaction.
 // All configuration and shape checks belong here in native code, since C++
 // consumers do not execute the optional Python/Pydantic validation layer.
-extern "C" void correctionlib_register_nodes_v2(PluginRegistry& registry) {
+extern "C" void correctionlib_register_nodes_v4(PluginRegistry& registry) {
   registry.register_node(
       "org.example.scale", 1, [](const PluginConfig& config, const PluginContext& ctx) {
         config.require_keys({"input", "factor"});
@@ -70,6 +68,8 @@ extern "C" void correctionlib_register_nodes_v2(PluginRegistry& registry) {
                            config.require_keys({"amount"});
                            if (ctx.child_count() != 1)
                              throw std::runtime_error("offset requires one child");
+                           if (ctx.child(0)->output_size() || ctx.output_size())
+                             throw std::runtime_error("offset supports scalar children and outputs only");
                            auto amount = config.real("amount");
                            if (!std::isfinite(amount))
                              throw std::runtime_error("amount must be finite");

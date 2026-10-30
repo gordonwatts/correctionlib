@@ -140,7 +140,23 @@ packages, while retaining a completely Python-free C++ build and runtime. See
 binary compatibility contract and examples. Extended payloads require this fork;
 stock upstream schema-v2 readers do not support the `extension` node.
 
+## Experimental fixed array outputs in this fork
+
+An array-valued correction returns a fixed, ordered list of numbers for each
+input point. For example, one histogram bin can hold two explicitly declared
+components. This differs from passing many particles to a scalar correction. The
+components have only the meaning assigned by the payload; no systematic
+variation labels are reserved.
+
+The [array-output guide](docs/array-outputs.md) gives schema-v3 payloads and
+C++/Python examples, supported graph composition and plugin rebuild rules.
+Existing scalar schema-v2 payloads continue to work. This feature depends on
+native-node PR #1 and is independently buildable without the batch-input PR.
+Validation and matched synthetic timing evidence are in
+[evidence/arrays](evidence/arrays).
+
 ## Experimental native batches in this fork
+
 
 Python already accepts arrays of inputs. The new
 [native batch API](docs/native-batches.md) also lets the C++ evaluator and an

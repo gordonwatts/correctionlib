@@ -26,3 +26,31 @@ Final batch followup: PR2 open at https://github.com/gordonwatts/correctionlib/p
 Final batch rebuild succeeded but install glob matched two retained wheel versions, so pip correctly refused conflicting packages before tests. Fixed bootstrap to install only newest built wheel, preserving all prior wheels. Resuming validation from that new artifact.
 
 Final batch revision: 185 Python passed, ROOT1 skipped/CVMFS excluded; native Release and Python-free sanitizer3/3 passed. Independent probe and example provider rebuilt against same core. Pinned precommit hooks and mypy passed locally with pyupgrade skipped on lintPython3.9; actual GitHub format run typecheck passed and plugin workflow green. Added raw-evidence formatter exclusion, applied Prettier/blacken-docs to docs. Earlier rounds overlapping lintsetup explicitly excluded/retained; final accepted timings rerun after all builds/lintended. Summary medians/spread and full CSVs updated, provenance retained. Next push followup, array formatting/script fix, then integration.
+
+2026-10-30 America/Los_Angeles — independent array-output feature
+Target gordonwatts/correctionlib. Fetched current PR#1 head exactly
+8dc0b7a8bfe82c15115ff2a5907d4bfa35ee4710, same base as batch feature.
+origin/master 445b7a31ad0298b3b14a81d370faa44f08add04e; no existing develop.
+Study README/progress and pinned evidence read-only; historical installations untouched.
+Linux checkout /home/gwatts/atlas/correctionlib_features; builds in sibling
+correctionlib-feature-build; WSL atlas_al9 / AnalysisBase25.2.100 GCC15.2 Python3.13.
+Batch feature independently committed a4d3a0c on codex/batched-inputs. Now on
+codex/array-outputs from the same PR#1 base, containing no batch implementation.
+Design/signatures documented BEFORE implementation in docs/array-outputs.md.
+Schema3 adds output.shape=[S], explicit array nodes of scalar components,
+shape-preserving graph selectors, scalar Transform rules, array plugin callbacks.
+Unsupported combinations fail construction. Next implement and validate.
+Implemented core/SDK/Python methods and schema3 authoring via v2 node field validators with v3 recursive fields. Shape inference validates every branch, scalar components and provider declarations. Explicit array provider built separately; tests cover S1/2/16, all requested N, strided NumPy/empty/broadcast/pickle/thread behavior and malformed graphs. Added defined rejection for uniform NaN and wrapped nonfinite inputs (previously could reach undefined floating-to-integer casts), and malformed native histogram geometry. First exploratory build succeeded; rebuilding finalized sources before validation.
+
+Array final standalone validation: 146 passed, ROOT1 skipped, CVMFS excluded. Dask-Awkward dependency installed and its scalar regression passed. 3/3 Release native and 3/3 Python-free ASan/UBSan/float-cast suites passed with independent array provider. Ruff passed; mypy1.19.1 target3.13 passed 13 sources. Exact repo target3.9 hits installed uproot Python3.10 syntax (logs retained), not a source diagnostic. Both native and Python array benchmarks retain 798 rows each: all 19 N, S1/2/16, 7 rounds, 2 matched modes, CPU0 after builds, exact before/after checks. evidence/arrays includes raw CSV, median/min/max summary, flags, machine, packages and provenance. Writing reviewer gpt-6.1-sol/high with fresh context reviewed README/API distinctions and batch timing source; wording suggestions applied. Batch PR created/open https://github.com/gordonwatts/correctionlib/pull/2; its final docs/safety followup remains before integration. Next commit/push array feature and create PR targeting codex/node-plugins, finalize batch followup, then normal develop merges + combined batch-array wiring and tests.
+
+PR3 published at https://github.com/gordonwatts/correctionlib/pull/3. Dedicated Array outputs CI job green on603c6c1; pinned isolated GitHub typecheck also green (unlike local environment with newer optional uproot). General CI initial formatting gate changed docs/raw whitespace; applying pinned hooks and excluding raw evidence bytes. Build script now selects newest wheel so retained prior versions do not conflict on reinstall. Runtime source/binary evidence remains unchanged by this documentation/tooling followup. Batch final validated revision96b651a pushed toPR2; next normal merges on develop from freshly fetched master.
+
+2026-10-30 — develop integration
+Fresh fetch confirmed master445b7a31 and plugin8dc0b7a unchanged; no remote
+develop existed. Created develop from origin/master and normal --no-ff merges:
+plugin first, batch second. Resolving third normal merge (array output branch)
+by combining public interfaces and preserving both standalone evidence sets.
+Cross-feature API4 adds evaluate_batch_array, row-major output, array provider
+batch callbacks and Python dispatch. Rebuild all core/providers, native/Python
+and sanitizer tests after resolution; do not push until combined checks pass.

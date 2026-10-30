@@ -81,6 +81,8 @@ std::string_view JSONObject::getRequired<std::string_view>(const char*) const;
 
 
 namespace detail {
+  size_t content_output_size(const rapidjson::Value&);
+  void evaluate_content_array(const Content&, const std::vector<Variable::Type>&, double*, size_t);
   Content parse_plugin_child(const rapidjson::Value&, const Correction&);
   size_t find_input_index(const std::string_view name, const std::vector<Variable> &inputs);
 }

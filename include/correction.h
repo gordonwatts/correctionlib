@@ -12,7 +12,7 @@
 
 namespace correction {
 
-constexpr int evaluator_version { 2 };
+constexpr int evaluator_version { 3 };
 
 class PluginRegistry;
 PluginRegistry& default_plugin_registry();
@@ -60,8 +60,9 @@ class ExtensionNode {
   public:
     ExtensionNode(const JSONObject& json, const class Correction& context);
     double evaluate(const std::vector<Variable::Type>& values) const;
-    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
-                        double* output, size_t output_size) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_batch_array(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
   private:
     struct State;
     std::shared_ptr<const State> state_;
@@ -75,8 +76,18 @@ class LWTNN;
 class Binning;
 class MultiBinning;
 class Category;
-typedef std::variant<double, Formula, FormulaRef, Transform, HashPRNG, LWTNN, Binning, MultiBinning, Category, ExtensionNode> Content;
+class Array;
+typedef std::variant<double, Formula, FormulaRef, Transform, HashPRNG, LWTNN, Binning, MultiBinning, Category, ExtensionNode, Array> Content;
 class Correction;
+
+class Array {
+public:
+  Array(const JSONObject& json, const Correction& context);
+  double evaluate(const std::vector<Variable::Type>&) const;
+  void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
+private:
+  std::vector<Content> content_;
+};
 
 class FormulaAst {
   public:
@@ -192,6 +203,7 @@ class Transform {
   public:
     Transform(const JSONObject& json, const Correction& context);
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
 
   private:
     size_t variableIdx_;
@@ -249,10 +261,12 @@ class Binning {
   public:
     Binning(const JSONObject& json, const Correction& context);
     double evaluate(const std::vector<Variable::Type>& values) const;
-    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
-                        double* output, size_t output_size) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_batch_array(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
 
   private:
+    const Content& select(const std::vector<Variable::Type>& values) const;
     detail::EdgesType bins_; // bin edges
     // bin contents: contents_[i] is the value corresponding to bins_[i+1].
     // the default value is at contents_[0]
@@ -274,10 +288,12 @@ class MultiBinning {
     MultiBinning(const JSONObject& json, const Correction& context);
     size_t ndimensions() const { return axes_.size(); };
     double evaluate(const std::vector<Variable::Type>& values) const;
-    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
-                        double* output, size_t output_size) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_batch_array(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
 
   private:
+    const Content& select(const std::vector<Variable::Type>& values) const;
     size_t nbins(size_t dimension) const;
 
     std::vector<detail::MultiBinningAxis> axes_;
@@ -289,8 +305,10 @@ class Category {
   public:
     Category(const JSONObject& json, const Correction& context);
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
 
   private:
+    const Content& select(const std::vector<Variable::Type>& values) const;
     typedef std::map<int64_t, Content> IntMap;
     typedef std::map<std::string, Content> StrMap;
     std::variant<IntMap, StrMap> map_;
@@ -302,7 +320,7 @@ class Correction {
   public:
     typedef std::shared_ptr<const Correction> Ref;
 
-    Correction(const JSONObject& json, std::shared_ptr<const PluginRegistry> registry = nullptr);
+    Correction(const JSONObject& json, std::shared_ptr<const PluginRegistry> registry = nullptr, int schema_version = 2);
     const PluginRegistry& plugin_registry() const { return *registry_; }
     std::string name() const { return name_; };
     std::string description() const { return description_; };
@@ -311,8 +329,11 @@ class Correction {
     Formula::Ref formula_ref(size_t idx) const { return formula_refs_.at(idx); };
     const Variable& output() const { return output_; };
     double evaluate(const std::vector<Variable::Type>& values) const;
-    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
-                        double* output, size_t output_size) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    void evaluate_batch_array(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
+    size_t output_size() const { return output_size_; }
+    std::vector<double> evaluate_array(const std::vector<Variable::Type>& values) const;
+    void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const;
 
   private:
     std::string name_;
@@ -323,6 +344,8 @@ class Correction {
     std::vector<Formula::Ref> formula_refs_;
     bool initialized_; // is data_ filled?
     Content data_;
+    size_t output_size_ = 0;
+    void validate_inputs(const std::vector<Variable::Type>& values) const;
     std::shared_ptr<const PluginRegistry> registry_;
 };
 
@@ -340,8 +363,7 @@ class CompoundCorrection {
     size_t input_index(const std::string_view name) const;
     const Variable& output() const { return output_; };
     double evaluate(const std::vector<Variable::Type>& values) const;
-    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
-                        double* output, size_t output_size) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n, double* output, size_t size) const;
 
   private:
     enum class UpdateOp {Add, Multiply, Divide, Last};

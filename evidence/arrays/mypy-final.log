@@ -1,0 +1,2 @@
+/home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages/uproot/writing/_cascadentuple.py:1192: error: Pattern matching is only supported in Python 3.10 and greater  [syntax]
+Found 1 error in 1 file (errors prevented further checking)

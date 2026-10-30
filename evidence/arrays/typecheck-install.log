@@ -1,0 +1,11 @@
+WARNING: Disabling truststore since ssl support is missing
+Looking in links: /home/gwatts/atlas/correctionlib-feature-build/wheels
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/mypy-2.4.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Requirement already satisfied: typing_extensions>=4.6.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from mypy) (4.16.0)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/mypy_extensions-1.1.0-py3-none-any.whl (from mypy)
+Requirement already satisfied: pathspec>=1.0.0 in /home/gwatts/atlas/correctionlib-feature-build/venv/lib/python3.13/site-packages (from mypy) (1.1.1)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/librt-0.16.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from mypy)
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/ast_serialize-0.13.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from mypy)
+Installing collected packages: mypy_extensions, librt, ast-serialize, mypy
+
+Successfully installed ast-serialize-0.13.1 librt-0.16.0 mypy-2.4.1 mypy_extensions-1.1.0

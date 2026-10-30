@@ -32,6 +32,9 @@ namespace {
     return py::cast<std::vector<Variable::Type>>(args);
   }
 
+  size_t components(const Correction& c) { return c.output_size(); }
+  size_t components(const CompoundCorrection&) { return 0; }
+
   template<typename T> // Correction or CompoundCorrection
   py::array_t<double> evalv(T& c, py::args args) {
     check_length(c, args);
@@ -58,11 +61,17 @@ namespace {
         else inputs.push_back(BatchInput::reals(static_cast<double*>(buffer.ptr), n));
       } else inputs.emplace_back(py::cast<Variable::Type>(args[i]));
     }
-    auto output = py::array_t<double>(n);
+    const auto size = components(c);
+    std::vector<py::ssize_t> shape{static_cast<py::ssize_t>(n)};
+    if (size) shape.push_back(static_cast<py::ssize_t>(size));
+    auto output = py::array_t<double>(shape);
     auto* outptr = output.mutable_data();
     {
       py::gil_scoped_release release;
-      c.evaluate_batch(inputs, n, outptr, n);
+      if constexpr (std::is_same_v<T, Correction>) {
+        if (size) c.evaluate_batch_array(inputs, n, outptr, n * size);
+        else c.evaluate_batch(inputs, n, outptr, n);
+      } else c.evaluate_batch(inputs, n, outptr, n);
     }
     return output;
   }
@@ -86,8 +95,18 @@ PYBIND11_MODULE(_core, m, py::mod_gil_not_used()) {
         .def_property_readonly("version", &Correction::version)
         .def_property_readonly("inputs", &Correction::inputs)
         .def_property_readonly("output", &Correction::output)
-        .def("evaluate", [](Correction& c, py::args args) {
-          return c.evaluate(validate_pyargs(c, args));
+        .def_property_readonly("output_size", &Correction::output_size)
+        .def("evaluate", [](Correction& c, py::args args) -> py::object {
+          auto values = validate_pyargs(c, args);
+          if (!c.output_size()) return py::cast(c.evaluate(values));
+          auto output = py::array_t<double>(c.output_size());
+          c.evaluate_array(values, output.mutable_data(), c.output_size());
+          return output;
+        })
+        .def("evaluate_array", [](Correction& c, py::args args) {
+          auto output = py::array_t<double>(c.output_size());
+          c.evaluate_array(validate_pyargs(c, args), output.mutable_data(), c.output_size());
+          return output;
         })
         .def("evalv", evalv<Correction>);
 

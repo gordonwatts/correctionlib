@@ -1,0 +1,36 @@
+name: Array outputs
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  arrays:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python -m pip install . --group test
+      - name: Build independent provider and run Python checks
+        shell: bash
+        run: |
+          prefix=$(python -c 'import correctionlib,pathlib; print(pathlib.Path(correctionlib.__file__).parent)')
+          cmake -S examples/array_plugin -B /tmp/array-provider -DCMAKE_PREFIX_PATH="$prefix" -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/array-provider -j2
+          export ARRAY_PROVIDER_LIBRARY=/tmp/array-provider/libarray_correction_nodes.so
+          python -m pytest tests/test_array_outputs.py
+      - name: Python-free core and independent provider
+        shell: bash
+        run: |
+          cmake -S . -B /tmp/native-arrays -DCORRECTIONLIB_BUILD_PYTHON=OFF -DCORRECTIONLIB_BUILD_TESTS=ON -DBUILD_DEMO=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/tmp/array-install
+          cmake --build /tmp/native-arrays -j2
+          cmake --install /tmp/native-arrays
+          cmake -S examples/array_plugin -B /tmp/native-array-provider -DCMAKE_PREFIX_PATH=/tmp/array-install/correctionlib -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/native-array-provider -j2
+          cmake -S . -B /tmp/native-arrays -DARRAY_PROVIDER_LIBRARY=/tmp/native-array-provider/libarray_correction_nodes.so
+          ctest --test-dir /tmp/native-arrays --output-on-failure

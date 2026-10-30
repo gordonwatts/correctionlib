@@ -11,7 +11,7 @@ extern "C" int correctionlib_plugin_api_version() {
 #endif
 }
 
-extern "C" void correctionlib_register_nodes_v1(correction::PluginRegistry& registry) {
+extern "C" void correctionlib_register_nodes_v3(correction::PluginRegistry& registry) {
   // Stage one factory before failing so the test can detect a broken rollback.
   registry.register_node(
       "org.example.rollback", 1,

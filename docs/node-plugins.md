@@ -55,7 +55,7 @@ enabled; the example uses CMake `WINDOWS_EXPORT_ALL_SYMBOLS`):
 ```cpp
 extern "C" int correctionlib_plugin_api_version();
 extern "C" const char* correctionlib_plugin_build_id();
-extern "C" void correctionlib_register_nodes_v1(correction::PluginRegistry&);
+extern "C" void correctionlib_register_nodes_v3(correction::PluginRegistry&);
 ```
 
 Their implementations are illustrated in `examples/node_plugin/nodes.cc`. Return

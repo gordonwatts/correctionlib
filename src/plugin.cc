@@ -43,6 +43,11 @@ public:
   double evaluate(const std::vector<Variable::Type>& values) const override {
     return node->evaluate(values);
   }
+  size_t output_size() const override { return node->output_size(); }
+  void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const override {
+    node->evaluate_array(values, output, size);
+  }
+
 };
 
 // Let a plugin retain and evaluate an ordinary Content subtree through the
@@ -50,7 +55,7 @@ public:
 // no reference to the JSON document or construction context escapes here.
 class ContentNode : public PluginNode {
 public:
-  explicit ContentNode(Content content) : content_(std::move(content)) {}
+  explicit ContentNode(Content content, size_t size) : content_(std::move(content)), size_(size) {}
 
   double evaluate(const std::vector<Variable::Type>& values) const override {
     return std::visit(
@@ -64,8 +69,14 @@ public:
         content_);
   }
 
+  size_t output_size() const override { return size_; }
+  void evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const override {
+    if (size != size_) throw std::runtime_error("Child output shape mismatch");
+    detail::evaluate_content_array(content_, values, output, size);
+  }
 private:
   Content content_;
+  size_t size_;
 };
 } // namespace
 
@@ -139,8 +150,8 @@ void PluginConfig::require_keys(std::initializer_list<std::string> keys) const {
 // Construction services. Resolve names and types once; an evaluator stores
 // the returned index and owning child handles, never this borrowed context.
 PluginContext::PluginContext(const Correction& correction,
-                             std::vector<std::shared_ptr<const PluginNode>> children)
-    : correction_(correction), children_(std::move(children)) {}
+                             std::vector<std::shared_ptr<const PluginNode>> children, size_t output_size)
+    : output_size_(output_size), correction_(correction), children_(std::move(children)) {}
 
 size_t PluginContext::input_index(const std::string& name, Variable::VarType type) const {
   auto index = detail::find_input_index(name, correction_.inputs());
@@ -267,7 +278,7 @@ void PluginRegistry::load_library(const std::string& path) {
   auto version = reinterpret_cast<int (*)()>(symbol("correctionlib_plugin_api_version"));
   auto build_id = reinterpret_cast<const char* (*)()>(symbol("correctionlib_plugin_build_id"));
   auto register_nodes =
-      reinterpret_cast<void (*)(PluginRegistry&)>(symbol("correctionlib_register_nodes_v1"));
+      reinterpret_cast<void (*)(PluginRegistry&)>(symbol("correctionlib_register_nodes_v3"));
   if (!version || !register_nodes || version() != plugin_api_version)
     throw std::runtime_error("Incompatible plugin API: " + canonical);
   if (!build_id || !build_id() || plugin_build_id() != build_id())
@@ -317,7 +328,7 @@ ExtensionNode::ExtensionNode(const JSONObject& json, const Correction& correctio
     for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it) {
       std::string key(it->name.GetString(), it->name.GetStringLength());
       if (!keys.insert(key).second || (key != "nodetype" && key != "type" && key != "version" &&
-                                       key != "config" && key != "children"))
+                                       key != "config" && key != "children" && key != "output_shape"))
         throw std::runtime_error("Unknown or duplicate extension field: " + key);
     }
     auto config = PluginConfig(dump(json.getRequiredValue("config")));
@@ -329,13 +340,20 @@ ExtensionNode::ExtensionNode(const JSONObject& json, const Correction& correctio
     if (auto items = json.getOptional<rapidjson::Value::ConstArray>("children"))
       for (const auto& item : *items)
         children.push_back(
-            std::make_shared<ContentNode>(detail::parse_plugin_child(item, correction)));
+            std::make_shared<ContentNode>(detail::parse_plugin_child(item, correction), detail::content_output_size(item)));
 
     // Context borrows the correction only for the factory call. Providers must
     // retain resolved input indices or child handles instead of that reference.
-    PluginContext context(correction, std::move(children));
+    size_t output_size = 0;
+    if (json.FindMember("output_shape") != json.MemberEnd()) {
+      const auto shape = json.getRequired<rapidjson::Value::ConstArray>("output_shape");
+      output_size = static_cast<size_t>(shape[0].GetUint64());
+    }
+    PluginContext context(correction, std::move(children), output_size);
     auto state = std::make_shared<State>();
     state->node = correction.plugin_registry().create(type, version, config, context);
+    if (state->node->output_size() != output_size)
+      throw std::runtime_error("Plugin output shape disagrees with extension declaration");
     state_ = std::move(state);
   } catch (const std::exception& error) {
     // Add the available correction/type context without hiding the provider's
@@ -347,4 +365,11 @@ ExtensionNode::ExtensionNode(const JSONObject& json, const Correction& correctio
 
 double ExtensionNode::evaluate(const std::vector<Variable::Type>& values) const {
   return state_->node->evaluate(values);
+}
+
+void PluginNode::evaluate_array(const std::vector<Variable::Type>&, double*, size_t) const {
+  throw std::runtime_error("Scalar plugin does not implement array outputs");
+}
+void ExtensionNode::evaluate_array(const std::vector<Variable::Type>& values, double* output, size_t size) const {
+  state_->node->evaluate_array(values, output, size);
 }

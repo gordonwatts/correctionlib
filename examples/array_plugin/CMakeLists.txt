@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.15)
+project(array_correction_nodes LANGUAGES CXX)
+find_package(correctionlib CONFIG REQUIRED)
+add_library(array_correction_nodes SHARED nodes.cc)
+target_link_libraries(array_correction_nodes PRIVATE correctionlib)
+set_target_properties(array_correction_nodes PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)

@@ -1,0 +1,61 @@
+-- Using build type: Debug
+-- Using a privately downloaded Boost version for the build
+-- Configuring done (1.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/sanitize-batches
+[ 20%] Built target Boost
+[ 48%] Built target lwtnn-stat
+[ 51%] Building CXX object CMakeFiles/correctionlib.dir/src/correction.cc.o
+[ 53%] Building CXX object CMakeFiles/correctionlib.dir/src/formula_ast.cc.o
+[ 56%] Building CXX object CMakeFiles/correctionlib.dir/src/plugin.cc.o
+[ 58%] Building CXX object CMakeFiles/correctionlib.dir/src/detail_impl.cc.o
+[ 61%] Building CXX object CMakeFiles/correctionlib.dir/src/lwtnn.cc.o
+[ 64%] Linking CXX shared library libcorrectionlib.so
+[ 64%] Built target correctionlib
+[ 66%] Building CXX object tests/native_plugins/CMakeFiles/test_node_provider.dir/__/__/examples/node_plugin/nodes.cc.o
+[ 69%] Building CXX object tests/native_plugins/CMakeFiles/wrong_api_provider.dir/bad_provider.cc.o
+[ 71%] Linking CXX shared library libwrong_api_provider.so
+[ 71%] Built target wrong_api_provider
+[ 74%] Building CXX object tests/native_plugins/CMakeFiles/wrong_build_provider.dir/bad_provider.cc.o
+[ 76%] Linking CXX shared library libtest_node_provider.so
+[ 76%] Built target test_node_provider
+[ 79%] Building CXX object tests/native_plugins/CMakeFiles/failing_provider.dir/bad_provider.cc.o
+[ 82%] Linking CXX shared library libwrong_build_provider.so
+[ 82%] Built target wrong_build_provider
+[ 84%] Building CXX object tests/native_plugins/CMakeFiles/test_native_plugins.dir/test_native_plugins.cc.o
+[ 87%] Linking CXX shared library libfailing_provider.so
+[ 87%] Built target failing_provider
+[ 89%] Building CXX object tests/native_plugins/CMakeFiles/test_linked_plugin.dir/test_linked_plugin.cc.o
+[ 92%] Linking CXX executable test_linked_plugin
+[ 94%] Linking CXX executable test_native_plugins
+[ 94%] Built target test_linked_plugin
+[ 97%] Building CXX object tests/native_plugins/CMakeFiles/test_arrays.dir/test_arrays.cc.o
+[ 97%] Built target test_native_plugins
+[100%] Linking CXX executable test_arrays
+[100%] Built target test_arrays
+-- Install configuration: "Debug"
+-- Installing: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/include/correctionlib_version.h
+-- Installing: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/lib/libcorrectionlib.so
+-- Installing: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/include/correction.h
+-- Installing: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/include/correction_plugin.h
+-- Up-to-date: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/cmake/correctionlib-targets.cmake
+-- Up-to-date: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/cmake/correctionlib-targets-debug.cmake
+-- Up-to-date: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/cmake/correctionlibConfig.cmake
+-- Up-to-date: /home/gwatts/atlas/correctionlib-feature-build/sanitize-install/correctionlib/cmake/correctionlibConfigVersion.cmake
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/15.2.0-35657/x86_64-el9/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (1.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/sanitize-array-provider
+[ 50%] Building CXX object CMakeFiles/array_correction_nodes.dir/nodes.cc.o
+[100%] Linking CXX shared library libarray_correction_nodes.so
+[100%] Built target array_correction_nodes
+-- Using build type: Debug
+-- Using a privately downloaded Boost version for the build
+-- Configuring done (1.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/gwatts/atlas/correctionlib-feature-build/sanitize-batches

@@ -32,20 +32,26 @@ namespace {
     return py::cast<std::vector<Variable::Type>>(args);
   }
 
+  size_t components(const Correction& c) { return c.output_size(); }
+  size_t components(const CompoundCorrection&) { return 0; }
+
   template<typename T> // Correction or CompoundCorrection
   py::array_t<double> evalv(T& c, py::args args) {
     std::vector<Variable::Type> inputs;
     inputs.reserve(py::len(args));
     std::vector<std::pair<size_t, py::buffer_info>> vargs;
+    std::vector<py::array> owners;
     check_length(c, args);
     for (size_t i=0; i < py::len(args); ++i) {
       if ( py::isinstance<py::array>(args[i]) ) {
         if ( c.inputs()[i].type() == Variable::VarType::integer ) {
-          vargs.emplace_back(i, py::cast<py::array_t<int64_t, py::array::c_style | py::array::forcecast>>(args[i]).request());
+          owners.push_back(py::cast<py::array_t<int64_t, py::array::c_style | py::array::forcecast>>(args[i]));
+          vargs.emplace_back(i, owners.back().request());
           inputs.emplace_back(0);
         }
         else if ( c.inputs()[i].type() == Variable::VarType::real ) {
-          vargs.emplace_back(i, py::cast<py::array_t<double, py::array::c_style | py::array::forcecast>>(args[i]).request());
+          owners.push_back(py::cast<py::array_t<double, py::array::c_style | py::array::forcecast>>(args[i]));
+          vargs.emplace_back(i, owners.back().request());
           inputs.emplace_back(0.0);
         }
         else {
@@ -66,7 +72,13 @@ namespace {
         inputs.push_back(py::cast<Variable::Type>(args[i]));
       }
     }
-    auto output = py::array_t<double>((vargs.size() > 0) ? vargs.front().second.size : 1);
+    const auto n = (vargs.size() > 0) ? vargs.front().second.size : 1;
+    const auto size = components(c);
+    if (size)
+      for (size_t i = 0; i < inputs.size(); ++i) c.inputs()[i].validate(inputs[i]);
+    std::vector<py::ssize_t> shape{n};
+    if (size) shape.push_back(static_cast<py::ssize_t>(size));
+    auto output = py::array_t<double>(shape);
     py::buffer_info outbuffer = output.request();
     double * outptr = static_cast<double*>(outbuffer.ptr);
     {
@@ -80,7 +92,10 @@ namespace {
             inputs[varg.first] = static_cast<double*>(varg.second.ptr)[i];
           }
         }
-        outptr[i] = c.evaluate(inputs);
+        if constexpr (std::is_same_v<T, Correction>) {
+          if (size) c.evaluate_array(inputs, outptr + i * size, size);
+          else outptr[i] = c.evaluate(inputs);
+        } else outptr[i] = c.evaluate(inputs);
       }
     }
     return output;
@@ -105,8 +120,18 @@ PYBIND11_MODULE(_core, m, py::mod_gil_not_used()) {
         .def_property_readonly("version", &Correction::version)
         .def_property_readonly("inputs", &Correction::inputs)
         .def_property_readonly("output", &Correction::output)
-        .def("evaluate", [](Correction& c, py::args args) {
-          return c.evaluate(validate_pyargs(c, args));
+        .def_property_readonly("output_size", &Correction::output_size)
+        .def("evaluate", [](Correction& c, py::args args) -> py::object {
+          auto values = validate_pyargs(c, args);
+          if (!c.output_size()) return py::cast(c.evaluate(values));
+          auto output = py::array_t<double>(c.output_size());
+          c.evaluate_array(values, output.mutable_data(), c.output_size());
+          return output;
+        })
+        .def("evaluate_array", [](Correction& c, py::args args) {
+          auto output = py::array_t<double>(c.output_size());
+          c.evaluate_array(validate_pyargs(c, args), output.mutable_data(), c.output_size());
+          return output;
         })
         .def("evalv", evalv<Correction>);
 

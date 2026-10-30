@@ -47,6 +47,10 @@ def model_auto(data: str) -> Any:
         import correctionlib.schemav1
 
         return correctionlib.schemav1.CorrectionSet.model_validate(data)
+    elif version == 3:
+        import correctionlib.schemav3
+
+        return correctionlib.schemav3.CorrectionSet.model_validate(data)
     elif version == 2:
         import correctionlib.schemav2
 
@@ -192,6 +196,17 @@ def _evaluate(
     *args: awkward.Array | numpy.ndarray[Any, Any] | str | int | float,
 ) -> float | awkward.Array | numpy.ndarray[Any, numpy.dtype[numpy.float64]]:
     # TODO: create a ufunc with numpy.vectorize in constructor?
+    if (
+        isinstance(corr, Correction)
+        and corr._base.output_size
+        and any(
+            _isinstance(arg, "awkward") or _isinstance(arg, "dask_awkward")
+            for arg in args
+        )
+    ):
+        raise TypeError(
+            "Array outputs currently support Python scalars and NumPy inputs"
+        )
     if any(_isinstance(arg, "dask.array") for arg in args):
         raise TypeError(
             "Correctionlib does not yet handle dask.array collections. "
@@ -220,7 +235,7 @@ def _evaluate(
             for arg in args
         )
     )
-    return out.reshape(oshape)
+    return out.reshape(oshape + out.shape[1:])
 
 
 class Correction:
@@ -262,6 +277,11 @@ class Correction:
     @property
     def output(self) -> correctionlib._core.Variable:
         return self._base.output
+
+    @property
+    def output_shape(self) -> tuple[int, ...]:
+        size = self._base.output_size
+        return (size,) if size else ()
 
     def evaluate(
         self, *args: awkward.Array | numpy.ndarray[Any, Any] | str | int | float

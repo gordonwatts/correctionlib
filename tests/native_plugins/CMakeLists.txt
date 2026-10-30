@@ -21,3 +21,7 @@ add_test(NAME native_plugins COMMAND test_native_plugins $<TARGET_FILE:test_node
 add_executable(test_linked_plugin test_linked_plugin.cc)
 target_link_libraries(test_linked_plugin PRIVATE correctionlib test_node_provider)
 add_test(NAME linked_plugin COMMAND test_linked_plugin)
+
+add_executable(test_arrays test_arrays.cc)
+target_link_libraries(test_arrays PRIVATE correctionlib Threads::Threads)
+add_test(NAME native_arrays COMMAND test_arrays ${ARRAY_PROVIDER_LIBRARY})

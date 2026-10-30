@@ -1,0 +1,325 @@
+{
+  "validated_develop_commit": "b0c10a49bc3bd589444f6ad67dd1f28bbed1b8f7",
+  "integration_workflow": {
+    "run_id": 41083592693,
+    "url": "https://github.com/gordonwatts/correctionlib/actions/runs/41083592693",
+    "conclusion": "success"
+  },
+  "pr2": [
+    {
+      "id": 124153667751,
+      "name": "Format",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335218,
+      "name": "Check ROOT bindings",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335683,
+      "name": "Check Python 3.9 on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335761,
+      "name": "Check Python 3.14 on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335799,
+      "name": "Check Python 3.14 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124154335826,
+      "name": "Check Python 3.13 on macos-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335837,
+      "name": "Check Python 3.13 on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335843,
+      "name": "Check Python 3.14 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335857,
+      "name": "Check Python 3.13 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335860,
+      "name": "Check Python 3.9 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335899,
+      "name": "Check Python 3.9 on macos-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154335970,
+      "name": "Check Python 3.14t on macos-latest",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124154335987,
+      "name": "Check Python 3.13 on windows-11-arm",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154336017,
+      "name": "Check Python 3.14t on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154336053,
+      "name": "Check Python 3.14 on windows-11-arm",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154336206,
+      "name": "Check Python 3.14t on windows-11-arm",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124154336400,
+      "name": "Check Python 3.14t on windows-latest",
+      "status": "in_progress",
+      "conclusion": null
+    }
+  ],
+  "pr3": [
+    {
+      "id": 124153668257,
+      "name": "Format",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463465,
+      "name": "Check ROOT bindings",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463650,
+      "name": "Check Python 3.13 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463651,
+      "name": "Check Python 3.13 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124154463663,
+      "name": "Check Python 3.13 on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463688,
+      "name": "Check Python 3.14 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124154463701,
+      "name": "Check Python 3.13 on windows-11-arm",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463711,
+      "name": "Check Python 3.9 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463719,
+      "name": "Check Python 3.14 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463750,
+      "name": "Check Python 3.14t on windows-11-arm",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463760,
+      "name": "Check Python 3.14 on windows-11-arm",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463776,
+      "name": "Check Python 3.14t on macos-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463783,
+      "name": "Check Python 3.14 on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463810,
+      "name": "Check Python 3.14t on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463812,
+      "name": "Check Python 3.14t on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124154463890,
+      "name": "Check Python 3.9 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124154463910,
+      "name": "Check Python 3.9 on windows-latest",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "develop": [
+    {
+      "id": 124158815455,
+      "name": "Format",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124159557828,
+      "name": "Check ROOT bindings",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558735,
+      "name": "Check Python 3.9 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124159558736,
+      "name": "Check Python 3.13 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124159558770,
+      "name": "Check Python 3.9 on windows-latest",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558779,
+      "name": "Check Python 3.14 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124159558787,
+      "name": "Check Python 3.13 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124159558788,
+      "name": "Check Python 3.14t on windows-11-arm",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558789,
+      "name": "Check Python 3.13 on windows-latest",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558815,
+      "name": "Check Python 3.14t on windows-latest",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558835,
+      "name": "Check Python 3.14 on ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 124159558850,
+      "name": "Check Python 3.9 on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124159558889,
+      "name": "Check Python 3.14 on windows-11-arm",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558890,
+      "name": "Check Python 3.14t on ubuntu-latest",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558953,
+      "name": "Check Python 3.13 on windows-11-arm",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 124159558955,
+      "name": "Check Python 3.14t on macos-latest",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 124159560006,
+      "name": "Check Python 3.14 on windows-latest",
+      "status": "in_progress",
+      "conclusion": null
+    }
+  ],
+  "notes": [
+    "Publication snapshot: pending jobs are not passed.",
+    "All three PRs open and unmerged; exact remote heads are develop ancestors.",
+    "No release/package published."
+  ]
+}

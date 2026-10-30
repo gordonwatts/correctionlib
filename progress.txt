@@ -62,3 +62,25 @@ Post-final-merges rebuild complete: core wheel source7dd1f8af (source hashes ide
 Final writing review by a NEW fresh-context gpt-6.1-sol/high agent completed. It reproduced all456 summary groups exactly from1596 rows/scope, verified shape/ownership/dispatch/source claims, and found no unsupported speed claim. Applied wording fixes for worker threads vs concurrent callers, API1/2/3 rejection and clear row count; linked array extension from original scalar README paragraph. Raw numeric evidence unchanged. Local codespell false positives were caused by Python3.9 hook missing optional tomli reader (thus ignoring project ignore-regex); installing tomli in this task-created hook env resolved them. Pinned pyupgrade3.21.2 ran separately under ATLASPython3.13 and passed. All other pinned local hooks/typechecks pass. Preserve provenance-at-timing.json and final-source mapping; only non-numerical helper formatting differs. PR2/3 final format and ROOT checks green; full supported Python/platform matrix running. Ready to commit/pushdevelop without changing any PR targets or master/pluginbranch.
 
 Publication audit: every final source/header/provider/Python and installed binary SHA256 in combined provenance matches the checkout/artifact. Comparing final mapping to timing-time mapping changes only formatting in tools/check-old-providers.py (never timed); numerical and benchmark sources/binaries are identical. All authored README/feature-guide relative links resolve. Fresh remote audit confirms master445b7a31 and plugin8dc0b7a unchanged and no develop exists yet. Final pinned formatting/spelling/typechecks pass; pinned pyupgrade separately passed underPython3.13. Ready to publishdevelop normally, preserving allPRsopen and leaving master/nodepluginsunchanged.
+
+Publication succeeded. Remote develop initially published at
+b0c10a49bc3bd589444f6ad67dd1f28bbed1b8f7; local/remote matched and clean.
+Verified remote feature heads8dc0b7a8bfe82c15115ff2a5907d4bfa35ee4710,
+aa7c819d86786cf613abedc5e73704bc840150dc,
+0b4c7bc1f96e04fa288fa498a29819d3352a44ce are all remote develop ancestors.
+All three PRs remain OPEN/UNMERGED; PR2/3 target codex/node-plugins.
+master445b7a31 and plugin8dc0b7a remain unchanged.
+Published integration CI PASSED: https://github.com/gordonwatts/correctionlib/actions/runs/41083592693
+It builds independent providers, proves batch-array dispatch, independently
+builds Python-free core/providers and runs all native suites.
+Final PR format/ROOT/Linux checks pass; latest broad matrix snapshot has13/17
+batch and14/17 array jobs passed, no failures; remaining macOS/free-threaded
+jobs queued/running. Develop general CI also running. Snapshot retained in
+evidence/combined/ci-audit.json; pending is not reported as passed.
+Existing wheel workflow uploads PR test artifacts; PyPI publishing requires a
+published release. No release/package was published.
+Metadata-only followup records publication; numerical sources, providers,
+examples, raw rounds and measured binaries are unchanged. Implementation,
+two separate PRs, develop publication, independent+combined validation,
+benchmarks and fresh-context writing review are complete. Remaining limits
+are in docs/batch-array-integration.md and evidence/combined/README.md.

@@ -1,0 +1,34 @@
+[
+  {
+    "scope": "native",
+    "mode": "batch",
+    "n": 100000,
+    "median_ns": 329356.0,
+    "min_ns": 308689.0,
+    "max_ns": 361974.0
+  },
+  {
+    "scope": "native",
+    "mode": "scalar_loop",
+    "n": 100000,
+    "median_ns": 1255140.0,
+    "min_ns": 1239530.0,
+    "max_ns": 1397670.0
+  },
+  {
+    "scope": "python",
+    "mode": "batch",
+    "n": 100000,
+    "median_ns": 419103.0,
+    "min_ns": 364197.0,
+    "max_ns": 734100.0
+  },
+  {
+    "scope": "python",
+    "mode": "python_scalar_loop",
+    "n": 100000,
+    "median_ns": 216756439.0,
+    "min_ns": 215063388.0,
+    "max_ns": 222384635.0
+  }
+]

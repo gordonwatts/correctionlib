@@ -1,0 +1,15 @@
+WARNING: Disabling truststore since ssl support is missing
+WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+Processing ./examples/node_plugin
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: example-correction-nodes
+  Building wheel for example-correction-nodes (pyproject.toml): started
+  Building wheel for example-correction-nodes (pyproject.toml): finished with status 'done'
+  Created wheel for example-correction-nodes: filename=example_correction_nodes-0.1.0-cp313-cp313-linux_x86_64.whl size=11411 sha256=d3344f81c451b6043dc03fc0a63a12a4c380590478b1807237b4c2cb38c2a673
+  Stored in directory: /tmp/pip-ephem-wheel-cache-k37z9y4s/wheels/2e/f9/fd/df95656e8b242ac2c62d12928e44aa8244cc72165a3c966e89
+Successfully built example-correction-nodes
+WARNING: Disabling truststore since ssl support is missing
+Processing /home/gwatts/atlas/correctionlib-feature-build/example-wheels/example_correction_nodes-0.1.0-cp313-cp313-linux_x86_64.whl
+Installing collected packages: example-correction-nodes
+Successfully installed example-correction-nodes-0.1.0

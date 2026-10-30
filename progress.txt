@@ -1,0 +1,28 @@
+2026-10-30 America/Los_Angeles — new feature implementation
+Request: two independently testable PRs on same native-plugin PR #1 head,
+then normal merges on develop from origin/master. Study and all retained study
+evidence are read-only. Separate Linux checkout: /home/gwatts/atlas/correctionlib_features.
+WSL atlas_al9; public C++17 SDK remains Python independent.
+Fetched GitHub PR metadata and git ls-remote: PR #1 codex/node-plugins is exactly
+8dc0b7a8bfe82c15115ff2a5907d4bfa35ee4710. origin/master is
+445b7a31ad0298b3b14a81d370faa44f08add04e; no develop exists remotely.
+No AGENTS.md in Linux ancestor directories or target checkout. Read study
+AGENTS.md/progress/README/bootstrap and evaluator/plugin/schema source.
+Initial unprivileged WSL call returned E_ACCESSDENIED; authorized WSL access works.
+Created branch codex/batched-inputs from origin/codex/node-plugins.
+Public batch design recorded in docs/native-batches.md BEFORE implementation.
+Array design: schema v3 fixed output shape [S], explicit array leaf; selectors
+preserve shape, Transform rules stay scalar, unsupported scalar-to-array or
+compound array combinations rejected at construction. Explicit evaluate_array
+C++ API; Python evaluate returns (S,), broadcast shape+(S,). Separate branch
+will implement only this feature; integration adds batch-array callback/wiring.
+Next: implement batch API and actual histogram/provider dispatch, test standalone.
+First bootstrap failed because study local wheel cache does not exist. Downloading independent dependency wheels with system Python using read-only study downloader; ATLAS Python lacks working SSL. Added tests for all requested N, fallback/concurrency/strides and a separately compiled dispatch-only provider whose scalar path throws.
+
+Batch validation complete: independent probe + separately packaged example provider built with GCC15.2 and same core fingerprint. Python 180 passed, ROOT/Dask 2 skipped; CVMFS excluded. Native Release and Python-free ASan+UBSan+float-cast: 3/3 passed. All N=1..16/1k/10k/100k validated before timings. Native/Python matched timers retain 7 rounds at CPU0, after builds completed; see evidence/batches README and raw CSV/provenance. Core built from uncommitted feature sources at original base version; source/header and installed binary hashes retained to identify exact build. scripts use Linux build/cache paths; optional pre-commit dependency install failed on system-Python marker resolution, so required runtime + ruff installed separately.
+Next: independent array-output implementation from the same base, create both PRs after validation/review, then develop integration and combined checks.
+
+Final batch followup: PR2 open at https://github.com/gordonwatts/correctionlib/pull/2. Array feature independently validated and committed603c6c1, PR3 open at https://github.com/gordonwatts/correctionlib/pull/3. Applied fresh-context writing review; added native invalid-input guards identical to array branch and uniform nonfinite tests, plus dedicated batch CI provider dispatch job. Prior accepted evidence archived under evidence/batches/revision-a4d3a0c before final revalidation/remeasurement. No array implementation added here. Next final batch checks, then normal develop merges and batch-array integration.
+Final batch rebuild succeeded but install glob matched two retained wheel versions, so pip correctly refused conflicting packages before tests. Fixed bootstrap to install only newest built wheel, preserving all prior wheels. Resuming validation from that new artifact.
+
+Final batch revision: 185 Python passed, ROOT1 skipped/CVMFS excluded; native Release and Python-free sanitizer3/3 passed. Independent probe and example provider rebuilt against same core. Pinned precommit hooks and mypy passed locally with pyupgrade skipped on lintPython3.9; actual GitHub format run typecheck passed and plugin workflow green. Added raw-evidence formatter exclusion, applied Prettier/blacken-docs to docs. Earlier rounds overlapping lintsetup explicitly excluded/retained; final accepted timings rerun after all builds/lintended. Summary medians/spread and full CSVs updated, provenance retained. Next push followup, array formatting/script fix, then integration.

@@ -139,3 +139,19 @@ packages, while retaining a completely Python-free C++ build and runtime. See
 [the plugin guide](docs/node-plugins.md) for the SDK, packaging, validation,
 binary compatibility contract and examples. Extended payloads require this fork;
 stock upstream schema-v2 readers do not support the `extension` node.
+
+## Experimental native batches in this fork
+
+Python already accepts arrays of inputs. The new
+[native batch API](docs/native-batches.md) also lets the C++ evaluator and an
+external provider receive an entire input column in one call. One correction
+still produces one number per input point. Root histogram nodes use column
+loops; other graphs preserve scalar behavior. See the API document for
+ownership, strides, empty batches and SDK rebuild rules. The dependency is
+native-node PR #1; this feature does not change that PR.
+
+Focused tests are in `tests/test_native_batches.py`,
+`tests/native_plugins/test_batches.cc` and the separately built
+`tests/batch_provider`. Reproduction commands and retained validation/timing
+records are in [evidence/batches](evidence/batches). These use synthetic tables;
+no detector calibration or full-analysis validation is claimed.

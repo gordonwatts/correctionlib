@@ -1,0 +1,2 @@
+batch N=100000 median ns 419103.0 min/max 364197.0 734100.0
+python_scalar_loop N=100000 median ns 216756439.0 min/max 215063388.0 222384635.0

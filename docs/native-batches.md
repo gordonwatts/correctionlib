@@ -29,9 +29,9 @@ Uniform-bin NaN and nonfinite wrapped coordinates are rejected explicitly,
 avoiding a previously undefined floating-to-integer conversion. Malformed
 histogram geometry is rejected before evaluation.
 
-SDK API 4 uses `correctionlib_register_nodes_v4`; API 1 binaries are rejected
-before registration. Core/header fingerprints change too: rebuild every provider
-with the same core headers, compiler and standard-library ABI.
+SDK API 4 uses `correctionlib_register_nodes_v4`; API 1/2/3 binaries are
+rejected before registration. Core/header fingerprints change too: rebuild every
+provider with the same core headers, compiler and standard-library ABI.
 
 ```cpp
 std::vector<double> x{0.25, 1.25}, out(x.size());

@@ -1,8 +1,8 @@
 WARNING: Disabling truststore since ssl support is missing
-Processing /home/gwatts/atlas/correctionlib-feature-build/wheels-combined/correctionlib-0.1.dev215+g889a5c6f5.d20261030-cp313-cp313-linux_x86_64.whl
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels-combined/correctionlib-0.1.dev220+g7dd1f8afb.d20261030-cp313-cp313-linux_x86_64.whl
 Installing collected packages: correctionlib
   Attempting uninstall: correctionlib
-    Found existing installation: correctionlib 0.1.dev209+ga4d3a0c80.d20261030
-    Uninstalling correctionlib-0.1.dev209+ga4d3a0c80.d20261030:
-      Successfully uninstalled correctionlib-0.1.dev209+ga4d3a0c80.d20261030
-Successfully installed correctionlib-0.1.dev215+g889a5c6f5.d20261030
+    Found existing installation: correctionlib 0.1.dev215+g889a5c6f5.d20261030
+    Uninstalling correctionlib-0.1.dev215+g889a5c6f5.d20261030:
+      Successfully uninstalled correctionlib-0.1.dev215+g889a5c6f5.d20261030
+Successfully installed correctionlib-0.1.dev220+g7dd1f8afb.d20261030

@@ -45,11 +45,17 @@ Develop uses experimental SDK API4 and correctionlib_register_nodes_v4. The two
 standalone PRs use API2 (batch) and API3 (array). Rebuild every provider against
 the chosen core's matching headers, compiler and build fingerprint. Older
 provider binaries are rejected before registration. The core/SDK/provider remain
-C++17 and Python-independent. There is no float32 API, explicit SIMD,
-multithreading or shared search across independently selected corrections.
+C++17 and Python-independent. There is no float32 API or explicit SIMD. The
+implementation creates no internal worker threads and does not share searches
+across independently selected corrections.
 
 Schema-v2 scalar payloads remain supported; schema-v3 is required for array
 nodes and shapes. Array CompoundCorrections, ragged/higher-rank outputs and
 Awkward/Dask-Awkward array-output adapters remain unsupported. Scalar adapters
 continue to work. [Combined evidence](../evidence/combined) retains validation,
 seven timing rounds, machine/compiler metadata and exact build hashes.
+
+Source links: [core dispatch](../src/correction.cc),
+[SDK and owning plugin adapters](../src/plugin.cc),
+[Python vector dispatch](../src/python.cc), and
+[schema-v3 authoring/validation](../src/correctionlib/schemav3.py).

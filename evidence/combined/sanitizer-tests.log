@@ -1,6 +1,6 @@
 Test project /home/gwatts/atlas/correctionlib-feature-build/sanitize-batches
     Start 1: native_plugins
-1/5 Test #1: native_plugins ...................   Passed    0.06 sec
+1/5 Test #1: native_plugins ...................   Passed    0.05 sec
     Start 2: linked_plugin
 2/5 Test #2: linked_plugin ....................   Passed    0.04 sec
     Start 3: native_arrays
@@ -8,8 +8,8 @@ Test project /home/gwatts/atlas/correctionlib-feature-build/sanitize-batches
     Start 4: native_batches
 4/5 Test #4: native_batches ...................   Passed    0.04 sec
     Start 5: native_batch_arrays
-5/5 Test #5: native_batch_arrays ..............   Passed    0.18 sec
+5/5 Test #5: native_batch_arrays ..............   Passed    0.16 sec
 
 100% tests passed, 0 tests failed out of 5
 
-Total Test time (real) =   0.36 sec
+Total Test time (real) =   0.32 sec

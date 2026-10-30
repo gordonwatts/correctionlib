@@ -9,4 +9,4 @@ test_ndpoly            2 ulp  1.08018814807517 vs 1.0801881480751705
 test_tformula          4 ulp  1.2512381067949132 vs 1.251238106794914
 =========================== short test summary info ============================
 SKIPPED [1] tests/test_binding.py:37: could not import 'ROOT': No module named 'ROOT'
-279 passed, 1 skipped in 6.01s
+279 passed, 1 skipped in 5.79s

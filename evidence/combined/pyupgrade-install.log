@@ -1,0 +1,7 @@
+WARNING: Disabling truststore since ssl support is missing
+Looking in links: /home/gwatts/atlas/correctionlib-feature-build/wheels
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/pyupgrade-3.21.2-py2.py3-none-any.whl
+Processing /home/gwatts/atlas/correctionlib-feature-build/wheels/tokenize_rt-6.2.0-py2.py3-none-any.whl (from pyupgrade==3.21.2)
+Installing collected packages: tokenize-rt, pyupgrade
+
+Successfully installed pyupgrade-3.21.2 tokenize-rt-6.2.0

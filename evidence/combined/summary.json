@@ -1,0 +1,4562 @@
+[
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 22.8758,
+    "min_ns": 22.1144,
+    "max_ns": 23.5199
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 17.7067,
+    "min_ns": 17.6412,
+    "max_ns": 18.8892
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 20.7533,
+    "min_ns": 20.5919,
+    "max_ns": 21.7124
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 16.6206,
+    "min_ns": 16.3555,
+    "max_ns": 16.7338
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 32.7491,
+    "min_ns": 32.6022,
+    "max_ns": 32.8483
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 27.8938,
+    "min_ns": 27.5462,
+    "max_ns": 30.9152
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 30.4237,
+    "min_ns": 28.1755,
+    "max_ns": 33.3298
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 35.6749,
+    "min_ns": 32.5195,
+    "max_ns": 36.0143
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 28.4982,
+    "min_ns": 28.1094,
+    "max_ns": 30.1423
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 33.6039,
+    "min_ns": 33.0936,
+    "max_ns": 35.9281
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 52.5237,
+    "min_ns": 52.3387,
+    "max_ns": 53.0608
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 54.144,
+    "min_ns": 53.6492,
+    "max_ns": 60.0134
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 34.3881,
+    "min_ns": 32.6744,
+    "max_ns": 35.9032
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 48.9075,
+    "min_ns": 46.0252,
+    "max_ns": 50.5781
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 37.2759,
+    "min_ns": 36.8741,
+    "max_ns": 38.0347
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 52.399,
+    "min_ns": 52.3301,
+    "max_ns": 55.418
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 71.2603,
+    "min_ns": 71.1162,
+    "max_ns": 71.4256
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 84.3775,
+    "min_ns": 84.2939,
+    "max_ns": 84.7032
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 40.4033,
+    "min_ns": 38.5762,
+    "max_ns": 40.7795
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 65.7943,
+    "min_ns": 64.268,
+    "max_ns": 68.4023
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 41.8947,
+    "min_ns": 41.4179,
+    "max_ns": 45.0405
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 77.4128,
+    "min_ns": 75.6917,
+    "max_ns": 78.3616
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 90.251,
+    "min_ns": 89.9398,
+    "max_ns": 98.5903
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 117.25,
+    "min_ns": 117.181,
+    "max_ns": 119.492
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 46.9121,
+    "min_ns": 44.7969,
+    "max_ns": 48.8153
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 91.4576,
+    "min_ns": 85.5599,
+    "max_ns": 93.0349
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 49.2622,
+    "min_ns": 48.5066,
+    "max_ns": 50.9156
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 87.8466,
+    "min_ns": 87.192,
+    "max_ns": 90.4322
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 112.221,
+    "min_ns": 112.085,
+    "max_ns": 124.538
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 146.821,
+    "min_ns": 146.062,
+    "max_ns": 161.315
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 57.4851,
+    "min_ns": 49.9239,
+    "max_ns": 58.6651
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 113.104,
+    "min_ns": 96.4051,
+    "max_ns": 121.637
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 58.5048,
+    "min_ns": 56.3857,
+    "max_ns": 61.663
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 112.523,
+    "min_ns": 103.786,
+    "max_ns": 113.824
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 130.915,
+    "min_ns": 130.706,
+    "max_ns": 131.167
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 175.546,
+    "min_ns": 175.063,
+    "max_ns": 175.875
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 59.8079,
+    "min_ns": 58.9289,
+    "max_ns": 60.9087
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 120.453,
+    "min_ns": 118.674,
+    "max_ns": 121.427
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 73.0193,
+    "min_ns": 72.0412,
+    "max_ns": 77.4366
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 128.004,
+    "min_ns": 126.201,
+    "max_ns": 130.274
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 149.762,
+    "min_ns": 149.709,
+    "max_ns": 165.283
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 203.406,
+    "min_ns": 200.906,
+    "max_ns": 204.262
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 75.1965,
+    "min_ns": 74.1782,
+    "max_ns": 77.7474
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 136.162,
+    "min_ns": 134.147,
+    "max_ns": 140.94
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 78.3347,
+    "min_ns": 78.1242,
+    "max_ns": 81.4362
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 143.954,
+    "min_ns": 143.327,
+    "max_ns": 145.884
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 168.464,
+    "min_ns": 168.31,
+    "max_ns": 175.149
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 228.344,
+    "min_ns": 228.092,
+    "max_ns": 228.646
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 76.3134,
+    "min_ns": 73.832,
+    "max_ns": 78.7354
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 147.43,
+    "min_ns": 141.845,
+    "max_ns": 151.357
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 85.7371,
+    "min_ns": 85.3875,
+    "max_ns": 89.0634
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 162.43,
+    "min_ns": 160.557,
+    "max_ns": 165.554
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 187.378,
+    "min_ns": 186.844,
+    "max_ns": 189.481
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 256.418,
+    "min_ns": 255.072,
+    "max_ns": 276.516
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 84.6762,
+    "min_ns": 83.2932,
+    "max_ns": 87.4864
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 168.209,
+    "min_ns": 162.247,
+    "max_ns": 169.088
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 92.3304,
+    "min_ns": 92.1832,
+    "max_ns": 94.054
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 180.199,
+    "min_ns": 177.814,
+    "max_ns": 183.253
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 205.978,
+    "min_ns": 205.401,
+    "max_ns": 218.753
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 282.75,
+    "min_ns": 282.372,
+    "max_ns": 375.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 85.1074,
+    "min_ns": 84.5243,
+    "max_ns": 92.0189
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 179.194,
+    "min_ns": 172.235,
+    "max_ns": 188.659
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 93.9203,
+    "min_ns": 93.739,
+    "max_ns": 100.746
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 187.393,
+    "min_ns": 183.697,
+    "max_ns": 198.019
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 224.88,
+    "min_ns": 224.535,
+    "max_ns": 256.655
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 311.915,
+    "min_ns": 311.173,
+    "max_ns": 340.673
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 93.0468,
+    "min_ns": 90.439,
+    "max_ns": 98.9148
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 191.83,
+    "min_ns": 188.682,
+    "max_ns": 200.228
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 100.922,
+    "min_ns": 100.806,
+    "max_ns": 106.964
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 203.881,
+    "min_ns": 199.727,
+    "max_ns": 206.291
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 243.335,
+    "min_ns": 243.092,
+    "max_ns": 244.446
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 338.946,
+    "min_ns": 337.804,
+    "max_ns": 363.1
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 97.7132,
+    "min_ns": 96.3879,
+    "max_ns": 99.4886
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 204.43,
+    "min_ns": 202.814,
+    "max_ns": 206.393
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 107.921,
+    "min_ns": 107.673,
+    "max_ns": 117.988
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 219.277,
+    "min_ns": 215.898,
+    "max_ns": 249.7
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 262.113,
+    "min_ns": 261.754,
+    "max_ns": 262.942
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 367.538,
+    "min_ns": 365.65,
+    "max_ns": 374.296
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 103.557,
+    "min_ns": 102.313,
+    "max_ns": 109.47
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 219.558,
+    "min_ns": 218.766,
+    "max_ns": 223.738
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 114.035,
+    "min_ns": 113.776,
+    "max_ns": 117.338
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 232.364,
+    "min_ns": 231.377,
+    "max_ns": 236.719
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 281.511,
+    "min_ns": 280.798,
+    "max_ns": 307.583
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 395.646,
+    "min_ns": 394.704,
+    "max_ns": 422.291
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 108.672,
+    "min_ns": 107.939,
+    "max_ns": 118.552
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 235.851,
+    "min_ns": 234.02,
+    "max_ns": 238.319
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 120.959,
+    "min_ns": 120.803,
+    "max_ns": 124.568
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 251.628,
+    "min_ns": 248.098,
+    "max_ns": 252.902
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 300.183,
+    "min_ns": 299.913,
+    "max_ns": 300.51
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 422.197,
+    "min_ns": 421.264,
+    "max_ns": 445.596
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 115.086,
+    "min_ns": 114.036,
+    "max_ns": 116.056
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 248.573,
+    "min_ns": 247.18,
+    "max_ns": 250.496
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 128.704,
+    "min_ns": 128.294,
+    "max_ns": 131.658
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 269.15,
+    "min_ns": 264.343,
+    "max_ns": 287.129
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 318.964,
+    "min_ns": 318.395,
+    "max_ns": 355.467
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 449.995,
+    "min_ns": 446.026,
+    "max_ns": 454.882
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6477.24,
+    "min_ns": 6286.54,
+    "max_ns": 6795.68
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 15714.1,
+    "min_ns": 15628.2,
+    "max_ns": 16575.3
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 7165.6,
+    "min_ns": 7115.6,
+    "max_ns": 7497.08
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 16662.4,
+    "min_ns": 16650.9,
+    "max_ns": 17142.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 19497.0,
+    "min_ns": 19349.7,
+    "max_ns": 19604.7
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 28663.3,
+    "min_ns": 28512.0,
+    "max_ns": 30897.3
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 66816.8,
+    "min_ns": 63548.4,
+    "max_ns": 68728.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 166394.0,
+    "min_ns": 156220.0,
+    "max_ns": 167557.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 71624.0,
+    "min_ns": 71439.5,
+    "max_ns": 73964.5
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 168434.0,
+    "min_ns": 167560.0,
+    "max_ns": 174874.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 199649.0,
+    "min_ns": 191174.0,
+    "max_ns": 205829.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 286733.0,
+    "min_ns": 283921.0,
+    "max_ns": 302882.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 691929.0,
+    "min_ns": 629715.0,
+    "max_ns": 699900.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 1657000.0,
+    "min_ns": 1572570.0,
+    "max_ns": 1699430.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 727659.0,
+    "min_ns": 714075.0,
+    "max_ns": 793591.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 1716750.0,
+    "min_ns": 1703730.0,
+    "max_ns": 1846130.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 1891230.0,
+    "min_ns": 1851750.0,
+    "max_ns": 2027690.0
+  },
+  {
+    "scope": "native",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 2908500.0,
+    "min_ns": 2842440.0,
+    "max_ns": 3153720.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 7.54596,
+    "min_ns": 7.13848,
+    "max_ns": 8.11992
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 11.5647,
+    "min_ns": 11.4766,
+    "max_ns": 12.6505
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 7.59724,
+    "min_ns": 7.36124,
+    "max_ns": 7.85408
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 11.3889,
+    "min_ns": 11.3871,
+    "max_ns": 11.6929
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 11.7846,
+    "min_ns": 11.7814,
+    "max_ns": 11.8246
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 15.6102,
+    "min_ns": 15.6,
+    "max_ns": 15.6419
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 11.0561,
+    "min_ns": 10.2818,
+    "max_ns": 11.5027
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 24.174,
+    "min_ns": 23.3507,
+    "max_ns": 26.1042
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 9.08304,
+    "min_ns": 8.97184,
+    "max_ns": 10.9014
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 23.6324,
+    "min_ns": 23.2278,
+    "max_ns": 23.9712
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 15.2458,
+    "min_ns": 15.2382,
+    "max_ns": 15.274
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 31.6805,
+    "min_ns": 31.6633,
+    "max_ns": 31.751
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 13.0077,
+    "min_ns": 12.5051,
+    "max_ns": 13.6734
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 37.6829,
+    "min_ns": 35.4858,
+    "max_ns": 38.3109
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 11.1376,
+    "min_ns": 10.5398,
+    "max_ns": 12.2867
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 34.5082,
+    "min_ns": 34.4722,
+    "max_ns": 35.1699
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 20.1018,
+    "min_ns": 20.0836,
+    "max_ns": 20.5533
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 46.9856,
+    "min_ns": 46.9606,
+    "max_ns": 47.0797
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 12.0206,
+    "min_ns": 11.6511,
+    "max_ns": 15.5082
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 46.1863,
+    "min_ns": 45.835,
+    "max_ns": 49.9155
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 12.6197,
+    "min_ns": 12.1259,
+    "max_ns": 16.0832
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 45.8714,
+    "min_ns": 45.6946,
+    "max_ns": 46.2766
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 29.8912,
+    "min_ns": 29.3956,
+    "max_ns": 42.9104
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 62.402,
+    "min_ns": 62.3739,
+    "max_ns": 62.9232
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 13.51,
+    "min_ns": 12.9798,
+    "max_ns": 13.7642
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 57.3928,
+    "min_ns": 57.1495,
+    "max_ns": 58.1078
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 14.1426,
+    "min_ns": 13.908,
+    "max_ns": 15.1622
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 57.5004,
+    "min_ns": 56.9358,
+    "max_ns": 59.2094
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 34.0016,
+    "min_ns": 33.88,
+    "max_ns": 41.5232
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 85.6864,
+    "min_ns": 85.5152,
+    "max_ns": 88.9408
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 14.5053,
+    "min_ns": 14.4144,
+    "max_ns": 15.2178
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 76.6673,
+    "min_ns": 76.068,
+    "max_ns": 77.987
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 19.0835,
+    "min_ns": 15.3759,
+    "max_ns": 19.6224
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 75.475,
+    "min_ns": 75.1018,
+    "max_ns": 84.8505
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 37.4135,
+    "min_ns": 37.375,
+    "max_ns": 37.4558
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 100.258,
+    "min_ns": 99.3981,
+    "max_ns": 101.738
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 16.022,
+    "min_ns": 15.7702,
+    "max_ns": 16.5438
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 85.4014,
+    "min_ns": 84.493,
+    "max_ns": 89.3773
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 18.196,
+    "min_ns": 16.6455,
+    "max_ns": 18.8155
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 84.2162,
+    "min_ns": 84.1285,
+    "max_ns": 88.1229
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 41.1256,
+    "min_ns": 41.0381,
+    "max_ns": 41.2197
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 114.91,
+    "min_ns": 114.87,
+    "max_ns": 130.24
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 18.8042,
+    "min_ns": 17.2307,
+    "max_ns": 22.3285
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 96.6286,
+    "min_ns": 95.7677,
+    "max_ns": 97.4205
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 18.6771,
+    "min_ns": 18.3802,
+    "max_ns": 19.7712
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 95.3606,
+    "min_ns": 95.2349,
+    "max_ns": 98.9875
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 44.9641,
+    "min_ns": 44.7744,
+    "max_ns": 46.4744
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 132.815,
+    "min_ns": 132.105,
+    "max_ns": 133.141
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 19.2513,
+    "min_ns": 18.5388,
+    "max_ns": 19.8644
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 108.141,
+    "min_ns": 107.006,
+    "max_ns": 108.873
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 21.9409,
+    "min_ns": 20.1408,
+    "max_ns": 23.6997
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 106.801,
+    "min_ns": 106.615,
+    "max_ns": 109.601
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 48.7233,
+    "min_ns": 48.5476,
+    "max_ns": 51.5677
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 146.937,
+    "min_ns": 146.052,
+    "max_ns": 155.418
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 20.3248,
+    "min_ns": 19.9578,
+    "max_ns": 21.4278
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 119.59,
+    "min_ns": 118.152,
+    "max_ns": 123.804
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 24.8392,
+    "min_ns": 23.7152,
+    "max_ns": 25.4024
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 118.103,
+    "min_ns": 117.916,
+    "max_ns": 120.468
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 52.141,
+    "min_ns": 52.0865,
+    "max_ns": 55.1474
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 162.192,
+    "min_ns": 161.288,
+    "max_ns": 165.189
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 22.0279,
+    "min_ns": 21.4884,
+    "max_ns": 22.3734
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 130.038,
+    "min_ns": 129.355,
+    "max_ns": 132.305
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 30.4111,
+    "min_ns": 29.5075,
+    "max_ns": 32.5282
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 128.825,
+    "min_ns": 128.801,
+    "max_ns": 131.144
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 55.7817,
+    "min_ns": 55.5352,
+    "max_ns": 56.0669
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 178.137,
+    "min_ns": 176.211,
+    "max_ns": 178.32
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 24.0365,
+    "min_ns": 22.6577,
+    "max_ns": 30.8644
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 141.607,
+    "min_ns": 140.491,
+    "max_ns": 142.686
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 32.0245,
+    "min_ns": 31.7024,
+    "max_ns": 37.4033
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 143.154,
+    "min_ns": 139.997,
+    "max_ns": 155.246
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 59.3077,
+    "min_ns": 59.0923,
+    "max_ns": 85.1
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 191.869,
+    "min_ns": 191.658,
+    "max_ns": 195.519
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 31.0515,
+    "min_ns": 30.2873,
+    "max_ns": 31.7051
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 153.558,
+    "min_ns": 151.919,
+    "max_ns": 155.407
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 33.4509,
+    "min_ns": 33.3125,
+    "max_ns": 35.2122
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 151.303,
+    "min_ns": 151.257,
+    "max_ns": 154.816
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 64.3667,
+    "min_ns": 64.2833,
+    "max_ns": 68.3125
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 206.979,
+    "min_ns": 206.946,
+    "max_ns": 207.246
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 32.3523,
+    "min_ns": 30.5273,
+    "max_ns": 33.219
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 163.788,
+    "min_ns": 163.083,
+    "max_ns": 166.399
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 34.9529,
+    "min_ns": 34.7759,
+    "max_ns": 37.5854
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 162.452,
+    "min_ns": 162.374,
+    "max_ns": 168.944
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 66.6368,
+    "min_ns": 66.4305,
+    "max_ns": 66.7354
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 222.471,
+    "min_ns": 222.206,
+    "max_ns": 224.695
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 34.3717,
+    "min_ns": 33.6547,
+    "max_ns": 35.2943
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 176.494,
+    "min_ns": 174.44,
+    "max_ns": 177.389
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 36.8998,
+    "min_ns": 36.389,
+    "max_ns": 39.877
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 174.256,
+    "min_ns": 173.788,
+    "max_ns": 177.863
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 70.3846,
+    "min_ns": 70.2356,
+    "max_ns": 74.0962
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 238.731,
+    "min_ns": 237.216,
+    "max_ns": 273.909
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 35.9587,
+    "min_ns": 35.7485,
+    "max_ns": 38.4928
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 187.755,
+    "min_ns": 185.667,
+    "max_ns": 191.957
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 38.4776,
+    "min_ns": 37.8796,
+    "max_ns": 40.5807
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 186.565,
+    "min_ns": 184.807,
+    "max_ns": 195.22
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 74.2872,
+    "min_ns": 73.759,
+    "max_ns": 75.4256
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 253.626,
+    "min_ns": 253.215,
+    "max_ns": 257.985
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 1459.04,
+    "min_ns": 1454.92,
+    "max_ns": 1461.14
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 11379.0,
+    "min_ns": 11246.9,
+    "max_ns": 11474.3
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 1551.92,
+    "min_ns": 1529.52,
+    "max_ns": 1862.84
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 11264.8,
+    "min_ns": 11236.1,
+    "max_ns": 11934.4
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 3969.67,
+    "min_ns": 3944.0,
+    "max_ns": 3990.67
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 15418.3,
+    "min_ns": 15407.0,
+    "max_ns": 15425.7
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 14358.2,
+    "min_ns": 13846.2,
+    "max_ns": 14422.2
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 113507.0,
+    "min_ns": 112471.0,
+    "max_ns": 114250.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 15765.0,
+    "min_ns": 15561.5,
+    "max_ns": 18527.5
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 112538.0,
+    "min_ns": 112318.0,
+    "max_ns": 123722.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 39686.0,
+    "min_ns": 39358.0,
+    "max_ns": 44946.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 154565.0,
+    "min_ns": 154087.0,
+    "max_ns": 195016.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 144764.0,
+    "min_ns": 144180.0,
+    "max_ns": 153096.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 1,
+    "mode": "point_loop",
+    "median_ns": 1160050.0,
+    "min_ns": 1127050.0,
+    "max_ns": 1212500.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 155741.0,
+    "min_ns": 155252.0,
+    "max_ns": 167203.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 2,
+    "mode": "point_loop",
+    "median_ns": 1141320.0,
+    "min_ns": 1129700.0,
+    "max_ns": 1191620.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 521549.0,
+    "min_ns": 498474.0,
+    "max_ns": 561607.0
+  },
+  {
+    "scope": "native",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 16,
+    "mode": "point_loop",
+    "median_ns": 1602480.0,
+    "min_ns": 1584940.0,
+    "max_ns": 1622720.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6913.64,
+    "min_ns": 6833.96,
+    "max_ns": 7719.82
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 6066.16,
+    "min_ns": 5864.44,
+    "max_ns": 6395.54
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6131.34,
+    "min_ns": 5960.04,
+    "max_ns": 6457.04
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 5331.9,
+    "min_ns": 5032.62,
+    "max_ns": 5582.66
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 5950.26,
+    "min_ns": 5924.82,
+    "max_ns": 6299.86
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 5134.16,
+    "min_ns": 5044.42,
+    "max_ns": 5470.54
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6383.84,
+    "min_ns": 6212.96,
+    "max_ns": 7166.16
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 9487.32,
+    "min_ns": 8849.08,
+    "max_ns": 10327.12
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6064.58,
+    "min_ns": 5989.06,
+    "max_ns": 6321.74
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 8363.1,
+    "min_ns": 8311.36,
+    "max_ns": 10447.08
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 5968.88,
+    "min_ns": 5945.16,
+    "max_ns": 6290.36
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 2,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 8398.68,
+    "min_ns": 8302.14,
+    "max_ns": 8990.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6343.66,
+    "min_ns": 6227.88,
+    "max_ns": 7224.68
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 12360.06,
+    "min_ns": 12227.14,
+    "max_ns": 12855.12
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6021.48,
+    "min_ns": 5967.76,
+    "max_ns": 6133.96
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 11605.06,
+    "min_ns": 11408.26,
+    "max_ns": 12386.7
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6070.24,
+    "min_ns": 5964.66,
+    "max_ns": 6451.24
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 3,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 11807.88,
+    "min_ns": 11494.54,
+    "max_ns": 13334.8
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6056.96,
+    "min_ns": 5942.84,
+    "max_ns": 7917.78
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 15588.16,
+    "min_ns": 14717.14,
+    "max_ns": 15929.76
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6050.8,
+    "min_ns": 5988.8,
+    "max_ns": 6362.1
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 15101.16,
+    "min_ns": 14691.42,
+    "max_ns": 15487.58
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6024.88,
+    "min_ns": 5985.94,
+    "max_ns": 6425.02
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 4,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 14863.28,
+    "min_ns": 14663.32,
+    "max_ns": 15576.24
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6819.2,
+    "min_ns": 6099.82,
+    "max_ns": 7230.14
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 20779.22,
+    "min_ns": 18261.2,
+    "max_ns": 22134.64
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6072.96,
+    "min_ns": 5984.94,
+    "max_ns": 6341.08
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 18502.98,
+    "min_ns": 17990.36,
+    "max_ns": 18893.78
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6063.18,
+    "min_ns": 5986.82,
+    "max_ns": 6381.12
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 5,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 18311.7,
+    "min_ns": 17904.72,
+    "max_ns": 19060.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6001.74,
+    "min_ns": 5928.9,
+    "max_ns": 6653.32
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 22315.28,
+    "min_ns": 21195.52,
+    "max_ns": 22890.08
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6599.8,
+    "min_ns": 6377.42,
+    "max_ns": 7024.46
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 22951.54,
+    "min_ns": 21837.64,
+    "max_ns": 25844.46
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6052.72,
+    "min_ns": 6007.06,
+    "max_ns": 6339.9
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 6,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 21458.64,
+    "min_ns": 21059.1,
+    "max_ns": 21759.52
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6474.7,
+    "min_ns": 5988.9,
+    "max_ns": 7097.06
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 26273.24,
+    "min_ns": 24778.74,
+    "max_ns": 29641.34
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6108.66,
+    "min_ns": 6063.32,
+    "max_ns": 6477.48
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 24990.5,
+    "min_ns": 24676.18,
+    "max_ns": 25308.7
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6156.181818181818,
+    "min_ns": 5998.977272727273,
+    "max_ns": 6624.659090909091
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 7,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 24836.022727272728,
+    "min_ns": 24321.454545454544,
+    "max_ns": 25167.727272727272
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6915.46,
+    "min_ns": 6039.42,
+    "max_ns": 6971.66
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 31823.64,
+    "min_ns": 28052.94,
+    "max_ns": 32915.98
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6106.9,
+    "min_ns": 6047.46,
+    "max_ns": 6553.32
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 28056.04,
+    "min_ns": 27530.34,
+    "max_ns": 28809.94
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6139.615384615385,
+    "min_ns": 6045.307692307692,
+    "max_ns": 6675.358974358975
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 8,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 28228.5641025641,
+    "min_ns": 27837.79487179487,
+    "max_ns": 29584.97435897436
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6704.82,
+    "min_ns": 6396.5,
+    "max_ns": 7202.96
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 33267.38,
+    "min_ns": 32343.48,
+    "max_ns": 34746.56
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6088.42,
+    "min_ns": 6067.58,
+    "max_ns": 6415.54
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 31763.56,
+    "min_ns": 31436.5,
+    "max_ns": 32236.74
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6112.5,
+    "min_ns": 6053.588235294118,
+    "max_ns": 6759.205882352941
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 9,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 31750.029411764706,
+    "min_ns": 30965.323529411766,
+    "max_ns": 32224.91176470588
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6389.34,
+    "min_ns": 6238.66,
+    "max_ns": 6722.2
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 36533.44,
+    "min_ns": 34542.4,
+    "max_ns": 37618.52
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6122.74,
+    "min_ns": 6025.62,
+    "max_ns": 6422.26
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 34621.46,
+    "min_ns": 34170.64,
+    "max_ns": 35132.68
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6211.129032258064,
+    "min_ns": 6171.709677419355,
+    "max_ns": 6417.354838709677
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 35145.83870967742,
+    "min_ns": 34584.967741935485,
+    "max_ns": 36224.58064516129
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6147.9,
+    "min_ns": 5992.16,
+    "max_ns": 6460.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 38159.6,
+    "min_ns": 37337.14,
+    "max_ns": 50347.62
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6190.02,
+    "min_ns": 6047.2,
+    "max_ns": 6465.22
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 38223.34,
+    "min_ns": 37583.64,
+    "max_ns": 40265.38
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6235.0,
+    "min_ns": 6131.535714285715,
+    "max_ns": 6256.142857142857
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 11,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 38643.32142857143,
+    "min_ns": 37856.57142857143,
+    "max_ns": 39762.5
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6522.98,
+    "min_ns": 6399.52,
+    "max_ns": 6718.52
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 43815.84,
+    "min_ns": 41931.64,
+    "max_ns": 44876.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6386.5,
+    "min_ns": 6119.02,
+    "max_ns": 7256.16
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 41233.02,
+    "min_ns": 40691.32,
+    "max_ns": 41784.44
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6237.846153846154,
+    "min_ns": 6148.7307692307695,
+    "max_ns": 6672.923076923077
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 12,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 41751.730769230766,
+    "min_ns": 41032.42307692308,
+    "max_ns": 43347.57692307692
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6447.3,
+    "min_ns": 6046.04,
+    "max_ns": 7256.94
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 45165.26,
+    "min_ns": 44709.48,
+    "max_ns": 47525.8
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6139.76,
+    "min_ns": 6073.0,
+    "max_ns": 6571.86
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 44361.84,
+    "min_ns": 43848.1,
+    "max_ns": 47593.84
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6243.333333333333,
+    "min_ns": 6150.833333333333,
+    "max_ns": 6309.125
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 13,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 44681.125,
+    "min_ns": 43630.333333333336,
+    "max_ns": 45197.625
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6083.4,
+    "min_ns": 6003.82,
+    "max_ns": 6810.58
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 47800.92,
+    "min_ns": 47645.42,
+    "max_ns": 50502.12
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6159.76,
+    "min_ns": 6107.26,
+    "max_ns": 6489.4
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 47947.68,
+    "min_ns": 47210.06,
+    "max_ns": 48802.38
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6274.5,
+    "min_ns": 6234.909090909091,
+    "max_ns": 6894.136363636364
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 14,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 47585.40909090909,
+    "min_ns": 46784.318181818184,
+    "max_ns": 48579.13636363636
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6090.1,
+    "min_ns": 6026.24,
+    "max_ns": 6375.84
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 51504.38,
+    "min_ns": 50905.98,
+    "max_ns": 51902.86
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6195.54,
+    "min_ns": 6093.4,
+    "max_ns": 7396.06
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 51364.76,
+    "min_ns": 50003.46,
+    "max_ns": 54425.16
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6617.25,
+    "min_ns": 6221.5,
+    "max_ns": 7350.25
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 15,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 54137.75,
+    "min_ns": 49796.35,
+    "max_ns": 59993.3
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6114.64,
+    "min_ns": 6024.3,
+    "max_ns": 6421.3
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 54247.38,
+    "min_ns": 53449.32,
+    "max_ns": 55097.12
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6221.82,
+    "min_ns": 6161.54,
+    "max_ns": 6735.48
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 54147.62,
+    "min_ns": 53113.4,
+    "max_ns": 56410.14
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6372.9473684210525,
+    "min_ns": 6246.105263157895,
+    "max_ns": 7425.315789473684
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 16,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 54258.31578947369,
+    "min_ns": 53018.78947368421,
+    "max_ns": 54524.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 13736.4,
+    "min_ns": 12918.4,
+    "max_ns": 14137.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 3246105.0,
+    "min_ns": 3215502.6,
+    "max_ns": 3309312.2
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 15698.5,
+    "min_ns": 14373.0,
+    "max_ns": 16502.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 3268076.0,
+    "min_ns": 3211938.5,
+    "max_ns": 3363043.5
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 28681.0,
+    "min_ns": 26875.0,
+    "max_ns": 32087.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 1000,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 3254903.0,
+    "min_ns": 3220821.0,
+    "max_ns": 3317826.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 75653.0,
+    "min_ns": 72384.0,
+    "max_ns": 79371.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 32905190.0,
+    "min_ns": 32092859.0,
+    "max_ns": 34687239.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 84618.0,
+    "min_ns": 83170.0,
+    "max_ns": 88332.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 32306784.0,
+    "min_ns": 32196997.0,
+    "max_ns": 32798398.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 215950.0,
+    "min_ns": 203165.0,
+    "max_ns": 221432.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 10000,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 32770031.0,
+    "min_ns": 32247649.0,
+    "max_ns": 33746036.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 727045.0,
+    "min_ns": 685987.0,
+    "max_ns": 772641.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 335152654.0,
+    "min_ns": 330485216.0,
+    "max_ns": 340095366.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 804362.0,
+    "min_ns": 788634.0,
+    "max_ns": 815409.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 335379387.0,
+    "min_ns": 332420650.0,
+    "max_ns": 340267715.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 2097007.0,
+    "min_ns": 1924300.0,
+    "max_ns": 2156718.0
+  },
+  {
+    "scope": "python",
+    "fixture": "histogram",
+    "n": 100000,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 339669261.0,
+    "min_ns": 335639426.0,
+    "max_ns": 341324119.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5955.02,
+    "min_ns": 5906.18,
+    "max_ns": 6640.8
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 5129.16,
+    "min_ns": 5083.36,
+    "max_ns": 9817.18
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6001.54,
+    "min_ns": 5939.26,
+    "max_ns": 6362.92
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 5185.68,
+    "min_ns": 5042.54,
+    "max_ns": 5582.06
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6048.48,
+    "min_ns": 5938.56,
+    "max_ns": 6421.66
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 5265.86,
+    "min_ns": 5052.1,
+    "max_ns": 5606.3
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6053.36,
+    "min_ns": 5934.98,
+    "max_ns": 7379.84
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 8474.56,
+    "min_ns": 8364.32,
+    "max_ns": 8816.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6112.12,
+    "min_ns": 5938.1,
+    "max_ns": 6672.3
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 8315.74,
+    "min_ns": 8265.16,
+    "max_ns": 9652.28
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6023.22,
+    "min_ns": 5970.08,
+    "max_ns": 6896.36
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 2,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 8385.02,
+    "min_ns": 8284.78,
+    "max_ns": 8868.3
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5953.16,
+    "min_ns": 5875.4,
+    "max_ns": 6075.22
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 11859.28,
+    "min_ns": 11547.98,
+    "max_ns": 12278.2
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5984.64,
+    "min_ns": 5929.4,
+    "max_ns": 6011.78
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 11901.02,
+    "min_ns": 11561.5,
+    "max_ns": 12010.04
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6008.96,
+    "min_ns": 5921.52,
+    "max_ns": 6380.12
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 3,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 11563.22,
+    "min_ns": 11427.52,
+    "max_ns": 12404.32
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6246.14,
+    "min_ns": 5902.5,
+    "max_ns": 6840.44
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 14958.3,
+    "min_ns": 14684.82,
+    "max_ns": 16023.5
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5987.26,
+    "min_ns": 5857.86,
+    "max_ns": 6748.16
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 14997.66,
+    "min_ns": 14599.24,
+    "max_ns": 15081.48
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6048.24,
+    "min_ns": 5991.34,
+    "max_ns": 6389.72
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 4,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 15121.76,
+    "min_ns": 14640.14,
+    "max_ns": 15623.32
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5932.88,
+    "min_ns": 5903.12,
+    "max_ns": 6644.82
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 18515.82,
+    "min_ns": 18294.24,
+    "max_ns": 20059.38
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5959.84,
+    "min_ns": 5904.36,
+    "max_ns": 6616.78
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 18232.46,
+    "min_ns": 17902.3,
+    "max_ns": 18295.86
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6038.52,
+    "min_ns": 5955.64,
+    "max_ns": 6358.92
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 5,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 18222.12,
+    "min_ns": 17931.76,
+    "max_ns": 18575.18
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5948.9,
+    "min_ns": 5853.34,
+    "max_ns": 6229.98
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 21558.84,
+    "min_ns": 21108.02,
+    "max_ns": 22754.46
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5969.62,
+    "min_ns": 5880.36,
+    "max_ns": 6517.96
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 21012.6,
+    "min_ns": 20958.4,
+    "max_ns": 22096.56
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6107.88,
+    "min_ns": 6018.14,
+    "max_ns": 6820.98
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 6,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 21754.98,
+    "min_ns": 21510.92,
+    "max_ns": 23236.34
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5967.38,
+    "min_ns": 5885.94,
+    "max_ns": 7168.94
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 24981.58,
+    "min_ns": 24286.86,
+    "max_ns": 26507.42
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5922.2,
+    "min_ns": 5882.04,
+    "max_ns": 6209.62
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 24530.58,
+    "min_ns": 24095.36,
+    "max_ns": 26029.78
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6032.227272727273,
+    "min_ns": 5952.363636363636,
+    "max_ns": 6297.090909090909
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 7,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 24642.477272727272,
+    "min_ns": 24200.93181818182,
+    "max_ns": 25890.43181818182
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5962.7,
+    "min_ns": 5883.42,
+    "max_ns": 6516.88
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 28040.92,
+    "min_ns": 27528.8,
+    "max_ns": 28244.58
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5951.54,
+    "min_ns": 5884.22,
+    "max_ns": 6288.28
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 27678.24,
+    "min_ns": 27606.74,
+    "max_ns": 28361.44
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6056.128205128205,
+    "min_ns": 5983.846153846154,
+    "max_ns": 6444.25641025641
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 8,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 28074.20512820513,
+    "min_ns": 27893.5641025641,
+    "max_ns": 28503.71794871795
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6366.18,
+    "min_ns": 5907.34,
+    "max_ns": 6666.04
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 31635.96,
+    "min_ns": 30753.1,
+    "max_ns": 32711.06
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5990.4,
+    "min_ns": 5940.32,
+    "max_ns": 6969.8
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 31131.0,
+    "min_ns": 30930.2,
+    "max_ns": 31256.94
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6069.617647058823,
+    "min_ns": 5985.735294117647,
+    "max_ns": 6169.470588235294
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 9,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 31544.058823529413,
+    "min_ns": 30806.0,
+    "max_ns": 32102.470588235294
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5980.0,
+    "min_ns": 5893.66,
+    "max_ns": 6286.66
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 34892.32,
+    "min_ns": 34531.42,
+    "max_ns": 35543.04
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 6154.94,
+    "min_ns": 5909.44,
+    "max_ns": 7109.74
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 34161.1,
+    "min_ns": 33746.24,
+    "max_ns": 34839.88
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6120.129032258064,
+    "min_ns": 6068.967741935484,
+    "max_ns": 6742.677419354839
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 34959.32258064516,
+    "min_ns": 34361.51612903226,
+    "max_ns": 35969.87096774193
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5984.2,
+    "min_ns": 5891.8,
+    "max_ns": 6564.8
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 37910.8,
+    "min_ns": 37549.3,
+    "max_ns": 38161.86
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5967.82,
+    "min_ns": 5903.02,
+    "max_ns": 6296.48
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 37670.98,
+    "min_ns": 37335.14,
+    "max_ns": 38103.74
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6159.0,
+    "min_ns": 6015.321428571428,
+    "max_ns": 6194.642857142857
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 11,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 37846.607142857145,
+    "min_ns": 37340.392857142855,
+    "max_ns": 38864.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5983.36,
+    "min_ns": 5884.32,
+    "max_ns": 6287.42
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 42392.58,
+    "min_ns": 41122.7,
+    "max_ns": 44168.4
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5996.64,
+    "min_ns": 5908.52,
+    "max_ns": 6608.16
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 40912.66,
+    "min_ns": 40447.86,
+    "max_ns": 46687.86
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6189.384615384615,
+    "min_ns": 6071.423076923077,
+    "max_ns": 6842.961538461538
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 12,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 41108.88461538462,
+    "min_ns": 40232.230769230766,
+    "max_ns": 42664.346153846156
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6034.68,
+    "min_ns": 5921.48,
+    "max_ns": 7158.16
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 45695.6,
+    "min_ns": 43832.62,
+    "max_ns": 51817.52
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5923.0,
+    "min_ns": 5842.02,
+    "max_ns": 6302.06
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 44195.52,
+    "min_ns": 43500.5,
+    "max_ns": 46211.6
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6149.125,
+    "min_ns": 6095.166666666667,
+    "max_ns": 6271.916666666667
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 13,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 44239.708333333336,
+    "min_ns": 43590.833333333336,
+    "max_ns": 44541.208333333336
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6248.4,
+    "min_ns": 5949.78,
+    "max_ns": 6472.62
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 47653.76,
+    "min_ns": 46861.26,
+    "max_ns": 49022.4
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5932.86,
+    "min_ns": 5878.12,
+    "max_ns": 6006.12
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 47263.26,
+    "min_ns": 46665.2,
+    "max_ns": 47741.14
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6245.454545454545,
+    "min_ns": 6134.227272727273,
+    "max_ns": 7646.181818181818
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 14,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 47669.954545454544,
+    "min_ns": 46920.90909090909,
+    "max_ns": 49088.90909090909
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 5923.84,
+    "min_ns": 5879.72,
+    "max_ns": 5966.56
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 51287.9,
+    "min_ns": 50390.1,
+    "max_ns": 51394.36
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5973.3,
+    "min_ns": 5908.86,
+    "max_ns": 6362.52
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 50210.36,
+    "min_ns": 50071.3,
+    "max_ns": 51462.04
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6206.65,
+    "min_ns": 6164.75,
+    "max_ns": 6326.7
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 15,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 51061.95,
+    "min_ns": 49538.7,
+    "max_ns": 51880.4
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 6001.92,
+    "min_ns": 5918.9,
+    "max_ns": 6524.66
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 54073.58,
+    "min_ns": 53491.26,
+    "max_ns": 56613.38
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 5993.44,
+    "min_ns": 5905.6,
+    "max_ns": 6318.68
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 53204.46,
+    "min_ns": 52938.02,
+    "max_ns": 54410.12
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 6244.1578947368425,
+    "min_ns": 6165.368421052632,
+    "max_ns": 7362.894736842105
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 16,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 54704.05263157895,
+    "min_ns": 53226.84210526316,
+    "max_ns": 56944.89473684211
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 8683.6,
+    "min_ns": 8093.2,
+    "max_ns": 9640.2
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 3238454.0,
+    "min_ns": 3203678.6,
+    "max_ns": 3301785.2
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 9478.0,
+    "min_ns": 8841.0,
+    "max_ns": 10166.5
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 3229480.0,
+    "min_ns": 3190808.0,
+    "max_ns": 3370481.5
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 13237.0,
+    "min_ns": 11471.0,
+    "max_ns": 13602.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 1000,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 3233183.0,
+    "min_ns": 3192876.0,
+    "max_ns": 3279140.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 25754.0,
+    "min_ns": 23686.0,
+    "max_ns": 27489.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 32199190.0,
+    "min_ns": 32065203.0,
+    "max_ns": 32583041.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 27651.0,
+    "min_ns": 24709.0,
+    "max_ns": 29392.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 32020049.0,
+    "min_ns": 31640732.0,
+    "max_ns": 33930077.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 65704.0,
+    "min_ns": 61703.0,
+    "max_ns": 74567.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 10000,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 32549426.0,
+    "min_ns": 32339661.0,
+    "max_ns": 33177299.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 1,
+    "mode": "batch_array",
+    "median_ns": 197418.0,
+    "min_ns": 188515.0,
+    "max_ns": 212622.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 1,
+    "mode": "python_point_loop",
+    "median_ns": 334696794.0,
+    "min_ns": 331704545.0,
+    "max_ns": 336923793.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 2,
+    "mode": "batch_array",
+    "median_ns": 229808.0,
+    "min_ns": 206110.0,
+    "max_ns": 242626.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 2,
+    "mode": "python_point_loop",
+    "median_ns": 332732564.0,
+    "min_ns": 330012358.0,
+    "max_ns": 336687731.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 16,
+    "mode": "batch_array",
+    "median_ns": 956295.0,
+    "min_ns": 859007.0,
+    "max_ns": 968105.0
+  },
+  {
+    "scope": "python",
+    "fixture": "plugin",
+    "n": 100000,
+    "s": 16,
+    "mode": "python_point_loop",
+    "median_ns": 333037369.0,
+    "min_ns": 332149111.0,
+    "max_ns": 345492248.0
+  }
+]

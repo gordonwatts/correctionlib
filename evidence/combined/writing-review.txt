@@ -1,0 +1,10 @@
+Fresh-context gpt-6.1-sol/high review, as explicitly requested by AGENTS.md.
+Audience: particle physicists and C++ provider authors. No chat history supplied.
+Reviewed final README, batch/array/combined guides, source/SDK, runnable examples,
+provider dispatch tests and retained evidence/benchmark implementation.
+Independently recomputed all456 summary groups from two raw files:1596 rows each,
+seven rounds per group, zero summary differences. Displayed numbers match.
+Shape/ownership/callback/fallback descriptions match source; no unsupported
+performance claim. Requested worker-thread wording, consistent API1/2/3 rejection,
+spacing in row count and an array-extension pointer in original scalar README.
+All requested wording fixes applied. Numerical sources and timings unchanged.

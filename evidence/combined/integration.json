@@ -1,0 +1,25 @@
+{
+  "master_base": "445b7a31ad0298b3b14a81d370faa44f08add04e",
+  "plugin_head": "8dc0b7a8bfe82c15115ff2a5907d4bfa35ee4710",
+  "batch_head": "aa7c819d86786cf613abedc5e73704bc840150dc",
+  "array_head": "0b4c7bc1f96e04fa288fa498a29819d3352a44ce",
+  "integration_after_final_feature_merges": "7dd1f8afba8a49da2291768cb576160fff2ef9b0",
+  "normal_merge_commits": [
+    "7dd1f8afba8a49da2291768cb576160fff2ef9b0 Merge array PR CI followup into develop",
+    "d835566269bd73c949f652dddf186d9de534b3c9 Merge batch PR CI followup into develop",
+    "889a5c6f57276b8617254ac09a9991dc50e36e91 Merge fixed array outputs and wire native batch array dispatch",
+    "709f533107b55c41f63840861d65454ff152cc6d Merge native batched inputs into develop",
+    "1a2ff43016bb6a48bb62a20dc330fa89a6343bb2 Merge native node plugins into develop"
+  ],
+  "pull_requests": {
+    "plugins": "https://github.com/gordonwatts/correctionlib/pull/1",
+    "batches": "https://github.com/gordonwatts/correctionlib/pull/2",
+    "arrays": "https://github.com/gordonwatts/correctionlib/pull/3"
+  },
+  "sdk_versions": {
+    "plugins": 1,
+    "batches": 2,
+    "arrays": 3,
+    "develop": 4
+  }
+}

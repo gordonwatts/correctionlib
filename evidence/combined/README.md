@@ -29,3 +29,34 @@ Provenance records complete source/header/provider/Python and installed-core
 hashes. source_commit/dirty identify the pre-commit build state; source hashes
 identify its exact contents. Setup-process affinity may include more CPUs than
 the timers, which are explicitly pinned by tools/measure-combined.sh.
+
+Accepted post-merge validation: 279 Python tests passed; ROOT unavailable (one
+skipped), CVMFS cases excluded. Five native suites pass both Release and a
+Python-free ASan/UBSan/float-cast build, with independently compiled
+scalar-batch and array-batch providers. The default plugin batch-array fallback
+also passes. Actual older API2/API3 providers fail clearly before registration.
+Standalone C++/Python examples ran and verified expected values.
+
+Raw timing files each contain 1,596 data rows. Summary JSON/CSV retain
+median/min/max for every fixture, N, S and mode. Selected N=100000, S=16 rows,
+microseconds per complete call:
+
+| Scope  | Fixture   | Mode              |     Median |               Min–max |
+| ------ | --------- | ----------------- | ---------: | --------------------: |
+| native | histogram | batch_array       |   1891.230 |     1851.750–2027.690 |
+| native | histogram | point_loop        |   2908.500 |     2842.440–3153.720 |
+| native | plugin    | batch_array       |    521.549 |       498.474–561.607 |
+| native | plugin    | point_loop        |   1602.480 |     1584.940–1622.720 |
+| python | histogram | batch_array       |   2097.007 |     1924.300–2156.718 |
+| python | histogram | python_point_loop | 339669.261 | 335639.426–341324.119 |
+| python | plugin    | batch_array       |    956.295 |       859.007–968.105 |
+| python | plugin    | python_point_loop | 333037.369 | 332149.111–345492.248 |
+
+Pinned local formatting, spelling and type checks pass. The syntax-upgrade hook
+was also run separately with its pinned version3.21.2 under Python3.13, since
+the isolated system-Python3.9 hook environment is too old for that tool.
+Installing the optional TOML reader in the local spelling-check environment
+resolved its initial false positives in encoded notebook output. The original
+logs remain retained. Both final PR format gates, ROOT checks, dedicated
+feature/provider jobs and completed Linux matrix jobs pass; broader CI runs are
+linked in progress.txt.

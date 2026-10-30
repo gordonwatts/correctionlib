@@ -1,0 +1,9 @@
+Collecting pyupgrade==3.21.2
+  Downloading pyupgrade-3.21.2-py2.py3-none-any.whl.metadata (15 kB)
+Collecting tokenize-rt>=6.1.0 (from pyupgrade==3.21.2)
+  Downloading tokenize_rt-6.2.0-py2.py3-none-any.whl.metadata (4.0 kB)
+Downloading pyupgrade-3.21.2-py2.py3-none-any.whl (62 kB)
+Downloading tokenize_rt-6.2.0-py2.py3-none-any.whl (6.0 kB)
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/pyupgrade-3.21.2-py2.py3-none-any.whl
+Saved /home/gwatts/atlas/correctionlib-feature-build/wheels/tokenize_rt-6.2.0-py2.py3-none-any.whl
+Successfully downloaded pyupgrade tokenize-rt

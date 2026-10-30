@@ -55,7 +55,7 @@ enabled; the example uses CMake `WINDOWS_EXPORT_ALL_SYMBOLS`):
 ```cpp
 extern "C" int correctionlib_plugin_api_version();
 extern "C" const char* correctionlib_plugin_build_id();
-extern "C" void correctionlib_register_nodes_v1(correction::PluginRegistry&);
+extern "C" void correctionlib_register_nodes_v2(correction::PluginRegistry&);
 ```
 
 Their implementations are illustrated in `examples/node_plugin/nodes.cc`. Return
@@ -146,8 +146,9 @@ children, applies optional provider models, then constructs native evaluators to
 check the full native contract. Schema generation itself needs no providers. The
 portable envelope schema describes opaque config, not every provider's schema.
 Summaries report unknown input usage/ranges for opaque native behavior. NumPy
-and Awkward use the existing scalar native evaluation path; this API adds no
-graph-wide batching, multiple outputs or Python numerical callbacks.
+and Awkward arrays enter [native batch dispatch](native-batches.md). Top-level
+histograms and extensions can use batch kernels; other paths, including nested
+node evaluation, preserve scalar fallback. Numerical callbacks remain native.
 
 ## Tests
 

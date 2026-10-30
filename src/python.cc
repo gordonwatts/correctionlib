@@ -34,54 +34,35 @@ namespace {
 
   template<typename T> // Correction or CompoundCorrection
   py::array_t<double> evalv(T& c, py::args args) {
-    std::vector<Variable::Type> inputs;
-    inputs.reserve(py::len(args));
-    std::vector<std::pair<size_t, py::buffer_info>> vargs;
     check_length(c, args);
-    for (size_t i=0; i < py::len(args); ++i) {
-      if ( py::isinstance<py::array>(args[i]) ) {
-        if ( c.inputs()[i].type() == Variable::VarType::integer ) {
-          vargs.emplace_back(i, py::cast<py::array_t<int64_t, py::array::c_style | py::array::forcecast>>(args[i]).request());
-          inputs.emplace_back(0);
-        }
-        else if ( c.inputs()[i].type() == Variable::VarType::real ) {
-          vargs.emplace_back(i, py::cast<py::array_t<double, py::array::c_style | py::array::forcecast>>(args[i]).request());
-          inputs.emplace_back(0.0);
-        }
-        else {
-          throw std::invalid_argument("Array arguments only allowed for integer and real input types");
-        }
-
-        if ( vargs.back().second.ndim != 1 ) {
-          throw std::invalid_argument("Array arguments with dimension greater "
-              "than one are not supported (argument at position " + std::to_string(i) + ")");
-        }
-        if ( vargs.back().second.size != vargs.front().second.size ) {
-          throw std::invalid_argument("Array arguments must all have the same size"
-              "(argument at position " + std::to_string(i) + " is length "
-              + std::to_string(vargs.back().second.size) + ")");
-        }
-      }
-      else {
-        inputs.push_back(py::cast<Variable::Type>(args[i]));
-      }
+    std::vector<py::array> owners;
+    std::vector<BatchInput> inputs;
+    size_t n = 1;
+    bool have_array = false;
+    for (size_t i = 0; i < py::len(args); ++i) {
+      if (py::isinstance<py::array>(args[i])) {
+        const auto type = c.inputs()[i].type();
+        if (type == Variable::VarType::integer)
+          owners.push_back(py::cast<py::array_t<int64_t, py::array::c_style | py::array::forcecast>>(args[i]));
+        else if (type == Variable::VarType::real)
+          owners.push_back(py::cast<py::array_t<double, py::array::c_style | py::array::forcecast>>(args[i]));
+        else throw std::invalid_argument("Array arguments only allowed for integer and real input types");
+        const auto buffer = owners.back().request();
+        if (buffer.ndim != 1) throw std::invalid_argument("Array arguments must be one-dimensional");
+        const auto length = static_cast<size_t>(buffer.size);
+        if (have_array && length != n) throw std::invalid_argument("Array arguments must all have the same size");
+        have_array = true;
+        n = length;
+        if (type == Variable::VarType::integer)
+          inputs.push_back(BatchInput::integers(static_cast<int64_t*>(buffer.ptr), n));
+        else inputs.push_back(BatchInput::reals(static_cast<double*>(buffer.ptr), n));
+      } else inputs.emplace_back(py::cast<Variable::Type>(args[i]));
     }
-    auto output = py::array_t<double>((vargs.size() > 0) ? vargs.front().second.size : 1);
-    py::buffer_info outbuffer = output.request();
-    double * outptr = static_cast<double*>(outbuffer.ptr);
+    auto output = py::array_t<double>(n);
+    auto* outptr = output.mutable_data();
     {
       py::gil_scoped_release release;
-      for (long i=0; i < outbuffer.shape[0]; ++i) {
-        for (const auto& varg : vargs) {
-          if ( std::holds_alternative<int64_t>(inputs[varg.first]) ) {
-            inputs[varg.first] = static_cast<int64_t*>(varg.second.ptr)[i];
-          }
-          else if ( std::holds_alternative<double>(inputs[varg.first]) ) {
-            inputs[varg.first] = static_cast<double*>(varg.second.ptr)[i];
-          }
-        }
-        outptr[i] = c.evaluate(inputs);
-      }
+      c.evaluate_batch(inputs, n, outptr, n);
     }
     return output;
   }

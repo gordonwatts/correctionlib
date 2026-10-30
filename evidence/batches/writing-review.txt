@@ -1,0 +1,8 @@
+Fresh-context gpt-6.1-sol/high review requested by study AGENTS.md.
+Audience: particle physicists and C++ provider authors; no chat history.
+Verified timings against raw CSV, test logs, SDK/core and committed benchmark
+sources. Confirmed CPU0 taskset, 19 sizes, seven rounds, alternating order,
+exact before/after checks, double precision and distinct native/Python scopes.
+Suggested root/nonempty clarification, stale plugin-guide scalar wording,
+explicit reproduction working directory and dirty-source provenance explanation.
+Applied in final documentation. Setup-process affinity differs from timing affinity.

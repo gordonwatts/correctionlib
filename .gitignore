@@ -147,3 +147,7 @@ src/correctionlib/include
 include/correctionlib_version.h
 
 .vscode
+
+!evidence/**/*.log
+
+.asetup.save

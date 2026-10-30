@@ -43,6 +43,11 @@ public:
   double evaluate(const std::vector<Variable::Type>& values) const override {
     return node->evaluate(values);
   }
+  void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                      double* output, size_t size) const override {
+    node->evaluate_batch(inputs, n, output, size);
+  }
+
 };
 
 // Let a plugin retain and evaluate an ordinary Content subtree through the
@@ -267,7 +272,7 @@ void PluginRegistry::load_library(const std::string& path) {
   auto version = reinterpret_cast<int (*)()>(symbol("correctionlib_plugin_api_version"));
   auto build_id = reinterpret_cast<const char* (*)()>(symbol("correctionlib_plugin_build_id"));
   auto register_nodes =
-      reinterpret_cast<void (*)(PluginRegistry&)>(symbol("correctionlib_register_nodes_v1"));
+      reinterpret_cast<void (*)(PluginRegistry&)>(symbol("correctionlib_register_nodes_v2"));
   if (!version || !register_nodes || version() != plugin_api_version)
     throw std::runtime_error("Incompatible plugin API: " + canonical);
   if (!build_id || !build_id() || plugin_build_id() != build_id())
@@ -347,4 +352,20 @@ ExtensionNode::ExtensionNode(const JSONObject& json, const Correction& correctio
 
 double ExtensionNode::evaluate(const std::vector<Variable::Type>& values) const {
   return state_->node->evaluate(values);
+}
+
+void PluginNode::evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                                double* output, size_t output_size) const {
+  if (output_size < n || (n && !output))
+    throw std::invalid_argument("Batch output buffer too small or null");
+  std::vector<Variable::Type> values(inputs.size());
+  for (size_t row = 0; row < n; ++row) {
+    for (size_t j = 0; j < inputs.size(); ++j) values[j] = inputs[j].at(row);
+    output[row] = evaluate(values);
+  }
+}
+
+void ExtensionNode::evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                                   double* output, size_t size) const {
+  state_->node->evaluate_batch(inputs, n, output, size);
 }

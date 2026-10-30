@@ -127,7 +127,11 @@ namespace {
       else if constexpr (std::is_same_v<T, double>) return arg;
       else throw std::logic_error("I should not have ever seen a string");
       }, value_variant);
+    if (flow == detail::FlowBehavior::wrap && !std::isfinite(value))
+      throw std::runtime_error("Non-finite input cannot be wrapped");
     if ( auto *bins = std::get_if<detail::UniformBins>(&bins_) ) { // uniform binning
+      // NaN otherwise reaches a floating-to-integer cast with undefined behavior.
+      if (std::isnan(value)) throw std::runtime_error("NaN input in uniform binning");
       if (value < bins->low || value >= bins->high) {
         switch (flow) {
           case detail::FlowBehavior::value:
@@ -209,10 +213,12 @@ namespace {
   }
 
   std::vector<double> parse_bin_edges(const rapidjson::Value::ConstArray& edges) {
+    if (edges.Size() < 2) throw std::runtime_error("Binning needs at least two edges");
     std::vector<double> result;
     result.reserve(edges.Size());
     for (const auto& edge : edges) {
       double val = parse_edge(edge);
+      if (std::isnan(val)) throw std::runtime_error("NaN bin edge");
       if ( result.size() > 0 && result.back() >= val ) {
         throw std::runtime_error("binning edges are not monotone increasing");
       }
@@ -447,6 +453,8 @@ Binning::Binning(const JSONObject& json, const Correction& context)
     }
     const auto low = uniformBins.getRequired<double>("low");
     const auto high = uniformBins.getRequired<double>("high");
+    if (!std::isfinite(low) || !std::isfinite(high) || !(low < high) || !std::isfinite(high-low))
+      throw std::runtime_error("Uniform binning requires finite increasing bounds");
     bins_ = detail::UniformBins{n, low, high};
   } else {
     throw std::runtime_error ("Error when processing Binning: edges are neither an array nor a UniformBinning object");
@@ -481,6 +489,8 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
   const auto& inputs = json.getRequired<rapidjson::Value::ConstArray>("inputs");
 
   const auto& edges = json.getRequired<rapidjson::Value::ConstArray>("edges");
+  if (edges.Empty() || edges.Size() != inputs.Size())
+    throw std::runtime_error("MultiBinning axes and inputs must have matching nonzero lengths");
   axes_.reserve(edges.Size());
   size_t idx {0};
   for (const auto& dimension : edges) {
@@ -488,6 +498,7 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
     if ( dimension.IsArray() ) { // non-uniform binning
       std::vector<double> dim_edges = parse_bin_edges(dimension.GetArray());
       if ( ! input.IsString() ) { throw std::runtime_error("invalid multibinning input type"); }
+      if (!input.IsString()) throw std::runtime_error("invalid multibinning input type");
       size_t variableIdx = detail::find_input_index(input.GetString(), context.inputs());
       if ( context.inputs().at(variableIdx).type() == Variable::VarType::string ) {
         throw std::runtime_error("MultiBinning cannot use string inputs as binning variables");
@@ -502,6 +513,9 @@ MultiBinning::MultiBinning(const JSONObject& json, const Correction& context)
       }
       const auto low = uniformBins.getRequired<double>("low");
       const auto high = uniformBins.getRequired<double>("high");
+      if (!std::isfinite(low) || !std::isfinite(high) || !(low < high) || !std::isfinite(high-low))
+        throw std::runtime_error("Uniform binning requires finite increasing bounds");
+      if (!input.IsString()) throw std::runtime_error("invalid multibinning input type");
       size_t variableIdx = detail::find_input_index(input.GetString(), context.inputs());
       if ( context.inputs().at(variableIdx).type() == Variable::VarType::string ) {
         throw std::runtime_error("MultiBinning cannot use string inputs as binning variables");
@@ -864,4 +878,119 @@ bool CorrectionSet::validate() {
 // of exposing RapidJSON or the concrete Content variant to provider libraries.
 Content correction::detail::parse_plugin_child(const rapidjson::Value& json, const Correction& context) {
   return resolve_content(json, context);
+}
+
+BatchInput BatchInput::reals(const double* data, size_t size, std::ptrdiff_t stride) {
+  BatchInput result(0.0);
+  result.data_ = Reals{data, size, stride};
+  return result;
+}
+BatchInput BatchInput::integers(const int64_t* data, size_t size, std::ptrdiff_t stride) {
+  BatchInput result(int64_t{0});
+  result.data_ = Integers{data, size, stride};
+  return result;
+}
+Variable::Type BatchInput::at(size_t index) const {
+  return std::visit([&](const auto& column) -> Variable::Type {
+    using T = std::decay_t<decltype(column)>;
+    if constexpr (std::is_same_v<T, Variable::Type>) return column;
+    else {
+      if (index >= column.size) throw std::out_of_range("Batch input index");
+      return column.data[static_cast<std::ptrdiff_t>(index) * column.stride];
+    }
+  }, data_);
+}
+void BatchInput::validate(const Variable& variable, size_t n) const {
+  std::visit([&](const auto& column) {
+    using T = std::decay_t<decltype(column)>;
+    if constexpr (std::is_same_v<T, Variable::Type>) variable.validate(column);
+    else {
+      if (column.size != n) throw std::invalid_argument("Batch input lengths differ");
+      if (n && !column.data) throw std::invalid_argument("Null batch input");
+      // Reject signed offset overflow before accessing even the first element.
+      const auto max = std::numeric_limits<std::ptrdiff_t>::max();
+      if (n > static_cast<size_t>(max) || column.stride == -max - 1 ||
+          (n > 1 && (column.stride > 0 ? column.stride : -column.stride) > max / static_cast<std::ptrdiff_t>(n - 1)))
+        throw std::invalid_argument("Batch input stride overflows");
+      if constexpr (std::is_same_v<T, Reals>) variable.validate(0.0);
+      else variable.validate(int64_t{0});
+    }
+  }, data_);
+}
+
+namespace {
+void validate_batch(const std::vector<Variable>& variables,
+                    const std::vector<BatchInput>& inputs, size_t n,
+                    double* output, size_t output_size) {
+  if (inputs.size() != variables.size())
+    throw std::invalid_argument("Incorrect number of inputs (got " + std::to_string(inputs.size()) +
+                                ", expected " + std::to_string(variables.size()) + ")");
+  if (output_size < n || (n && !output))
+    throw std::invalid_argument("Batch output buffer too small or null");
+  for (size_t j = 0; j < inputs.size(); ++j) inputs[j].validate(variables[j], n);
+}
+// Dispatch once for root histograms/extensions. Other graphs retain scalar semantics.
+void content_batch(const Content& content, const std::vector<BatchInput>& inputs,
+                   size_t n, double* output, size_t size) {
+  std::visit([&](const auto& node) {
+    using T = std::decay_t<decltype(node)>;
+    if constexpr (std::is_same_v<T, double>) std::fill_n(output, n, node);
+    else if constexpr (std::is_same_v<T, Binning> || std::is_same_v<T, MultiBinning> || std::is_same_v<T, ExtensionNode>)
+      node.evaluate_batch(inputs, n, output, size);
+    else {
+      std::vector<Variable::Type> values(inputs.size());
+      for (size_t row = 0; row < n; ++row) {
+        for (size_t j = 0; j < inputs.size(); ++j) values[j] = inputs[j].at(row);
+        output[row] = node.evaluate(values);
+      }
+    }
+  }, content);
+}
+}
+void Correction::evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                                 double* output, size_t size) const {
+  validate_batch(inputs_, inputs, n, output, size);
+  if (n) content_batch(data_, inputs, n, output, size);
+}
+void CompoundCorrection::evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                                         double* output, size_t size) const {
+  validate_batch(inputs_, inputs, n, output, size);
+  std::vector<Variable::Type> values(inputs.size());
+  for (size_t row = 0; row < n; ++row) {
+    for (size_t j = 0; j < inputs.size(); ++j) values[j] = inputs[j].at(row);
+    output[row] = evaluate(values);
+  }
+}
+void Binning::evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                              double* output, size_t) const {
+  // Bin search reads only its own column. Construct a full row only for a subtree.
+  std::vector<Variable::Type> values(inputs.size());
+  for (size_t row = 0; row < n; ++row) {
+    const auto idx = find_bin_idx(inputs[variableIdx_].at(row), bins_, flow_, variableIdx_, "Binning");
+    const auto& child = contents_[idx];
+    if (const auto* value = std::get_if<double>(&child)) output[row] = *value;
+    else {
+      for (size_t j = 0; j < inputs.size(); ++j) values[j] = inputs[j].at(row);
+      output[row] = std::visit(node_evaluate{values}, child);
+    }
+  }
+}
+void MultiBinning::evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                                   double* output, size_t) const {
+  std::vector<Variable::Type> values(inputs.size());
+  for (size_t row = 0; row < n; ++row) {
+    size_t index = 0, dim = 0;
+    const Content* child = nullptr;
+    for (const auto& axis : axes_) {
+      const auto local = find_bin_idx(inputs[axis.variableIdx].at(row), axis.bins, flow_, axis.variableIdx, "MultiBinning");
+      if (local == nbins(dim++)) { child = &content_.back(); break; }
+      index += local * axis.stride;
+    }
+    if (!child) child = &content_.at(index);
+    if (const auto* value = std::get_if<double>(child)) output[row] = *value;
+    else {
+      for (size_t j = 0; j < inputs.size(); ++j) values[j] = inputs[j].at(row);
+      output[row] = std::visit(node_evaluate{values}, *child);
+    }
+  }
 }

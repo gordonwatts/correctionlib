@@ -1,3 +1,6 @@
+# Preserve raw build, environment and timing records exactly as collected.
+exclude: ^evidence/.*\.(log|csv|json|txt)$
+
 ci:
   autofix_commit_msg: |
     [pre-commit.ci] auto fixes from pre-commit.com hooks

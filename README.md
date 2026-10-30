@@ -140,13 +140,12 @@ packages, while retaining a completely Python-free C++ build and runtime. See
 binary compatibility contract and examples. Extended payloads require this fork;
 stock upstream schema-v2 readers do not support the `extension` node.
 
-
 ## Experimental fixed array outputs in this fork
 
 An array-valued correction returns a fixed, ordered list of numbers for each
 input point. For example, one histogram bin can hold two explicitly declared
-components. This differs from passing many particles to a scalar correction.
-The components have only the meaning assigned by the payload; no systematic
+components. This differs from passing many particles to a scalar correction. The
+components have only the meaning assigned by the payload; no systematic
 variation labels are reserved.
 
 The [array-output guide](docs/array-outputs.md) gives schema-v3 payloads and

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.15)
+project(batch_probe LANGUAGES CXX)
+find_package(correctionlib CONFIG REQUIRED)
+add_library(batch_probe SHARED probe.cc)
+target_link_libraries(batch_probe PRIVATE correctionlib)
+set_target_properties(batch_probe PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)

@@ -7,7 +7,7 @@
 namespace correction {
 
 // Experimental C++ SDK: matching compiler, standard library and core build required.
-constexpr int plugin_api_version = 1;
+constexpr int plugin_api_version = 2;
 
 // Conservative handshake for this experimental C++ ABI. Rebuild providers when
 // the core version or compiler changes; this is not a portable stable C ABI.
@@ -32,6 +32,10 @@ class PluginNode {
 public:
   virtual ~PluginNode() = default;
   virtual double evaluate(const std::vector<Variable::Type>& values) const = 0;
+  // Override for a native column kernel. Default preserves scalar node behavior.
+  // Core validates column types/lengths and output capacity before dispatch.
+  virtual void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                              double* output, size_t output_size) const;
 };
 
 // Owns its JSON; no RapidJSON or Python types cross the SDK boundary. Typed
@@ -101,5 +105,5 @@ private:
 // load into the host registry whose load transaction is currently in progress.
 // extern "C" int correctionlib_plugin_api_version();
 // extern "C" const char* correctionlib_plugin_build_id();
-// extern "C" void correctionlib_register_nodes_v1(correction::PluginRegistry&);
+// extern "C" void correctionlib_register_nodes_v2(correction::PluginRegistry&);
 #endif

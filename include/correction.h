@@ -2,6 +2,7 @@
 #define CORRECTION_H
 
 #include <cstdint>
+#include <cstddef>
 #include <string>
 #include <vector>
 #include <variant>
@@ -40,10 +41,27 @@ class Variable {
     VarType type_;
 };
 
+// A scalar is owned; numeric columns borrow caller storage for one batch call.
+// Strides count elements (not bytes). The first pointer may address a reversed view.
+class BatchInput {
+public:
+  explicit BatchInput(Variable::Type value) : data_(std::move(value)) {}
+  static BatchInput reals(const double* data, size_t size, std::ptrdiff_t stride = 1);
+  static BatchInput integers(const int64_t* data, size_t size, std::ptrdiff_t stride = 1);
+  Variable::Type at(size_t index) const;
+  void validate(const Variable& variable, size_t n) const;
+private:
+  struct Reals { const double* data; size_t size; std::ptrdiff_t stride; };
+  struct Integers { const int64_t* data; size_t size; std::ptrdiff_t stride; };
+  std::variant<Variable::Type, Reals, Integers> data_;
+};
+
 class ExtensionNode {
   public:
     ExtensionNode(const JSONObject& json, const class Correction& context);
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                        double* output, size_t output_size) const;
   private:
     struct State;
     std::shared_ptr<const State> state_;
@@ -231,6 +249,8 @@ class Binning {
   public:
     Binning(const JSONObject& json, const Correction& context);
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                        double* output, size_t output_size) const;
 
   private:
     detail::EdgesType bins_; // bin edges
@@ -254,6 +274,8 @@ class MultiBinning {
     MultiBinning(const JSONObject& json, const Correction& context);
     size_t ndimensions() const { return axes_.size(); };
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                        double* output, size_t output_size) const;
 
   private:
     size_t nbins(size_t dimension) const;
@@ -289,6 +311,8 @@ class Correction {
     Formula::Ref formula_ref(size_t idx) const { return formula_refs_.at(idx); };
     const Variable& output() const { return output_; };
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                        double* output, size_t output_size) const;
 
   private:
     std::string name_;
@@ -316,6 +340,8 @@ class CompoundCorrection {
     size_t input_index(const std::string_view name) const;
     const Variable& output() const { return output_; };
     double evaluate(const std::vector<Variable::Type>& values) const;
+    void evaluate_batch(const std::vector<BatchInput>& inputs, size_t n,
+                        double* output, size_t output_size) const;
 
   private:
     enum class UpdateOp {Add, Multiply, Divide, Last};

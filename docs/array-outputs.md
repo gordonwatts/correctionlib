@@ -54,14 +54,49 @@ not alias inputs and may be partially written on an exception. Storage is
 borrowed only until return. Returned vectors own their values. Evaluators are
 reentrant; providers must meet the SDK concurrent-call contract.
 
-```cpp
-auto values = cset->at("pair")->evaluate_array({0.25}); // {1.0, 2.0}
-```
+## One input point: scalar or array output
+
+The [complete example payload](../examples/batch_arrays/payload.json) contains
+both a scalar correction and a correction with two output components. From the
+repository root, the Python comparison is:
 
 ```python
-pair = cset["pair"]
-a = pair.evaluate(0.25)  # shape (2,)
-b = pair.evaluate(numpy.array([0.25, 1.25, 0.5]))  # shape (3, 2)
+import correctionlib
+
+cset = correctionlib.CorrectionSet.from_file("examples/batch_arrays/payload.json")
+
+value = cset["scalar"].evaluate(0.25)
+# 1.0 — a Python float, as before
+
+components = cset["pair"].evaluate(0.25)
+# array([1., 2.]) — a NumPy array with shape (2,)
+```
+
+Both calls pass **one input value**. Python keeps the same `evaluate(...)`
+method; the payload declares whether the correction returns one number or a
+fixed array. Here, `pair` declares `"shape": [2]`, and its selected histogram
+bin contains the two components `1.0` and `2.0`.
+
+C++ uses an explicit array-output method:
+
+```cpp
+auto cset = correction::CorrectionSet::from_file("examples/batch_arrays/payload.json");
+
+double value = cset->at("scalar")->evaluate({0.25});
+// 1.0
+
+std::vector<double> components = cset->at("pair")->evaluate_array({0.25});
+// {1.0, 2.0}
+```
+
+Passing several input points is a separate operation. For example, evaluating
+`pair` at three points returns three rows of two components:
+
+```python
+import numpy as np
+
+rows = cset["pair"].evaluate(np.array([0.25, 1.25, 0.5]))
+# array([[1., 2.], [3., 4.], [1., 2.]]) — shape (3, 2)
 ```
 
 Python appends (S,) to the broadcast input shape; an empty one-dimensional input

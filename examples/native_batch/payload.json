@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "corrections": [
+    {
+      "name": "scalar",
+      "version": 1,
+      "inputs": [
+        {
+          "name": "x",
+          "type": "real"
+        }
+      ],
+      "output": {
+        "name": "y",
+        "type": "real"
+      },
+      "data": {
+        "nodetype": "binning",
+        "input": "x",
+        "edges": [0.0, 1.0, 2.0],
+        "content": [1.0, 3.0],
+        "flow": "clamp"
+      }
+    }
+  ]
+}

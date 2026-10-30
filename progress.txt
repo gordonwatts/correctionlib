@@ -100,3 +100,21 @@ NumPy array[1.,2.] shape(2,), and rows[[1,2],[3,4],[1,2]] shape(3,2), as shown.
 Pinned documentation format/spelling checks applied. This is documentation only;
 no native/Python implementation, payload, benchmark or binary was changed.
 Keep the same explanation in the standalone array-output PR as well.
+
+Batch documentation followup: user requested Python/C++ array-input examples
+and an explanation of how writing a native node changes. Updated the advanced
+docs/native-batches.md (no README promotion): Python evaluate syntax stays the
+same; C++ scalar evaluate stays and native evaluate_batch is additive. Added a
+complete Scale node retaining its scalar method and adding an optional batch
+callback. Explained default scalar fallback, caller-owned output, input columns,
+scalar broadcasting, root dispatch limits and matching SDK registration/build.
+This is scalar output at many points; array-valued output is linked separately.
+Next execute/compile the exact examples and run focused documentation checks;
+carry the same documentation to the standalone batch PR and merge normally.
+Validation: executed the exact Python call example and compiled both C++
+call/node snippets with ATLAS GCC15.2 and the installed matching develop SDK.
+Histogram calls returned scalar1.0 and batch[1,3,1]; Scale(factor2) returned
+scalar0.5 and batch[0.5,2.5,1], as expected. Added a scalar-only schema-v2
+examples/native_batch/payload.json so the example also runs on the independent
+batch PR without requiring the array-output feature. No implementation or
+benchmark artifact changed. Pinned documentation/JSON formatting applied.
